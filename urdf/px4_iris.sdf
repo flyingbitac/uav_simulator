@@ -34,6 +34,17 @@
           </friction>
         </surface>
       </collision>
+      <sensor name='base_link_contact_sensor' type='contact'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <contact>
+          <collision>base_link_inertia_collision</collision>
+        </contact>
+        <plugin name='base_link_collision_signal' filename='libcollision_signal_sensor_plugin.so'>
+          <topicName>/drone_0/collision</topicName>
+          <selfModelName>iris</selfModelName>
+        </plugin>
+      </sensor>
       <visual name='base_link_inertia_visual'>
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -116,6 +127,17 @@
           </friction>
         </surface>
       </collision>
+      <sensor name='rotor_0_contact_sensor' type='contact'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <contact>
+          <collision>rotor_0_collision</collision>
+        </contact>
+        <plugin name='rotor_0_collision_signal' filename='libcollision_signal_sensor_plugin.so'>
+          <topicName>/drone_0/collision</topicName>
+          <selfModelName>iris</selfModelName>
+        </plugin>
+      </sensor>
       <visual name='rotor_0_visual'>
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -181,6 +203,17 @@
           </friction>
         </surface>
       </collision>
+      <sensor name='rotor_1_contact_sensor' type='contact'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <contact>
+          <collision>rotor_1_collision</collision>
+        </contact>
+        <plugin name='rotor_1_collision_signal' filename='libcollision_signal_sensor_plugin.so'>
+          <topicName>/drone_0/collision</topicName>
+          <selfModelName>iris</selfModelName>
+        </plugin>
+      </sensor>
       <visual name='rotor_1_visual'>
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -246,6 +279,17 @@
           </friction>
         </surface>
       </collision>
+      <sensor name='rotor_2_contact_sensor' type='contact'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <contact>
+          <collision>rotor_2_collision</collision>
+        </contact>
+        <plugin name='rotor_2_collision_signal' filename='libcollision_signal_sensor_plugin.so'>
+          <topicName>/drone_0/collision</topicName>
+          <selfModelName>iris</selfModelName>
+        </plugin>
+      </sensor>
       <visual name='rotor_2_visual'>
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -311,6 +355,17 @@
           </friction>
         </surface>
       </collision>
+      <sensor name='rotor_3_contact_sensor' type='contact'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <contact>
+          <collision>rotor_3_collision</collision>
+        </contact>
+        <plugin name='rotor_3_collision_signal' filename='libcollision_signal_sensor_plugin.so'>
+          <topicName>/drone_0/collision</topicName>
+          <selfModelName>iris</selfModelName>
+        </plugin>
+      </sensor>
       <visual name='rotor_3_visual'>
         <pose>0 0 0 0 0 0</pose>
         <geometry>

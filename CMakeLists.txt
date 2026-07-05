@@ -151,6 +151,7 @@ add_library(quadcopterPlugin SHARED
 )
 
 add_library(obstaclePathPlugin src/obstaclePathPlugin.cc)
+add_library(collision_signal_sensor_plugin SHARED src/collisionSignalSensorPlugin.cc)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -188,6 +189,12 @@ set_target_properties(obstaclePathPlugin
     ${PROJECT_SOURCE_DIR}/plugins
 )
 
+set_target_properties(collision_signal_sensor_plugin
+    PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY
+    ${PROJECT_SOURCE_DIR}/plugins
+)
+
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -210,6 +217,11 @@ target_link_libraries(keyboard_control
 target_link_libraries(quadcopterTFBroadcaster ${catkin_LIBRARIES})
 
 target_link_libraries(obstaclePathPlugin    
+   ${catkin_LIBRARIES}
+   ${GAZEBO_LIBRARIES}
+)
+
+target_link_libraries(collision_signal_sensor_plugin
    ${catkin_LIBRARIES}
    ${GAZEBO_LIBRARIES}
 )
