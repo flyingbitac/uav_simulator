@@ -1,248 +1,359 @@
+#include <algorithm>
+#include <cmath>
+#include <functional>
+
 #include <uav_simulator/obstaclePathPlugin.hh>
 
 namespace gazebo
 {
-  void DynamicObstacle::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf){
-      // Store the pointer to the model
-      this->model = _parent;
-      this->sdf = _sdf;
+namespace
+{
+constexpr double kEpsilon = 1e-6;
+}
 
-      // Read paramters in sdf file
-      if (this->sdf->HasElement("velocity")){
-        this->velocity = _sdf->Get<double>("velocity");
-      }
-      else{
-        this->velocity = 1.0;
-      }
+double DynamicObstacle::ReadDouble(
+    const sdf::ElementPtr &_sdf, const std::string &name, double fallback)
+{
+  return _sdf->HasElement(name) ? _sdf->Get<double>(name) : fallback;
+}
 
-      if (this->sdf->HasElement("orientation")){
-        this->orientation = _sdf->Get<bool>("orientation");
-      }
-      else{
-        this->orientation = true;
-      }
+int DynamicObstacle::ReadInt(
+    const sdf::ElementPtr &_sdf, const std::string &name, int fallback)
+{
+  return _sdf->HasElement(name) ? _sdf->Get<int>(name) : fallback;
+}
 
-      if (this->orientation){
-        if (this->sdf->HasElement("angular_velocity")){
-          this->angularVelocity = _sdf->Get<double>("angular_velocity");
-        }
-        else{
-          this->angularVelocity = 0.8;
-        }
-      }
+bool DynamicObstacle::ReadBool(
+    const sdf::ElementPtr &_sdf, const std::string &name, bool fallback)
+{
+  return _sdf->HasElement(name) ? _sdf->Get<bool>(name) : fallback;
+}
 
-      if (this->sdf->HasElement("loop")){
-        this->loop = _sdf->Get<bool>("loop");
-      }
-      else{
-        this->loop = false;
-      }
+std::string DynamicObstacle::ReadString(
+    const sdf::ElementPtr &_sdf,
+    const std::string &name,
+    const std::string &fallback)
+{
+  return _sdf->HasElement(name) ? _sdf->Get<std::string>(name) : fallback;
+}
 
-      // read path:
-      this->path.clear();
-      if (this->sdf->HasElement("path")){
-        sdf::ElementPtr waypointElem = _sdf->GetElement("path")->GetElement("waypoint");
-        while (waypointElem){
-          ignition::math::Vector3d wp = waypointElem->Get<ignition::math::Vector3d>();
-          this->path.push_back(wp);
-          waypointElem = waypointElem->GetNextElement("waypoint");
-        }
-      }
+ignition::math::Vector3d DynamicObstacle::ReadVector(
+    const sdf::ElementPtr &_sdf,
+    const std::string &name,
+    const ignition::math::Vector3d &fallback)
+{
+  return _sdf->HasElement(name)
+      ? _sdf->Get<ignition::math::Vector3d>(name)
+      : fallback;
+}
 
-      
-      if (this->loop){
-        this->path.push_back(this->path[0]); // form a loop
-      }
-      else{
-        // back and forth
-        std::vector<ignition::math::Vector3d> temp = this->path;
-        for (int i=temp.size()-2; i>=0; --i){
-          this->path.push_back(temp[i]);
-        }
-      }
+void DynamicObstacle::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
+{
+  this->model = _parent;
+  this->sdf = _sdf;
+  this->initialPose = this->model->WorldPose();
 
-      if (this->orientation){
-        // modify to the path with angle
-        this->pathWithAngle.clear();
-        double yawCurr;
-        double yawLast;
-        for (int i=0; i<this->path.size(); ++i){
-          if (i == 0){
-            double xCurr, yCurr, zCurr, yawStart;
-            double xNext, yNext, zNext;
+  this->velocity = std::max(
+      kEpsilon, ReadDouble(this->sdf, "velocity", this->velocity));
+  this->orientation = ReadBool(this->sdf, "orientation", this->orientation);
+  this->loop = ReadBool(this->sdf, "loop", this->loop);
+  this->angularVelocity = ReadDouble(
+      this->sdf, "angular_velocity", this->angularVelocity);
 
-            xCurr = this->path[i].X();
-            yCurr = this->path[i].Y();
-            zCurr = this->path[i].Z();
-
-            xNext = this->path[i+1].X();
-            yNext = this->path[i+1].Y();
-            zNext = this->path[i+1].Z();
-            
-            yawStart = atan2(yNext-yCurr, xNext-xCurr);
-            std::vector<double> pose {xCurr, yCurr, zCurr, yawStart};
-            this->pathWithAngle.push_back(pose);
-            yawLast = yawStart;
-          }
-          else{
-            // if not zero, we need to add two poses for different yaw
-            double xCurr, yCurr, zCurr;
-            double xNext, yNext, zNext;
-            double xPrev, yPrev, zPrev;
-            // double xHat, yHat, zHat; // for bad gazebo
-
-            xCurr = this->path[i].X();
-            yCurr = this->path[i].Y();
-            zCurr = this->path[i].Z();
-
-
-
-            if (i+1 < this->path.size()){
-              xNext = this->path[i+1].X();
-              yNext = this->path[i+1].Y();
-              zNext = this->path[i+1].Z();
-            }
-            else{
-              xNext = this->path[1].X();
-              yNext = this->path[1].Y();
-              zNext = this->path[1].Z();
-            }
-
-            xPrev = this->path[i-1].X();
-            yPrev = this->path[i-1].Y();
-            zPrev = this->path[i-1].Z();
-
-            yawCurr = atan2(yNext-yCurr, xNext-xCurr);
-
-            // adding first point:
-            std::vector<double> pose1 {xCurr, yCurr, zCurr, yawLast};
-            // std::vector<double> pose1 {xCurr, yCurr, zCurr, yawCurr};
-            // std::vector<double> pose1 {xHat, yHat, zHat, yawLast};
-            this->pathWithAngle.push_back(pose1);
-
-            // ading last point:
-            std::vector<double> pose2 {xCurr, yCurr, zCurr, yawCurr};
-            this->pathWithAngle.push_back(pose2);
-
-            yawLast = yawCurr;
-          }
-        }
-      }
-      else{
-        this->pathWithAngle.clear();
-        for (int i=0; i<this->path.size(); ++i){
-          ignition::math::Vector3d wp = this->path[i];
-          std::vector<double> pose {wp.X(), wp.Y(), wp.Z(), 0};
-          this->pathWithAngle.push_back(pose);
-        }
-      }
-
-
-      // calculate total time
-      this->timeKnot.clear();
-      double totalTime = 0.0;
-      this->timeKnot.push_back(totalTime);
-      for (int i=0; i<this->pathWithAngle.size()-1; ++i){
-        std::vector<double> poseCurr = this->pathWithAngle[i];
-        std::vector<double> poseNext = this->pathWithAngle[i+1];
-
-        bool rotation = ((poseCurr[0] == poseNext[0]) and (poseCurr[1] == poseNext[1]) and (poseCurr[2] == poseNext[2]));
-
-        if (not rotation){ // forward motion
-          double xCurr, yCurr, zCurr;
-          double xNext, yNext, zNext;
-
-          xCurr = poseCurr[0];
-          yCurr = poseCurr[1];
-          zCurr = poseCurr[2];
-
-          xNext = poseNext[0];
-          yNext = poseNext[1];
-          zNext = poseNext[2];
-
-          double distance = sqrt(pow(xNext-xCurr, 2) + pow(yNext-yCurr, 2) + pow(zNext-zCurr, 2));
-          int duration = distance/this->velocity;
-          totalTime += duration;
-          this->timeKnot.push_back(totalTime);
-        }
-        else{ // rotation
-          double yawCurr, yawNext;
-          yawCurr = poseCurr[3];
-          yawNext = poseNext[3];
-          double angleABSDiff = std::abs(atan2(sin(yawNext-yawCurr), cos(yawNext-yawCurr)));
-          double duration = angleABSDiff/this->angularVelocity;
-          totalTime += duration;
-          this->timeKnot.push_back(totalTime);
-        }
-      }
-
-
-
-      gazebo::common::PoseAnimationPtr anim(new gazebo::common::PoseAnimation("obstaclePathLoop", totalTime, true));
-      gazebo::common::PoseKeyFrame *key;
-      for (int i=0; i<this->pathWithAngle.size(); ++i){
-        double t = this->timeKnot[i];
-        std::vector<double> pose = this->pathWithAngle[i];
-        double x = pose[0];
-        double y = pose[1];
-        double z = pose[2];
-        double yaw = pose[3];
-        // double yaw = 1.5707;
-        key = anim->CreateKeyFrame(t);
-        key->Translation(ignition::math::Vector3d(x, y, z));
-        key->Rotation(ignition::math::Quaterniond(0, 0, yaw));
-        gzdbg << "t: " << t << ", pose: " << "(" << x << " " << y << " " << z << " "<<  yaw << ")" << std::endl;  
-      }
-
-        // // set the animation
-        _parent->SetAnimation(anim);
+  const std::string motionType =
+      ReadString(this->sdf, "motion_type", "path");
+  if (motionType == "linear")
+  {
+    this->motionType = MotionType::LINEAR;
+    this->lineStart = ReadVector(
+        this->sdf, "line_start", this->initialPose.Pos());
+    this->lineEnd = ReadVector(
+        this->sdf, "line_end", this->initialPose.Pos());
+    this->lineLength = this->lineStart.Distance(this->lineEnd);
+    this->linePhase = ReadDouble(this->sdf, "phase", this->linePhase);
+    if (this->lineLength <= kEpsilon)
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' has a zero-length linear path." << std::endl;
+      return;
     }
+  }
+  else if (motionType == "circular")
+  {
+    this->motionType = MotionType::CIRCULAR;
+    this->circleCenter = ReadVector(
+        this->sdf, "circle_center", this->initialPose.Pos());
+    this->circleRadius = std::max(
+        kEpsilon, ReadDouble(this->sdf, "circle_radius", this->circleRadius));
+    this->circlePhase = ReadDouble(this->sdf, "phase", this->circlePhase);
+  }
+  else
+  {
+    this->motionType = MotionType::LEGACY_PATH;
+    this->ConfigureLegacyPath();
+  }
 
-    std::vector<double>& DynamicObstacle::interpolateAngle(double start, double end, double dx){
-      static std::vector<double> interpolation;
-      double angleDiff = end - start;
-      double angleDiffABS = std::abs(angleDiff);
+  this->markerEnabled = ReadBool(this->sdf, "marker_enabled", false);
+  if (this->markerEnabled)
+  {
+    this->markerId = ReadInt(this->sdf, "marker_id", this->markerId);
+    this->markerRadius = std::max(
+        kEpsilon, ReadDouble(this->sdf, "marker_radius", this->markerRadius));
+    this->markerHeight = std::max(
+        kEpsilon, ReadDouble(this->sdf, "marker_height", this->markerHeight));
+    this->markerRate = std::max(
+        kEpsilon, ReadDouble(this->sdf, "marker_rate", this->markerRate));
+    this->markerTopic = ReadString(
+        this->sdf, "marker_topic", this->markerTopic);
+    this->markerFrame = ReadString(
+        this->sdf, "marker_frame", this->markerFrame);
 
-      if (angleDiff >= 0 and angleDiffABS <= M_PI){
-        for (double mid=start+dx; mid<end; mid+=dx){
-          interpolation.push_back(mid);
-        }
-      }
-      else if (angleDiff >= 0 and angleDiffABS > M_PI){
-        // minus unitl -PI
-        double mid = start-dx;
-        while (mid >= -M_PI){
-          interpolation.push_back(mid);
-          mid -= dx;
-        }
-
-        // minus from PI to end
-        mid = M_PI;
-        while (mid > end){
-          interpolation.push_back(mid);
-          mid -= dx;
-        }
-      }
-      else if (angleDiff < 0 and angleDiffABS <= M_PI){
-        for (double mid=start-dx; mid>end; mid-=dx){
-          interpolation.push_back(mid);
-        }
-      }
-      else if (angleDiff < 0 and angleDiffABS > M_PI){
-        // plus until PI
-        double mid = start+dx;
-        while (mid <= M_PI){
-          interpolation.push_back(mid);
-          mid += dx;
-        }
-
-        // plus from -PI to end
-        mid = -M_PI;
-        while (mid < end){
-          interpolation.push_back(mid);
-          mid += dx;
-        }
-      }
-      return interpolation;
+    if (!ros::isInitialized())
+    {
+      gzerr << "DynamicObstacle marker publishing requires gazebo_ros_init; "
+            << "motion will continue without RViz markers." << std::endl;
+      this->markerEnabled = false;
     }
+    else
+    {
+      this->rosNode.reset(new ros::NodeHandle(""));
+      this->markerPublisher =
+          this->rosNode->advertise<visualization_msgs::Marker>(
+              this->markerTopic, 100, false);
+    }
+  }
+
+  if (this->motionType != MotionType::LEGACY_PATH || this->markerEnabled)
+  {
+    this->updateConnection = event::Events::ConnectWorldUpdateBegin(
+        std::bind(&DynamicObstacle::OnUpdate, this, std::placeholders::_1));
+  }
+}
+
+void DynamicObstacle::ConfigureLegacyPath()
+{
+  this->path.clear();
+  if (this->sdf->HasElement("path"))
+  {
+    sdf::ElementPtr waypointElem =
+        this->sdf->GetElement("path")->GetElement("waypoint");
+    while (waypointElem)
+    {
+      this->path.push_back(
+          waypointElem->Get<ignition::math::Vector3d>());
+      waypointElem = waypointElem->GetNextElement("waypoint");
+    }
+  }
+
+  if (this->path.size() < 2)
+  {
+    gzerr << "DynamicObstacle '" << this->model->GetName()
+          << "' requires at least two path waypoints." << std::endl;
+    return;
+  }
+
+  if (this->loop)
+  {
+    this->path.push_back(this->path.front());
+  }
+  else
+  {
+    const std::vector<ignition::math::Vector3d> forwardPath = this->path;
+    for (int i = static_cast<int>(forwardPath.size()) - 2; i >= 0; --i)
+    {
+      this->path.push_back(forwardPath[static_cast<std::size_t>(i)]);
+    }
+  }
+
+  this->pathWithAngle.clear();
+  if (this->orientation)
+  {
+    double yawLast = 0.0;
+    for (std::size_t i = 0; i < this->path.size(); ++i)
+    {
+      const auto &current = this->path[i];
+      const auto &next =
+          i + 1 < this->path.size() ? this->path[i + 1] : this->path[1];
+      const double yawCurrent =
+          std::atan2(next.Y() - current.Y(), next.X() - current.X());
+
+      if (i == 0)
+      {
+        this->pathWithAngle.push_back(
+            {current.X(), current.Y(), current.Z(), yawCurrent});
+      }
+      else
+      {
+        this->pathWithAngle.push_back(
+            {current.X(), current.Y(), current.Z(), yawLast});
+        this->pathWithAngle.push_back(
+            {current.X(), current.Y(), current.Z(), yawCurrent});
+      }
+      yawLast = yawCurrent;
+    }
+  }
+  else
+  {
+    for (const auto &waypoint : this->path)
+    {
+      this->pathWithAngle.push_back(
+          {waypoint.X(), waypoint.Y(), waypoint.Z(), 0.0});
+    }
+  }
+
+  this->timeKnot.clear();
+  double totalTime = 0.0;
+  this->timeKnot.push_back(totalTime);
+  for (std::size_t i = 0; i + 1 < this->pathWithAngle.size(); ++i)
+  {
+    const auto &current = this->pathWithAngle[i];
+    const auto &next = this->pathWithAngle[i + 1];
+    const bool rotation =
+        current[0] == next[0] && current[1] == next[1] &&
+        current[2] == next[2];
+
+    double duration = 0.0;
+    if (rotation)
+    {
+      const double angleDifference = std::abs(std::atan2(
+          std::sin(next[3] - current[3]),
+          std::cos(next[3] - current[3])));
+      duration = angleDifference /
+          std::max(kEpsilon, std::abs(this->angularVelocity));
+    }
+    else
+    {
+      const double distance = std::sqrt(
+          std::pow(next[0] - current[0], 2) +
+          std::pow(next[1] - current[1], 2) +
+          std::pow(next[2] - current[2], 2));
+      // Preserve the legacy plugin's integer-second path timing.
+      duration = static_cast<double>(
+          static_cast<int>(distance / this->velocity));
+    }
+    totalTime += std::max(kEpsilon, duration);
+    this->timeKnot.push_back(totalTime);
+  }
+
+  gazebo::common::PoseAnimationPtr animation(
+      new gazebo::common::PoseAnimation(
+          "obstaclePathLoop", totalTime, true));
+  for (std::size_t i = 0; i < this->pathWithAngle.size(); ++i)
+  {
+    const auto &pose = this->pathWithAngle[i];
+    gazebo::common::PoseKeyFrame *key =
+        animation->CreateKeyFrame(this->timeKnot[i]);
+    key->Translation(
+        ignition::math::Vector3d(pose[0], pose[1], pose[2]));
+    key->Rotation(ignition::math::Quaterniond(0.0, 0.0, pose[3]));
+  }
+  this->model->SetAnimation(animation);
+}
+
+void DynamicObstacle::OnUpdate(const common::UpdateInfo &_info)
+{
+  if (!this->model)
+  {
+    return;
+  }
+
+  const double simTime = _info.simTime.Double();
+  if (!this->motionStarted)
+  {
+    this->motionStarted = true;
+    this->motionStartSimTime = simTime;
+  }
+  const double elapsed = std::max(0.0, simTime - this->motionStartSimTime);
+
+  if (this->motionType == MotionType::LINEAR)
+  {
+    double pathPhase = std::fmod(
+        this->linePhase + this->velocity * elapsed / this->lineLength, 2.0);
+    if (pathPhase < 0.0)
+    {
+      pathPhase += 2.0;
+    }
+    const bool forward = pathPhase <= 1.0;
+    const double progress = forward ? pathPhase : 2.0 - pathPhase;
+    const ignition::math::Vector3d direction =
+        (this->lineEnd - this->lineStart) / this->lineLength;
+    const ignition::math::Vector3d position =
+        this->lineStart + progress * (this->lineEnd - this->lineStart);
+    const ignition::math::Vector3d linearVelocity =
+        (forward ? 1.0 : -1.0) * this->velocity * direction;
+
+    this->model->SetWorldPose(
+        ignition::math::Pose3d(position, this->initialPose.Rot()));
+    this->model->SetLinearVel(linearVelocity);
+    this->model->SetAngularVel(ignition::math::Vector3d::Zero);
+  }
+  else if (this->motionType == MotionType::CIRCULAR)
+  {
+    const double angle =
+        this->circlePhase + this->angularVelocity * elapsed;
+    const double cosine = std::cos(angle);
+    const double sine = std::sin(angle);
+    const ignition::math::Vector3d position(
+        this->circleCenter.X() + this->circleRadius * cosine,
+        this->circleCenter.Y() + this->circleRadius * sine,
+        this->circleCenter.Z());
+    const ignition::math::Vector3d linearVelocity(
+        -this->circleRadius * this->angularVelocity * sine,
+        this->circleRadius * this->angularVelocity * cosine,
+        0.0);
+
+    this->model->SetWorldPose(
+        ignition::math::Pose3d(position, this->initialPose.Rot()));
+    this->model->SetLinearVel(linearVelocity);
+    this->model->SetAngularVel(ignition::math::Vector3d::Zero);
+  }
+
+  if (this->markerEnabled)
+  {
+    this->PublishMarker(simTime);
+  }
+}
+
+void DynamicObstacle::PublishMarker(double simTime)
+{
+  const double markerPeriod = 1.0 / this->markerRate;
+  if (this->lastMarkerPublishSimTime >= 0.0 &&
+      simTime < this->lastMarkerPublishSimTime)
+  {
+    // Gazebo resets simulation time when the world is reset. Publish
+    // immediately after the jump instead of waiting for the old time again.
+    this->lastMarkerPublishSimTime = -1.0;
+  }
+  if (this->lastMarkerPublishSimTime >= 0.0 &&
+      simTime - this->lastMarkerPublishSimTime < markerPeriod)
+  {
+    return;
+  }
+  this->lastMarkerPublishSimTime = simTime;
+
+  const ignition::math::Pose3d pose = this->model->WorldPose();
+  visualization_msgs::Marker marker;
+  marker.header.frame_id = this->markerFrame;
+  marker.header.stamp = ros::Time::now();
+  marker.ns = "dynamic_obstacles";
+  marker.id = this->markerId;
+  marker.type = visualization_msgs::Marker::CYLINDER;
+  marker.action = visualization_msgs::Marker::ADD;
+  marker.pose.position.x = pose.Pos().X();
+  marker.pose.position.y = pose.Pos().Y();
+  marker.pose.position.z = pose.Pos().Z();
+  marker.pose.orientation.x = pose.Rot().X();
+  marker.pose.orientation.y = pose.Rot().Y();
+  marker.pose.orientation.z = pose.Rot().Z();
+  marker.pose.orientation.w = pose.Rot().W();
+  marker.scale.x = 2.0 * this->markerRadius;
+  marker.scale.y = 2.0 * this->markerRadius;
+  marker.scale.z = this->markerHeight;
+  marker.color.r = 1.0;
+  marker.color.g = 0.35;
+  marker.color.b = 0.0;
+  marker.color.a = 0.65;
+  marker.lifetime = ros::Duration(2.5 * markerPeriod);
+  this->markerPublisher.publish(marker);
+}
 }

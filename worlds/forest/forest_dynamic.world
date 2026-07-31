@@ -1,0 +1,4288 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://asphalt_plane</uri>
+      <pose>0 0 -0.000001 0 0 0</pose>
+    </include>
+    <model name="unit_cylinder_0">
+      <pose>7.26375 -4.78034 7.70000 -0.05230 0.03151 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_1">
+      <pose>5.35331 -3.97411 7.70000 -0.04824 0.08551 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_1" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>2.011569302 -3.825184602 7.700000000</line_start>
+        <line_end>8.695050698 -4.123035398 7.700000000</line_end>
+        <velocity>1.495467225</velocity>
+        <phase>0.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>1</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_2">
+      <pose>7.09347 0.51835 7.70000 0.05095 0.08636 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_3">
+      <pose>7.42342 2.72349 7.70000 0.01780 -0.05195 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_3" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>8.502433080 2.430860993 7.700000000</circle_center>
+        <circle_radius>1.117989697</circle_radius>
+        <angular_velocity>0.545995587</angular_velocity>
+        <phase>2.876762124</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>3</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_4">
+      <pose>6.13772 6.33141 7.70000 0.03071 0.07636 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_4" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>5.692721369 5.435769033 7.700000000</circle_center>
+        <circle_radius>1.000098257</circle_radius>
+        <angular_velocity>0.717023137</angular_velocity>
+        <phase>1.109672414</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>4</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_5">
+      <pose>8.71618 -4.71085 7.70000 0.07277 0.03966 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_6">
+      <pose>8.97809 -3.86043 7.70000 -0.03479 0.01767 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_7">
+      <pose>10.51181 1.26741 7.70000 -0.04894 -0.06483 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_8">
+      <pose>8.70496 3.84057 7.70000 0.07761 -0.04141 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_9">
+      <pose>10.61522 6.96932 7.70000 -0.07951 0.01817 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_9" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>8.874736150 5.397406702 7.700000000</line_start>
+        <line_end>12.355703850 8.541233298 7.700000000</line_end>
+        <velocity>0.549964471</velocity>
+        <phase>0.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>9</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_10">
+      <pose>11.41970 -5.98220 7.70000 -0.06167 -0.01003 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_11">
+      <pose>11.28767 -3.60847 7.70000 0.01687 -0.00217 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_11" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>12.132063707 -3.640043568 7.700000000</circle_center>
+        <circle_radius>0.844983800</circle_radius>
+        <angular_velocity>0.783226523</angular_velocity>
+        <phase>3.104218067</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>11</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_12">
+      <pose>12.15770 0.46872 7.70000 -0.00608 0.03339 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_13">
+      <pose>13.32162 4.11724 7.70000 -0.04515 0.03359 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_14">
+      <pose>13.73454 6.75507 7.70000 -0.06202 0.02234 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_14" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>10.558355142 9.944907210 7.700000000</line_start>
+        <line_end>16.910724858 3.565232790 7.700000000</line_end>
+        <velocity>0.565966652</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>14</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_15">
+      <pose>15.35232 -5.64312 7.70000 -0.01142 0.03230 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_16">
+      <pose>14.87009 -4.29014 7.70000 -0.06293 -0.01180 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_17">
+      <pose>14.94203 0.09193 7.70000 0.01400 -0.05422 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_17" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>11.422199561 2.659653934 7.700000000</line_start>
+        <line_end>18.461860439 -2.475793934 7.700000000</line_end>
+        <velocity>1.506518736</velocity>
+        <phase>0.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>17</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_18">
+      <pose>16.20374 2.23448 7.70000 0.04981 0.03448 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_19">
+      <pose>15.10147 5.48403 7.70000 -0.01888 0.00296 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_20">
+      <pose>19.44398 -5.02566 7.70000 0.06467 -0.08373 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_20" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>18.998825061 -4.022400078 7.700000000</circle_center>
+        <circle_radius>1.097585255</circle_radius>
+        <angular_velocity>0.118773002</angular_velocity>
+        <phase>-1.153186730</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>20</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_21">
+      <pose>17.75409 -1.73514 7.70000 -0.07300 0.04902 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_22">
+      <pose>19.21489 -0.92370 7.70000 -0.03321 -0.04483 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_22" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>19.242571291 -1.815601363 7.700000000</circle_center>
+        <circle_radius>0.892330822</circle_radius>
+        <angular_velocity>0.308800918</angular_velocity>
+        <phase>1.601822637</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>22</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_23">
+      <pose>18.86314 1.80899 7.70000 0.00480 0.02705 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_24">
+      <pose>19.38141 6.72400 7.70000 0.04005 -0.03712 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_24" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>18.640710712 5.868738704 7.700000000</circle_center>
+        <circle_radius>1.131418278</circle_radius>
+        <angular_velocity>0.109831180</angular_velocity>
+        <phase>0.857057731</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>24</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_25">
+      <pose>21.97633 -7.04157 7.70000 -0.03490 0.01449 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_26">
+      <pose>21.58316 -2.93033 7.70000 0.04624 -0.05704 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_27">
+      <pose>20.63646 0.07743 7.70000 -0.05606 0.03179 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_27" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>21.846640831 -0.421717438 7.700000000</circle_center>
+        <circle_radius>1.309078229</circle_radius>
+        <angular_velocity>0.503421256</angular_velocity>
+        <phase>2.750393905</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>27</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_28">
+      <pose>20.26754 3.51521 7.70000 -0.07842 0.04257 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_29">
+      <pose>20.62906 6.60226 7.70000 0.05506 -0.07462 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_29" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>21.062242071 4.961468593 7.700000000</line_start>
+        <line_end>20.195877929 8.243051407 7.700000000</line_end>
+        <velocity>1.942491406</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>29</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_30">
+      <pose>23.99239 -5.37005 7.70000 0.06283 0.07776 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_31">
+      <pose>23.73315 -3.41239 7.70000 0.05982 -0.06407 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_31" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>26.695205080 -2.206963185 7.700000000</line_start>
+        <line_end>20.771094920 -4.617816815 7.700000000</line_end>
+        <velocity>0.132076971</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>31</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_32">
+      <pose>24.23791 -0.54528 7.70000 -0.08110 -0.03204 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_32" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>23.480825469 -0.101224781 7.700000000</circle_center>
+        <circle_radius>0.877702697</circle_radius>
+        <angular_velocity>0.613249431</angular_velocity>
+        <phase>-0.530458595</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>32</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_33">
+      <pose>23.45328 3.03299 7.70000 0.05183 -0.05611 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_34">
+      <pose>23.92898 6.31030 7.70000 0.07834 -0.03994 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_35">
+      <pose>26.73076 -6.41121 7.70000 -0.02684 0.05135 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_35" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>28.165524415 -9.954049862 7.700000000</line_start>
+        <line_end>25.295995585 -2.868370138 7.700000000</line_end>
+        <velocity>0.234369080</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>35</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_36">
+      <pose>26.25423 -3.47821 7.70000 -0.07106 0.06941 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_36" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>27.290156568 -2.609682987 7.700000000</circle_center>
+        <circle_radius>1.351844306</circle_radius>
+        <angular_velocity>0.593379000</angular_velocity>
+        <phase>-2.443868153</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>36</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_37">
+      <pose>28.59680 0.59489 7.70000 -0.07092 0.08238 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_38">
+      <pose>28.64821 3.25891 7.70000 0.08110 -0.03869 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_39">
+      <pose>26.48785 6.26213 7.70000 0.05926 0.08109 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_39" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>28.463351318 5.254199066 7.700000000</line_start>
+        <line_end>24.512348682 7.270060934 7.700000000</line_end>
+        <velocity>0.498216639</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>39</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_40">
+      <pose>30.50138 -6.55084 7.70000 -0.02520 0.03961 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_40" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>30.185794992 -5.763975352 7.700000000</circle_center>
+        <circle_radius>0.847791172</circle_radius>
+        <angular_velocity>0.337914154</angular_velocity>
+        <phase>-1.189370938</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>40</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_41">
+      <pose>29.22730 -2.35427 7.70000 -0.03890 0.06091 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_42">
+      <pose>29.75337 -0.65648 7.70000 0.03745 -0.00180 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_43">
+      <pose>31.27672 2.78835 7.70000 -0.00694 0.06369 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_44">
+      <pose>30.80057 6.98213 7.70000 0.02577 -0.01181 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_44" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>29.848772268 7.351137268 7.700000000</circle_center>
+        <circle_radius>1.020825786</circle_radius>
+        <angular_velocity>0.349726082</angular_velocity>
+        <phase>-0.369853862</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>44</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_45">
+      <pose>32.99413 -6.17392 7.70000 0.04566 0.08192 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_46">
+      <pose>34.39727 -2.30321 7.70000 -0.02974 0.08220 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_46" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>34.290650505 0.033578533 7.700000000</line_start>
+        <line_end>34.503889495 -4.639998533 7.700000000</line_end>
+        <velocity>0.730444371</velocity>
+        <phase>0.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>46</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_47">
+      <pose>34.75195 0.38409 7.70000 -0.06103 -0.00635 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_47" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>36.643967461 1.837142017 7.700000000</line_start>
+        <line_end>32.859932539 -1.068962017 7.700000000</line_end>
+        <velocity>0.191172605</velocity>
+        <phase>0.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>47</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_48">
+      <pose>33.15517 3.83149 7.70000 0.04771 -0.05382 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_48" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>37.322783788 2.855297111 7.700000000</line_start>
+        <line_end>28.987556212 4.807682889 7.700000000</line_end>
+        <velocity>0.743068776</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>48</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_49">
+      <pose>32.63809 6.16504 7.70000 -0.04056 -0.04716 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_49" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>33.554255799 6.948027662 7.700000000</circle_center>
+        <circle_radius>1.205167810</circle_radius>
+        <angular_velocity>0.729604460</angular_velocity>
+        <phase>-2.434413688</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>49</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_50">
+      <pose>37.47507 -4.77163 7.70000 0.07420 -0.03693 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_50" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>38.024582334 -4.705072790 7.700000000</circle_center>
+        <circle_radius>0.553528380</circle_radius>
+        <angular_velocity>0.607154021</angular_velocity>
+        <phase>-3.021059278</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>50</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_51">
+      <pose>35.33920 -1.71920 7.70000 0.08336 0.01235 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_52">
+      <pose>36.94561 -0.60890 7.70000 0.05310 -0.07113 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_52" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>39.012684694 0.662340447 7.700000000</line_start>
+        <line_end>34.878535306 -1.880140447 7.700000000</line_end>
+        <velocity>1.157463116</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>52</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_53">
+      <pose>37.28791 3.23255 7.70000 0.05045 0.05594 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_53" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>37.036761505 2.477189598 7.700000000</circle_center>
+        <circle_radius>0.796018155</circle_radius>
+        <angular_velocity>0.706137952</angular_velocity>
+        <phase>1.249806497</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>53</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_54">
+      <pose>37.41573 5.66150 7.70000 -0.01459 -0.05760 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_55">
+      <pose>40.49863 -5.14829 7.70000 0.01340 0.05107 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_56">
+      <pose>38.65548 -3.36141 7.70000 -0.05003 0.07344 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_56" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>38.453078904 -2.795325148 7.700000000</circle_center>
+        <circle_radius>0.601180725</circle_radius>
+        <angular_velocity>0.506576243</angular_velocity>
+        <phase>-1.227415330</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>56</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_57">
+      <pose>39.32622 0.69818 7.70000 0.01487 -0.01137 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_57" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>35.457704934 -2.147544079 7.700000000</line_start>
+        <line_end>43.194735066 3.543904079 7.700000000</line_end>
+        <velocity>0.839050458</velocity>
+        <phase>1.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>57</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_58">
+      <pose>38.90235 2.19134 7.70000 0.03284 -0.04311 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_58" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>39.092721364 3.350724799 7.700000000</circle_center>
+        <circle_radius>1.174910366</circle_radius>
+        <angular_velocity>0.445365338</angular_velocity>
+        <phase>-1.733544367</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>58</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_59">
+      <pose>38.78764 5.79629 7.70000 0.02598 -0.02275 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_60">
+      <pose>42.20117 -5.42510 7.70000 -0.04951 0.03460 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_60" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>42.494617728 -6.124299873 7.700000000</circle_center>
+        <circle_radius>0.758282290</circle_radius>
+        <angular_velocity>0.689224467</angular_velocity>
+        <phase>1.968161422</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>60</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_61">
+      <pose>43.44253 -3.94575 7.70000 0.04070 -0.07036 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_62">
+      <pose>43.39670 0.15640 7.70000 0.00159 0.03263 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name="unit_cylinder_63">
+      <pose>42.72575 2.94374 7.70000 -0.04269 -0.05279 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_63" filename="libobstaclePathPlugin.so">
+        <motion_type>circular</motion_type>
+        <circle_center>42.885123478 4.305839589 7.700000000</circle_center>
+        <circle_radius>1.371391700</circle_radius>
+        <angular_velocity>0.533479081</angular_velocity>
+        <phase>-1.687272466</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>63</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <model name="unit_cylinder_64">
+      <pose>42.75519 6.99172 7.70000 -0.03150 -0.04046 0.00000</pose>
+      <gravity>0 0 0</gravity>
+      <link name="link">
+        <gravity>1</gravity>
+        <inertial>
+          <mass>100</mass>
+          <inertia>
+            <ixx>20</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>20</iyy>
+            <iyz>0</iyz>
+            <izz>20</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.200</radius>
+              <length>15.000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Bricks</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+      </link>
+      <static>0</static>
+      <plugin name="dynamic_obstacle_motion_64" filename="libobstaclePathPlugin.so">
+        <motion_type>linear</motion_type>
+        <line_start>46.145879328 10.454063036 7.700000000</line_start>
+        <line_end>39.364500672 3.529376964 7.700000000</line_end>
+        <velocity>0.940670136</velocity>
+        <phase>0.5</phase>
+        <orientation>false</orientation>
+        <marker_enabled>true</marker_enabled>
+        <marker_id>64</marker_id>
+        <marker_radius>0.200000000</marker_radius>
+        <marker_height>15.000000000</marker_height>
+        <marker_rate>20.0</marker_rate>
+        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
+        <marker_frame>map</marker_frame>
+      </plugin>
+    </model>
+    <physics name="default_physics" default="0" type="ode">
+      <gravity>0 0 -9.8066</gravity>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>10</iters>
+          <sor>1.3</sor>
+          <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+      <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
+    </physics>
+  </world>
+</sdf>

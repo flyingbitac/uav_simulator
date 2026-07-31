@@ -1,1 +1,4 @@
 *.so
+pcd/
+worlds/arena
+worlds/forest

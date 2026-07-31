@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   sensor_msgs
+  visualization_msgs
   message_generation
   tf2_ros
 )
@@ -124,7 +125,7 @@ catkin_package(
 )
 catkin_package(
    INCLUDE_DIRS include
-   CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs geometry_msgs message_runtime gazebo_ros
+   CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs geometry_msgs visualization_msgs message_runtime gazebo_ros
 )
 
 
@@ -235,10 +236,10 @@ target_link_libraries(collision_signal_sensor_plugin
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# catkin_install_python(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+  scripts/generate_dynamic_cylinder_worlds.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
