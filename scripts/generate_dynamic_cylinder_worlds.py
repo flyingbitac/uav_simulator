@@ -52,8 +52,8 @@ def _parse_args():
     parser.add_argument(
         "--seed",
         type=int,
-        default=0,
-        help="Base deterministic random seed (default: 0).",
+        default=None,
+        help="Optional deterministic random seed (default: random).",
     )
     parser.add_argument(
         "--dynamic-ratio",
@@ -367,10 +367,15 @@ def main():
     if not 0.0 <= args.dynamic_ratio <= 1.0:
         raise ValueError("--dynamic-ratio must be within [0, 1].")
 
+    seed = (
+        args.seed
+        if args.seed is not None
+        else random.SystemRandom().randrange(0, 2**63)
+    )
     package_dir = Path(__file__).resolve().parents[1]
     scene_names = SCENES if args.scene == "all" else (args.scene,)
     results = [
-        _generate_scene(package_dir, scene, args.seed, args.dynamic_ratio)
+        _generate_scene(package_dir, scene, seed, args.dynamic_ratio)
         for scene in scene_names
     ]
     print(json.dumps(results, indent=2, sort_keys=True))
