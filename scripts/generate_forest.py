@@ -86,7 +86,7 @@ R_max = args.R
 assert R_max >= R_min
 H = args.H
 euler_range_deg = args.e
-ratio = 0.4
+ratio = 0.6
 Nx, Ny = int(L / l), int(ratio * L / l)
 
 if __name__ == "__main__":

@@ -20,6 +20,12 @@ SCENES = {
         "seed_offset": 0,
         "linear_speed": (0.5, 2.0),
         "circular_angular_speed": (0.5, 1.0),
+        "protected_points": (
+            (0.0, 0.0),
+            (40.0, 0.0),
+            (40.0, -40.0),
+            (0.0, -40.0),
+        ),
     },
     "forest": {
         "source_world": "cylinder_forest.world",
@@ -29,12 +35,15 @@ SCENES = {
         "seed_offset": 1_000_003,
         "linear_speed": (0.1, 2.0),
         "circular_angular_speed": (0.1, 1.0),
+        "protected_points": ((0.0, 0.0), (50.0, 0.0)),
     },
 }
 
-LINE_SEGMENT_RANGE = (3.0, 10.0)
+LINE_SEGMENT_RANGE = (8.0, 16.0)
 CIRCLE_RADIUS_RANGE = (0.5, 1.5)
 MOTION_MODE_LINEAR_PROBABILITY = 0.5
+PROTECTED_POINT_RADIUS = 4.0
+MAX_MOTION_SAMPLE_ATTEMPTS = 1_000
 PCD_WORLD_Z_OFFSET = 0.2
 PCD_FILTER_EPSILON = 0.03
 
@@ -106,6 +115,37 @@ def _indent_xml(element, level=0):
         element.tail = indentation
 
 
+def _point_to_segment_distance_2d(point, start, end):
+    segment = end[:2] - start[:2]
+    length_squared = float(np.dot(segment, segment))
+    if length_squared == 0.0:
+        return float(np.linalg.norm(point - start[:2]))
+    progress = float(np.dot(point - start[:2], segment) / length_squared)
+    closest = start[:2] + np.clip(progress, 0.0, 1.0) * segment
+    return float(np.linalg.norm(point - closest))
+
+
+def _motion_respects_protected_points(
+    mode,
+    protected_points,
+    required_clearance,
+    line_start=None,
+    line_end=None,
+    circle_center=None,
+    circle_radius=None,
+):
+    for point in protected_points:
+        point = np.asarray(point, dtype=np.float64)
+        if mode == "linear":
+            distance = _point_to_segment_distance_2d(point, line_start, line_end)
+        else:
+            center_distance = float(np.linalg.norm(point - circle_center[:2]))
+            distance = abs(center_distance - circle_radius)
+        if distance < required_clearance:
+            return False
+    return True
+
+
 def _configure_dynamic_model(model, marker_id, rng, scene_config):
     pose = _parse_pose(model)
     cylinder = _parse_cylinder(model)
@@ -126,6 +166,51 @@ def _configure_dynamic_model(model, marker_id, rng, scene_config):
         kinematic_element = ET.SubElement(link, "kinematic")
     kinematic_element.text = "1"
 
+    center = pose[:3]
+    required_clearance = PROTECTED_POINT_RADIUS + body_radius
+    for _ in range(MAX_MOTION_SAMPLE_ATTEMPTS):
+        if rng.random() < MOTION_MODE_LINEAR_PROBABILITY:
+            mode = "linear"
+            direction_angle = rng.uniform(-math.pi, math.pi)
+            direction = np.asarray(
+                [math.cos(direction_angle), math.sin(direction_angle), 0.0],
+                dtype=np.float64,
+            )
+            segment_length = rng.uniform(*LINE_SEGMENT_RANGE)
+            line_start = center - 0.5 * segment_length * direction
+            line_end = center + 0.5 * segment_length * direction
+            speed = rng.uniform(*scene_config["linear_speed"])
+            phase = rng.choice((0.5, 1.5))
+            valid = _motion_respects_protected_points(
+                mode,
+                scene_config["protected_points"],
+                required_clearance,
+                line_start=line_start,
+                line_end=line_end,
+            )
+        else:
+            mode = "circular"
+            trajectory_radius = rng.uniform(*CIRCLE_RADIUS_RANGE)
+            angular_speed = rng.uniform(*scene_config["circular_angular_speed"])
+            phase = rng.uniform(-math.pi, math.pi)
+            circle_center = center.copy()
+            circle_center[0] -= trajectory_radius * math.cos(phase)
+            circle_center[1] -= trajectory_radius * math.sin(phase)
+            valid = _motion_respects_protected_points(
+                mode,
+                scene_config["protected_points"],
+                required_clearance,
+                circle_center=circle_center,
+                circle_radius=trajectory_radius,
+            )
+        if valid:
+            break
+    else:
+        raise RuntimeError(
+            f"Could not sample a safe motion for {model.get('name')} after "
+            f"{MAX_MOTION_SAMPLE_ATTEMPTS} attempts."
+        )
+
     plugin = ET.SubElement(
         model,
         "plugin",
@@ -134,36 +219,13 @@ def _configure_dynamic_model(model, marker_id, rng, scene_config):
             "filename": "libobstaclePathPlugin.so",
         },
     )
-
-    center = pose[:3]
-    if rng.random() < MOTION_MODE_LINEAR_PROBABILITY:
-        mode = "linear"
-        direction_angle = rng.uniform(-math.pi, math.pi)
-        direction = np.asarray(
-            [math.cos(direction_angle), math.sin(direction_angle), 0.0],
-            dtype=np.float64,
-        )
-        segment_length = rng.uniform(*LINE_SEGMENT_RANGE)
-        line_start = center - 0.5 * segment_length * direction
-        line_end = center + 0.5 * segment_length * direction
-        speed = rng.uniform(*scene_config["linear_speed"])
-        phase = rng.choice((0.5, 1.5))
-
-        _add_plugin_value(plugin, "motion_type", mode)
+    _add_plugin_value(plugin, "motion_type", mode)
+    if mode == "linear":
         _add_plugin_value(plugin, "line_start", _format_vector(line_start))
         _add_plugin_value(plugin, "line_end", _format_vector(line_end))
         _add_plugin_value(plugin, "velocity", f"{speed:.9f}")
         _add_plugin_value(plugin, "phase", f"{phase:.1f}")
     else:
-        mode = "circular"
-        trajectory_radius = rng.uniform(*CIRCLE_RADIUS_RANGE)
-        angular_speed = rng.uniform(*scene_config["circular_angular_speed"])
-        phase = rng.uniform(-math.pi, math.pi)
-        circle_center = center.copy()
-        circle_center[0] -= trajectory_radius * math.cos(phase)
-        circle_center[1] -= trajectory_radius * math.sin(phase)
-
-        _add_plugin_value(plugin, "motion_type", mode)
         _add_plugin_value(plugin, "circle_center", _format_vector(circle_center))
         _add_plugin_value(plugin, "circle_radius", f"{trajectory_radius:.9f}")
         _add_plugin_value(plugin, "angular_velocity", f"{angular_speed:.9f}")
