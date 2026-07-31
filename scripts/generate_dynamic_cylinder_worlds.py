@@ -311,9 +311,8 @@ def _filter_dynamic_cylinders(source_pcd, output_pcd, dynamic_models):
 
 def _generate_scene(package_dir, scene_name, seed, dynamic_ratio):
     scene_config = SCENES[scene_name]
-    accel_control_dir = package_dir.parent / "accel_control"
-    source_world = accel_control_dir / "world" / scene_config["source_world"]
-    source_pcd = accel_control_dir / "pcd" / scene_config["source_pcd"]
+    source_world = package_dir / "worlds" / scene_name / scene_config["source_world"]
+    source_pcd = package_dir / "pcd" / scene_config["source_pcd"]
     output_world = package_dir / scene_config["output_world"]
     output_pcd = package_dir / scene_config["output_pcd"]
 

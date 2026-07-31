@@ -237,7 +237,15 @@ target_link_libraries(collision_signal_sensor_plugin
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
+  scripts/generate_arena.py
+  scripts/generate_box_world.py
   scripts/generate_dynamic_cylinder_worlds.py
+  scripts/generate_forest.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(FILES
+  scripts/xml_utils.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

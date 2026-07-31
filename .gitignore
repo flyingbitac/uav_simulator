@@ -1,4 +1,12 @@
 *.so
-pcd/
-worlds/arena
-worlds/forest
+__pycache__/
+pcd/*
+!pcd/corridor.pcd
+worlds/arena/*
+!worlds/arena/arena_dynamic.world
+worlds/forest/*
+!worlds/forest/forest_dynamic.world
+worlds/cylinder_positions.txt
+worlds/test/big_room.world
+worlds/test/mid_room.world
+worlds/test/small_room.world
