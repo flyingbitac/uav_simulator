@@ -90,6 +90,7 @@ parser.add_argument("-r", type=float, default=0.4, help="Minimum radius of the c
 parser.add_argument("-R", type=float, default=0.4, help="Maximum radius of the cylinders")
 parser.add_argument("-H", type=float, default=15,  help="Height of the arena")
 parser.add_argument("-e", type=float, default=0.,  help="Range of euler angles of the cylinders")
+parser.add_argument("--seed", type=int, default=None, help="Optional deterministic random seed")
 args, unknown = parser.parse_known_args()
 
 S = args.s
@@ -105,6 +106,7 @@ ratio = 1.0
 Nx, Ny = int(L / l), int(L / l)
 
 if __name__ == "__main__":
+    rng = np.random.default_rng(args.seed)
     W = ratio * L
     if L <= 2 * d or W <= 2 * d:
         raise ValueError("Arena size must be larger than 2*d in both dimensions.")
@@ -123,14 +125,14 @@ if __name__ == "__main__":
     # Shift the arena so waypoint 1 sits at (0, 0).
     x_base = np.arange(Nx) * l - d
     y_base = np.arange(Ny) * l - (W - d)
-    x_rand = (np.random.rand(Nx, Ny) * (1 - 2 * (R_max / l)) + R_max / l) * l
-    y_rand = (np.random.rand(Nx, Ny) * (1 - 2 * (R_max / l)) + R_max / l) * l
+    x_rand = (rng.random((Nx, Ny)) * (1 - 2 * (R_max / l)) + R_max / l) * l
+    y_rand = (rng.random((Nx, Ny)) * (1 - 2 * (R_max / l)) + R_max / l) * l
     x_base, y_base = np.meshgrid(x_base, y_base, indexing='ij')
     xs, ys = x_base + x_rand, y_base + y_rand
-    rs = np.random.rand(Nx, Ny) * (R_max - R_min) + R_min
+    rs = rng.random((Nx, Ny)) * (R_max - R_min) + R_min
     rp_range = euler_range_deg * np.pi / 180.0
     eulers = np.concatenate([
-        np.random.rand(Nx, Ny, 2) * 2 * rp_range - rp_range,
+        rng.random((Nx, Ny, 2)) * 2 * rp_range - rp_range,
         np.zeros((Nx, Ny, 1)),
     ], axis=-1)
 
