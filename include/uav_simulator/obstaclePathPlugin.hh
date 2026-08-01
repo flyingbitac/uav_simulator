@@ -1,7 +1,6 @@
 #ifndef OBSTACLEPATHPLUGIN_HH
 #define OBSTACLEPATHPLUGIN_HH
 
-#include <memory>
 #include <string>
 #include <vector>
 
@@ -9,15 +8,14 @@
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
 #include <ignition/math.hh>
-#include <ros/ros.h>
 #include <sdf/sdf.hh>
-#include <visualization_msgs/Marker.h>
 
 namespace gazebo
 {
   class DynamicObstacle : public ModelPlugin
   {
   public:
+    ~DynamicObstacle() override;
     void Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf) override;
 
   private:
@@ -30,7 +28,7 @@ namespace gazebo
 
     void ConfigureLegacyPath();
     void OnUpdate(const common::UpdateInfo &_info);
-    void PublishMarker(double simTime);
+    void UpdateMarkerArray(double simTime);
 
     static double ReadDouble(
         const sdf::ElementPtr &_sdf, const std::string &name, double fallback);
@@ -77,11 +75,8 @@ namespace gazebo
     double markerRadius = 0.4;
     double markerHeight = 1.0;
     double markerRate = 20.0;
-    double lastMarkerPublishSimTime = -1.0;
     std::string markerTopic = "/uav_simulator/dynamic_obstacles";
     std::string markerFrame = "map";
-    std::unique_ptr<ros::NodeHandle> rosNode;
-    ros::Publisher markerPublisher;
   };
 
   GZ_REGISTER_MODEL_PLUGIN(DynamicObstacle)

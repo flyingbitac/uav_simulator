@@ -14,7 +14,7 @@
       <pose>0 0 -0.000001 0 0 0</pose>
     </include>
     <model name="unit_cylinder_0">
-      <pose>7.33771 -9.60860 7.70000 -0.03306 -0.12334 0.00000</pose>
+      <pose>7.46567 -10.32452 7.70000 0.12591 -0.08826 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -72,7 +72,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_1">
-      <pose>6.35908 -7.08310 7.70000 -0.08845 0.04240 0.00000</pose>
+      <pose>6.21727 -7.02506 7.70000 -0.12523 0.05936 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -129,11 +129,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_1" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>12.351596793 -8.708274215 7.700000000</line_start>
-        <line_end>0.366563207 -5.457925785 7.700000000</line_end>
-        <velocity>1.050186688</velocity>
-        <phase>1.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>6.883989602 -6.456772363 7.700000000</circle_center>
+        <circle_radius>0.876051291</circle_radius>
+        <angular_velocity>0.760745436</angular_velocity>
+        <phase>-2.435727896</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>1</marker_id>
@@ -145,7 +145,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_2">
-      <pose>6.35538 -3.45827 7.70000 -0.12984 0.10844 0.00000</pose>
+      <pose>5.43931 -3.39144 7.70000 0.07492 -0.11622 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -198,27 +198,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_2" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>6.390944901 -2.792992220 7.700000000</circle_center>
-        <circle_radius>0.666227729</circle_radius>
-        <angular_velocity>0.655216713</angular_velocity>
-        <phase>-1.624204212</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>2</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_3">
-      <pose>5.99271 1.71456 7.70000 0.02762 -0.13037 0.00000</pose>
+      <pose>5.35619 2.27313 7.70000 -0.03646 0.14321 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -276,10 +261,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_3" filename="libobstaclePathPlugin.so">
         <motion_type>circular</motion_type>
-        <circle_center>6.382641521 1.228235574 7.700000000</circle_center>
-        <circle_radius>0.623344238</circle_radius>
-        <angular_velocity>0.437192814</angular_velocity>
-        <phase>2.246629606</phase>
+        <circle_center>5.391754901 2.938407780 7.700000000</circle_center>
+        <circle_radius>0.666227729</circle_radius>
+        <angular_velocity>0.655216713</angular_velocity>
+        <phase>-1.624204212</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>3</marker_id>
@@ -291,7 +276,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_4">
-      <pose>7.01393 6.95589 7.70000 0.00442 -0.08005 0.00000</pose>
+      <pose>8.06512 5.31557 7.70000 0.02143 0.02734 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -348,11 +333,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_4" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>0.121583546 6.552602371 7.700000000</line_start>
-        <line_end>13.906276454 7.359177629 7.700000000</line_end>
-        <velocity>0.407619805</velocity>
-        <phase>1.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>8.455051521 4.829245574 7.700000000</circle_center>
+        <circle_radius>0.623344238</circle_radius>
+        <angular_velocity>0.437192814</angular_velocity>
+        <phase>2.246629606</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>4</marker_id>
@@ -364,7 +349,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_5">
-      <pose>7.50689 10.06929 7.70000 0.10105 -0.09970 0.00000</pose>
+      <pose>8.40337 10.58478 7.70000 -0.10677 0.00908 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -422,7 +407,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_6">
-      <pose>12.03375 -9.69256 7.70000 0.14648 -0.01613 0.00000</pose>
+      <pose>11.36256 -11.02165 7.70000 0.00818 -0.14349 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -480,7 +465,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_7">
-      <pose>10.88912 -7.53795 7.70000 -0.06122 0.05991 0.00000</pose>
+      <pose>11.78029 -4.49682 7.70000 0.16823 0.02492 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -538,7 +523,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_8">
-      <pose>10.72443 -3.52618 7.70000 -0.08164 -0.08824 0.00000</pose>
+      <pose>11.14832 -2.45863 7.70000 -0.17230 0.09517 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -591,27 +576,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_8" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>6.311916263 -8.781967135 7.700000000</line_start>
-        <line_end>15.136943737 1.729607135 7.700000000</line_end>
-        <velocity>1.570177491</velocity>
-        <phase>0.5</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>8</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_9">
-      <pose>10.94177 1.28334 7.70000 -0.16531 -0.10164 0.00000</pose>
+      <pose>12.47925 0.65868 7.70000 0.16695 0.03137 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -668,11 +638,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_9" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>10.718263715 0.812873290 7.700000000</circle_center>
-        <circle_radius>0.520858892</circle_radius>
-        <angular_velocity>0.384818168</angular_velocity>
-        <phase>1.127287991</phase>
+        <motion_type>linear</motion_type>
+        <line_start>5.586903546 0.255392371 7.700000000</line_start>
+        <line_end>19.371596454 1.061967629 7.700000000</line_end>
+        <velocity>0.407619805</velocity>
+        <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>9</marker_id>
@@ -684,7 +654,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_10">
-      <pose>10.15962 6.19700 7.70000 -0.04052 -0.02097 0.00000</pose>
+      <pose>12.07390 6.43897 7.70000 -0.06294 -0.10908 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -742,9 +712,9 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_10" filename="libobstaclePathPlugin.so">
         <motion_type>linear</motion_type>
-        <line_start>10.951799117 13.171910026 7.700000000</line_start>
-        <line_end>9.367440883 -0.777910026 7.700000000</line_end>
-        <velocity>1.316682608</velocity>
+        <line_start>7.661386263 1.183182865 7.700000000</line_start>
+        <line_end>16.486413737 11.694757135 7.700000000</line_end>
+        <velocity>1.570177491</velocity>
         <phase>0.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
@@ -757,7 +727,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_11">
-      <pose>11.17307 11.04487 7.70000 0.01256 0.05420 0.00000</pose>
+      <pose>9.30931 11.45233 7.70000 0.06022 -0.10643 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -815,10 +785,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_11" filename="libobstaclePathPlugin.so">
         <motion_type>circular</motion_type>
-        <circle_center>10.193325101 10.272513458 7.700000000</circle_center>
-        <circle_radius>1.247571519</circle_radius>
-        <angular_velocity>0.943198758</angular_velocity>
-        <phase>0.667580848</phase>
+        <circle_center>9.085803715 10.981863290 7.700000000</circle_center>
+        <circle_radius>0.520858892</circle_radius>
+        <angular_velocity>0.384818168</angular_velocity>
+        <phase>1.127287991</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>11</marker_id>
@@ -830,7 +800,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_12">
-      <pose>13.77918 -11.46032 7.70000 -0.04339 0.08152 0.00000</pose>
+      <pose>16.21517 -10.20272 7.70000 0.02712 0.03569 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -883,27 +853,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_12" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>14.278313840 -5.931176175 7.700000000</line_start>
-        <line_end>13.280046160 -16.989463825 7.700000000</line_end>
-        <velocity>1.163693625</velocity>
-        <phase>1.5</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>12</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_13">
-      <pose>13.70021 -7.05693 7.70000 0.07146 -0.05953 0.00000</pose>
+      <pose>13.41419 -4.45439 7.70000 0.16142 -0.14931 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -961,7 +916,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_14">
-      <pose>14.98758 -2.02876 7.70000 -0.08967 -0.11114 0.00000</pose>
+      <pose>15.78083 -2.00035 7.70000 -0.00001 0.08521 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1019,10 +974,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_14" filename="libobstaclePathPlugin.so">
         <motion_type>linear</motion_type>
-        <line_start>20.489901928 0.210444274 7.700000000</line_start>
-        <line_end>9.485258072 -4.267964274 7.700000000</line_end>
-        <velocity>0.132076971</velocity>
-        <phase>1.5</phase>
+        <line_start>16.573009117 4.974560026 7.700000000</line_start>
+        <line_end>14.988650883 -8.975260026 7.700000000</line_end>
+        <velocity>1.316682608</velocity>
+        <phase>0.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>14</marker_id>
@@ -1034,7 +989,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_15">
-      <pose>14.02463 3.40750 7.70000 -0.14917 -0.15236 0.00000</pose>
+      <pose>13.89723 1.74578 7.70000 -0.11267 -0.03907 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1087,27 +1042,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_15" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>13.267545469 3.851555219 7.700000000</circle_center>
-        <circle_radius>0.877702697</circle_radius>
-        <angular_velocity>0.613249431</angular_velocity>
-        <phase>-0.530458595</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>15</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_16">
-      <pose>16.05040 5.75224 7.70000 -0.16177 0.17014 0.00000</pose>
+      <pose>16.23481 6.40873 7.70000 -0.15258 0.07885 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1160,27 +1100,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_16" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>18.548103559 -0.415297779 7.700000000</line_start>
-        <line_end>13.552696441 11.919777779 7.700000000</line_end>
-        <velocity>0.234369080</velocity>
-        <phase>1.5</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>16</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_17">
-      <pose>14.05719 8.99357 7.70000 -0.08611 -0.01922 0.00000</pose>
+      <pose>15.14097 11.68333 7.70000 -0.14390 -0.03662 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1238,10 +1163,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_17" filename="libobstaclePathPlugin.so">
         <motion_type>circular</motion_type>
-        <circle_center>15.093116568 9.862097013 7.700000000</circle_center>
-        <circle_radius>1.351844306</circle_radius>
-        <angular_velocity>0.593379000</angular_velocity>
-        <phase>-2.443868153</phase>
+        <circle_center>14.161225101 10.910973458 7.700000000</circle_center>
+        <circle_radius>1.247571519</circle_radius>
+        <angular_velocity>0.943198758</angular_velocity>
+        <phase>0.667580848</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>17</marker_id>
@@ -1253,7 +1178,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_18">
-      <pose>17.70562 -10.40728 7.70000 0.06598 -0.09710 0.00000</pose>
+      <pose>18.31902 -8.47359 7.70000 0.13038 -0.00967 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1306,27 +1231,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_18" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>21.999353703 -12.598008491 7.700000000</line_start>
-        <line_end>13.411886297 -8.216551509 7.700000000</line_end>
-        <velocity>0.498216639</velocity>
-        <phase>1.5</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>18</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_19">
-      <pose>20.14659 -5.63905 7.70000 -0.14785 -0.09057 0.00000</pose>
+      <pose>18.73714 -6.13585 7.70000 0.14403 0.09282 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1384,7 +1294,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_20">
-      <pose>20.01701 -2.71397 7.70000 -0.11436 0.08011 0.00000</pose>
+      <pose>17.39629 -1.12372 7.70000 0.14498 -0.13006 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1441,11 +1351,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_20" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>19.701424992 -1.927105352 7.700000000</circle_center>
-        <circle_radius>0.847791172</circle_radius>
-        <angular_velocity>0.337914154</angular_velocity>
-        <phase>-1.189370938</phase>
+        <motion_type>linear</motion_type>
+        <line_start>17.895423840 4.405423825 7.700000000</line_start>
+        <line_end>16.897156160 -6.652863825 7.700000000</line_end>
+        <velocity>1.163693625</velocity>
+        <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>20</marker_id>
@@ -1457,7 +1367,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_21">
-      <pose>20.14060 3.60593 7.70000 0.16864 0.11985 0.00000</pose>
+      <pose>17.72256 1.99124 7.70000 -0.14885 -0.14998 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1515,7 +1425,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_22">
-      <pose>19.54031 6.47130 7.70000 -0.04312 0.01744 0.00000</pose>
+      <pose>19.58012 6.09966 7.70000 0.12875 0.04680 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1572,11 +1482,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_22" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>18.588512268 6.840307268 7.700000000</circle_center>
-        <circle_radius>1.020825786</circle_radius>
-        <angular_velocity>0.349726082</angular_velocity>
-        <phase>-0.369853862</phase>
+        <motion_type>linear</motion_type>
+        <line_start>25.082441928 8.338864274 7.700000000</line_start>
+        <line_end>14.077798072 3.860455726 7.700000000</line_end>
+        <velocity>0.132076971</velocity>
+        <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>22</marker_id>
@@ -1588,7 +1498,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_23">
-      <pose>19.44276 8.50935 7.70000 0.07069 -0.13256 0.00000</pose>
+      <pose>19.50044 10.97167 7.70000 -0.00120 -0.11745 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1641,27 +1551,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_23" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>19.216728377 13.463304286 7.700000000</line_start>
-        <line_end>19.668791623 3.555395714 7.700000000</line_end>
-        <velocity>0.730444371</velocity>
-        <phase>0.5</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>23</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_24">
-      <pose>24.13623 -8.46717 7.70000 0.12646 -0.05298 0.00000</pose>
+      <pose>23.39231 -10.29017 7.70000 0.06064 -0.06352 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1714,27 +1609,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_24" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>28.111333391 -5.414327138 7.700000000</line_start>
-        <line_end>20.161126609 -11.520012862 7.700000000</line_end>
-        <velocity>0.191172605</velocity>
-        <phase>0.5</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>24</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_25">
-      <pose>21.62938 -5.82083 7.70000 -0.03751 -0.10176 0.00000</pose>
+      <pose>22.60450 -5.20276 7.70000 0.07361 -0.01384 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1792,7 +1672,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_26">
-      <pose>23.97940 -0.42357 7.70000 0.11963 -0.15815 0.00000</pose>
+      <pose>24.69051 -1.28211 7.70000 0.00261 0.10111 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1850,7 +1730,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_27">
-      <pose>22.26271 0.30270 7.70000 -0.12472 -0.17146 0.00000</pose>
+      <pose>24.63484 3.46900 7.70000 -0.14216 0.02749 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1907,11 +1787,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_27" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>29.251176061 -1.334229720 7.700000000</line_start>
-        <line_end>15.274243939 1.939629720 7.700000000</line_end>
-        <velocity>0.743068776</velocity>
-        <phase>1.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>23.877755469 3.913055219 7.700000000</circle_center>
+        <circle_radius>0.877702697</circle_radius>
+        <angular_velocity>0.613249431</angular_velocity>
+        <phase>-0.530458595</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>27</marker_id>
@@ -1923,7 +1803,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_28">
-      <pose>21.71401 5.98718 7.70000 -0.14928 -0.01296 0.00000</pose>
+      <pose>23.63084 4.69077 7.70000 -0.10568 0.10756 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -1981,7 +1861,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_29">
-      <pose>24.20597 9.65623 7.70000 -0.06160 0.07698 0.00000</pose>
+      <pose>23.51156 10.77865 7.70000 -0.00389 0.17059 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2038,11 +1918,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_29" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>25.122135799 10.439217662 7.700000000</circle_center>
-        <circle_radius>1.205167810</circle_radius>
-        <angular_velocity>0.729604460</angular_velocity>
-        <phase>-2.434413688</phase>
+        <motion_type>linear</motion_type>
+        <line_start>26.009263559 4.611112221 7.700000000</line_start>
+        <line_end>21.013856441 16.946187779 7.700000000</line_end>
+        <velocity>0.234369080</velocity>
+        <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>29</marker_id>
@@ -2054,7 +1934,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_30">
-      <pose>26.08570 -11.57196 7.70000 -0.11614 0.00397 0.00000</pose>
+      <pose>27.64072 -8.54676 7.70000 -0.11067 0.16162 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2112,7 +1992,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_31">
-      <pose>26.21084 -6.83232 7.70000 -0.03608 0.14225 0.00000</pose>
+      <pose>26.62233 -4.40905 7.70000 0.10504 -0.00654 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2170,10 +2050,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_31" filename="libobstaclePathPlugin.so">
         <motion_type>circular</motion_type>
-        <circle_center>26.760352334 -6.765762790 7.700000000</circle_center>
-        <circle_radius>0.553528380</circle_radius>
-        <angular_velocity>0.607154021</angular_velocity>
-        <phase>-3.021059278</phase>
+        <circle_center>27.658256568 -3.540522987 7.700000000</circle_center>
+        <circle_radius>1.351844306</circle_radius>
+        <angular_velocity>0.593379000</angular_velocity>
+        <phase>-2.443868153</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>31</marker_id>
@@ -2185,7 +2065,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_32">
-      <pose>27.32435 -2.00322 7.70000 -0.02833 -0.12860 0.00000</pose>
+      <pose>25.75933 -3.65000 7.70000 0.10944 0.03590 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2243,9 +2123,9 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_32" filename="libobstaclePathPlugin.so">
         <motion_type>linear</motion_type>
-        <line_start>31.633707238 0.647012834 7.700000000</line_start>
-        <line_end>23.014992762 -4.653452834 7.700000000</line_end>
-        <velocity>1.157463116</velocity>
+        <line_start>30.053063703 -5.840728491 7.700000000</line_start>
+        <line_end>21.465596297 -1.459271509 7.700000000</line_end>
+        <velocity>0.498216639</velocity>
         <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
@@ -2258,7 +2138,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_33">
-      <pose>27.75203 0.81123 7.70000 0.11781 -0.02564 0.00000</pose>
+      <pose>27.75306 3.23638 7.70000 0.05415 0.14441 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2316,10 +2196,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_33" filename="libobstaclePathPlugin.so">
         <motion_type>circular</motion_type>
-        <circle_center>27.500881505 0.055869598 7.700000000</circle_center>
-        <circle_radius>0.796018155</circle_radius>
-        <angular_velocity>0.706137952</angular_velocity>
-        <phase>1.249806497</phase>
+        <circle_center>27.437474992 4.023244648 7.700000000</circle_center>
+        <circle_radius>0.847791172</circle_radius>
+        <angular_velocity>0.337914154</angular_velocity>
+        <phase>-1.189370938</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>33</marker_id>
@@ -2331,7 +2211,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_34">
-      <pose>27.74827 5.00752 7.70000 0.05424 -0.16050 0.00000</pose>
+      <pose>27.08620 7.63606 7.70000 -0.15175 0.11693 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2389,7 +2269,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_35">
-      <pose>27.91860 8.48036 7.70000 -0.12092 0.15395 0.00000</pose>
+      <pose>26.35482 11.55451 7.70000 -0.04125 -0.06090 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2442,27 +2322,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_35" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>27.716198904 9.046444852 7.700000000</circle_center>
-        <circle_radius>0.601180725</circle_radius>
-        <angular_velocity>0.506576243</angular_velocity>
-        <phase>-1.227415330</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>35</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_36">
-      <pose>29.55576 -9.86633 7.70000 -0.03472 -0.08086 0.00000</pose>
+      <pose>30.95184 -11.19420 7.70000 0.17245 0.09815 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2519,11 +2384,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_36" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>23.293390809 -14.473000646 7.700000000</line_start>
-        <line_end>35.818129191 -5.259659354 7.700000000</line_end>
-        <velocity>0.839050458</velocity>
-        <phase>1.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>30.000042268 -10.825192732 7.700000000</circle_center>
+        <circle_radius>1.020825786</circle_radius>
+        <angular_velocity>0.349726082</angular_velocity>
+        <phase>-0.369853862</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>36</marker_id>
@@ -2535,7 +2400,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_37">
-      <pose>32.26660 -4.69621 7.70000 -0.07175 0.09280 0.00000</pose>
+      <pose>32.32426 -4.39306 7.70000 -0.00505 -0.02701 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2593,7 +2458,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_38">
-      <pose>32.29639 -0.83314 7.70000 -0.02114 0.00256 0.00000</pose>
+      <pose>32.47575 -0.67422 7.70000 0.13178 -0.14423 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2650,11 +2515,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_38" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>32.486761364 0.326244799 7.700000000</circle_center>
-        <circle_radius>1.174910366</circle_radius>
-        <angular_velocity>0.445365338</angular_velocity>
-        <phase>-1.733544367</phase>
+        <motion_type>linear</motion_type>
+        <line_start>32.249718377 4.279734286 7.700000000</line_start>
+        <line_end>32.701781623 -5.628174286 7.700000000</line_end>
+        <velocity>0.730444371</velocity>
+        <phase>0.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>38</marker_id>
@@ -2666,7 +2531,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_39">
-      <pose>30.51231 2.69860 7.70000 -0.11326 -0.15961 0.00000</pose>
+      <pose>30.51650 3.09607 7.70000 0.07275 0.10093 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2724,7 +2589,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_40">
-      <pose>30.14135 5.45555 7.70000 0.09102 0.13799 0.00000</pose>
+      <pose>31.24320 5.93196 7.70000 0.10444 -0.06203 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2781,11 +2646,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_40" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>30.434797728 4.756350127 7.700000000</circle_center>
-        <circle_radius>0.758282290</circle_radius>
-        <angular_velocity>0.689224467</angular_velocity>
-        <phase>1.968161422</phase>
+        <motion_type>linear</motion_type>
+        <line_start>35.218303391 8.984802862 7.700000000</line_start>
+        <line_end>27.268096609 2.879117138 7.700000000</line_end>
+        <velocity>0.191172605</velocity>
+        <phase>0.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>40</marker_id>
@@ -2797,7 +2662,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_41">
-      <pose>31.74351 11.68836 7.70000 -0.14117 -0.03715 0.00000</pose>
+      <pose>30.39436 9.09007 7.70000 0.10355 -0.09588 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2854,11 +2719,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_41" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>31.902883478 13.050459589 7.700000000</circle_center>
-        <circle_radius>1.371391700</circle_radius>
-        <angular_velocity>0.533479081</angular_velocity>
-        <phase>-1.687272466</phase>
+        <motion_type>linear</motion_type>
+        <line_start>37.382826061 7.453140280 7.700000000</line_start>
+        <line_end>23.405893939 10.726999720 7.700000000</line_end>
+        <velocity>0.743068776</velocity>
+        <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>41</marker_id>
@@ -2870,7 +2735,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_42">
-      <pose>36.45192 -11.42951 7.70000 0.03586 -0.00597 0.00000</pose>
+      <pose>35.32062 -8.97361 7.70000 -0.04806 -0.02882 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -2927,11 +2792,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_42" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>41.926251102 -5.839492651 7.700000000</line_start>
-        <line_end>30.977588898 -17.019527349 7.700000000</line_end>
-        <velocity>0.940670136</velocity>
-        <phase>0.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>36.236785799 -8.190622338 7.700000000</circle_center>
+        <circle_radius>1.205167810</circle_radius>
+        <angular_velocity>0.729604460</angular_velocity>
+        <phase>-2.434413688</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>42</marker_id>
@@ -2943,7 +2808,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_43">
-      <pose>33.58140 -5.88706 7.70000 0.01684 -0.11993 0.00000</pose>
+      <pose>34.44890 -4.56000 7.70000 0.01445 -0.13522 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3001,7 +2866,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_44">
-      <pose>33.66096 -0.86589 7.70000 0.14915 0.12669 0.00000</pose>
+      <pose>34.63150 -2.79516 7.70000 -0.03248 -0.17443 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3058,11 +2923,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_44" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>26.120237750 1.697349095 7.700000000</line_start>
-        <line_end>41.201682250 -3.429129095 7.700000000</line_end>
-        <velocity>1.678400284</velocity>
-        <phase>1.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>35.181012334 -2.728602790 7.700000000</circle_center>
+        <circle_radius>0.553528380</circle_radius>
+        <angular_velocity>0.607154021</angular_velocity>
+        <phase>-3.021059278</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>44</marker_id>
@@ -3074,7 +2939,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_45">
-      <pose>35.90863 2.32356 7.70000 0.06637 0.13854 0.00000</pose>
+      <pose>36.32693 2.13238 7.70000 0.08530 0.12283 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3127,27 +2992,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_45" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>36.143830641 3.064841736 7.700000000</circle_center>
-        <circle_radius>0.777700427</circle_radius>
-        <angular_velocity>0.681104557</angular_velocity>
-        <phase>-1.878038283</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>45</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_46">
-      <pose>35.97087 6.61927 7.70000 -0.13482 0.00682 0.00000</pose>
+      <pose>34.07234 5.80536 7.70000 -0.12604 0.07113 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3205,7 +3055,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_47">
-      <pose>33.37185 9.05309 7.70000 -0.00714 -0.02267 0.00000</pose>
+      <pose>35.41884 11.46546 7.70000 0.11209 0.16819 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3258,27 +3108,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_47" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>32.589164112 9.789652674 7.700000000</circle_center>
-        <circle_radius>1.074765915</circle_radius>
-        <angular_velocity>0.630852895</angular_velocity>
-        <phase>-0.755048257</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>47</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_48">
-      <pose>38.95073 -10.78631 7.70000 0.00705 -0.01020 0.00000</pose>
+      <pose>37.58565 -11.56226 7.70000 0.12001 -0.02649 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3336,9 +3171,9 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_48" filename="libobstaclePathPlugin.so">
         <motion_type>linear</motion_type>
-        <line_start>43.674916049 -14.804655354 7.700000000</line_start>
-        <line_end>34.226543951 -6.767964646 7.700000000</line_end>
-        <velocity>0.835055037</velocity>
+        <line_start>41.895007238 -8.912027166 7.700000000</line_start>
+        <line_end>33.276292762 -14.212492834 7.700000000</line_end>
+        <velocity>1.157463116</velocity>
         <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
@@ -3351,7 +3186,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_49">
-      <pose>39.87187 -4.45459 7.70000 -0.12154 -0.09203 0.00000</pose>
+      <pose>40.13099 -5.21118 7.70000 0.16744 0.16545 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3409,10 +3244,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_49" filename="libobstaclePathPlugin.so">
         <motion_type>circular</motion_type>
-        <circle_center>40.855341976 -5.064365340 7.700000000</circle_center>
-        <circle_radius>1.157170296</circle_radius>
-        <angular_velocity>0.516700557</angular_velocity>
-        <phase>2.586580243</phase>
+        <circle_center>39.879841505 -5.966540402 7.700000000</circle_center>
+        <circle_radius>0.796018155</circle_radius>
+        <angular_velocity>0.706137952</angular_velocity>
+        <phase>1.249806497</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>49</marker_id>
@@ -3424,7 +3259,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_50">
-      <pose>38.27533 -2.72901 7.70000 0.02049 0.14400 0.00000</pose>
+      <pose>39.97613 -1.61113 7.70000 0.00128 0.08847 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3481,11 +3316,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_50" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>42.087151039 1.452258671 7.700000000</line_start>
-        <line_end>34.463508961 -6.910278671 7.700000000</line_end>
-        <velocity>1.136233322</velocity>
-        <phase>0.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>39.773728904 -1.045045148 7.700000000</circle_center>
+        <circle_radius>0.601180725</circle_radius>
+        <angular_velocity>0.506576243</angular_velocity>
+        <phase>-1.227415330</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>50</marker_id>
@@ -3497,7 +3332,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_51">
-      <pose>38.28023 0.99085 7.70000 -0.08952 0.01406 0.00000</pose>
+      <pose>38.11386 0.39644 7.70000 0.14446 -0.00833 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3555,7 +3390,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_52">
-      <pose>38.35913 4.87327 7.70000 0.03206 0.15160 0.00000</pose>
+      <pose>40.28005 6.74535 7.70000 0.12699 0.07036 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3612,11 +3447,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_52" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>37.831329067 5.581166888 7.700000000</circle_center>
-        <circle_radius>0.883001602</circle_radius>
-        <angular_velocity>0.299422361</angular_velocity>
-        <phase>-0.930123514</phase>
+        <motion_type>linear</motion_type>
+        <line_start>34.017680809 2.138679354 7.700000000</line_start>
+        <line_end>46.542419191 11.352020646 7.700000000</line_end>
+        <velocity>0.839050458</velocity>
+        <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>52</marker_id>
@@ -3628,7 +3463,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_53">
-      <pose>39.93250 11.30165 7.70000 0.09243 0.04155 0.00000</pose>
+      <pose>37.49913 8.35437 7.70000 -0.07193 0.09343 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3685,11 +3520,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_53" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>34.223825175 16.186197115 7.700000000</line_start>
-        <line_end>45.641174825 6.417102885 7.700000000</line_end>
-        <velocity>0.771358094</velocity>
-        <phase>0.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>37.689501364 9.513754799 7.700000000</circle_center>
+        <circle_radius>1.174910366</circle_radius>
+        <angular_velocity>0.445365338</angular_velocity>
+        <phase>-1.733544367</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>53</marker_id>
@@ -3701,7 +3536,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_54">
-      <pose>41.31528 -11.53804 7.70000 -0.01404 -0.09691 0.00000</pose>
+      <pose>42.44280 -9.12297 7.70000 0.02467 -0.14177 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3759,7 +3594,7 @@
       <static>1</static>
     </model>
     <model name="unit_cylinder_55">
-      <pose>44.23385 -5.92754 7.70000 -0.08396 0.04110 0.00000</pose>
+      <pose>41.81095 -5.95662 7.70000 -0.03792 -0.14879 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3816,11 +3651,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_55" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>38.264714134 -1.461999417 7.700000000</line_start>
-        <line_end>50.202985866 -10.393080583 7.700000000</line_end>
-        <velocity>1.682247899</velocity>
-        <phase>1.5</phase>
+        <motion_type>circular</motion_type>
+        <circle_center>42.104397728 -6.655819873 7.700000000</circle_center>
+        <circle_radius>0.758282290</circle_radius>
+        <angular_velocity>0.689224467</angular_velocity>
+        <phase>1.968161422</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>55</marker_id>
@@ -3832,7 +3667,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_56">
-      <pose>41.98878 -2.80261 7.70000 0.05333 0.08547 0.00000</pose>
+      <pose>42.83115 -0.54105 7.70000 -0.00832 -0.02494 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3885,27 +3720,12 @@
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
+        <kinematic>0</kinematic>
       </link>
-      <static>0</static>
-      <plugin name="dynamic_obstacle_motion_56" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>46.585063266 -4.305996126 7.700000000</line_start>
-        <line_end>37.392496734 -1.299223874 7.700000000</line_end>
-        <velocity>1.137980196</velocity>
-        <phase>1.5</phase>
-        <orientation>false</orientation>
-        <marker_enabled>true</marker_enabled>
-        <marker_id>56</marker_id>
-        <marker_radius>0.300000000</marker_radius>
-        <marker_height>15.000000000</marker_height>
-        <marker_rate>20.0</marker_rate>
-        <marker_topic>/uav_simulator/dynamic_obstacles</marker_topic>
-        <marker_frame>map</marker_frame>
-      </plugin>
+      <static>1</static>
     </model>
     <model name="unit_cylinder_57">
-      <pose>43.55397 2.95088 7.70000 -0.03475 -0.07659 0.00000</pose>
+      <pose>44.00750 0.52468 7.70000 -0.02662 0.03012 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -3963,10 +3783,10 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_57" filename="libobstaclePathPlugin.so">
         <motion_type>circular</motion_type>
-        <circle_center>43.322719011 4.021167645 7.700000000</circle_center>
-        <circle_radius>1.094985234</circle_radius>
-        <angular_velocity>0.911050508</angular_velocity>
-        <phase>-1.358003079</phase>
+        <circle_center>44.166873478 1.886779589 7.700000000</circle_center>
+        <circle_radius>1.371391700</circle_radius>
+        <angular_velocity>0.533479081</angular_velocity>
+        <phase>-1.687272466</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>57</marker_id>
@@ -3978,7 +3798,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_58">
-      <pose>43.76790 6.21710 7.70000 -0.08099 0.11554 0.00000</pose>
+      <pose>42.08418 7.16048 7.70000 -0.13171 0.15141 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -4035,11 +3855,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_58" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>42.724716951 6.495554402 7.700000000</circle_center>
-        <circle_radius>1.079707241</circle_radius>
-        <angular_velocity>0.329933785</angular_velocity>
-        <phase>-0.260846034</phase>
+        <motion_type>linear</motion_type>
+        <line_start>47.558511102 12.750497349 7.700000000</line_start>
+        <line_end>36.609848898 1.570462651 7.700000000</line_end>
+        <velocity>0.940670136</velocity>
+        <phase>0.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>58</marker_id>
@@ -4051,7 +3871,7 @@
       </plugin>
     </model>
     <model name="unit_cylinder_59">
-      <pose>43.38704 9.16603 7.70000 0.10175 0.12455 0.00000</pose>
+      <pose>41.47687 8.52675 7.70000 0.06425 0.11302 0.00000</pose>
       <gravity>0 0 0</gravity>
       <link name="link">
         <gravity>1</gravity>
@@ -4109,9 +3929,9 @@
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_59" filename="libobstaclePathPlugin.so">
         <motion_type>linear</motion_type>
-        <line_start>40.368669363 6.377126208 7.700000000</line_start>
-        <line_end>46.405410637 11.954933792 7.700000000</line_end>
-        <velocity>1.929991831</velocity>
+        <line_start>33.936147750 11.089989095 7.700000000</line_start>
+        <line_end>49.017592250 5.963510905 7.700000000</line_end>
+        <velocity>1.678400284</velocity>
         <phase>1.5</phase>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>

@@ -3,13 +3,19 @@
 from textwrap import dedent
 import os
 import argparse
+import json
 import sys
 
 import numpy as np
 import open3d as o3d
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-from xml_utils import get_cylinder_xml, get_cylinder_points
+from xml_utils import (
+    generate_dynamic_cylinder_world,
+    get_cylinder_points,
+    get_cylinder_xml,
+    resolve_seed,
+)
 
 file_path = os.path.dirname(__file__)
 world_file_directory = os.path.join(file_path, "../worlds/forest/")
@@ -69,28 +75,46 @@ def create_forest(cylinders):
 
 parser = argparse.ArgumentParser(description="Generate a cluttered world with cylinders.")
 parser.add_argument("-b", type=float, default=5,   help="Start position offset")
-parser.add_argument("-l", type=float, default=3,   help="Length of the grid cells")
+parser.add_argument("-l", "--cell-length", type=float, default=4, help="Length of the grid cells")
 parser.add_argument("-L", type=float, default=40,  help="Total length of the field")
-parser.add_argument("-r", type=float, default=0.4, help="Minimum radius of the cylinders")
-parser.add_argument("-R", type=float, default=0.4, help="Maximum radius of the cylinders")
+parser.add_argument("-r", "--min-radius", type=float, default=0.3, help="Minimum radius of the cylinders")
+parser.add_argument("-R", "--max-radius", type=float, default=0.3, help="Maximum radius of the cylinders")
 parser.add_argument("-H", type=float, default=15,  help="Height of the cylinders")
-parser.add_argument("-e", type=float, default=0.,  help="Range of euler angles of the cylinders")
+parser.add_argument("-e", "--euler-range", type=float, default=10., help="Range of euler angles of the cylinders")
 parser.add_argument("--seed", type=int, default=None, help="Optional deterministic random seed")
+dynamic_group = parser.add_mutually_exclusive_group()
+dynamic_group.add_argument(
+    "--dynamic", action="store_true", help="Also generate the dynamic forest"
+)
+dynamic_group.add_argument(
+    "--static", dest="dynamic", action="store_false", help="Generate only the static forest"
+)
+parser.set_defaults(dynamic=True)
+parser.add_argument(
+    "--dynamic-ratio",
+    type=float,
+    default=0.5,
+    help="Fraction of cylinders converted to dynamic obstacles",
+)
 args, unknown = parser.parse_known_args()
 
 B = args.b
-l = args.l
+l = args.cell_length
 L = args.L
-R_min = args.r
-R_max = args.R
+R_min = args.min_radius
+R_max = args.max_radius
 assert R_max >= R_min
 H = args.H
-euler_range_deg = args.e
+euler_range_deg = args.euler_range
 ratio = 0.6
 Nx, Ny = int(L / l), int(ratio * L / l)
 
 if __name__ == "__main__":
-    rng = np.random.default_rng(args.seed)
+    if not 0.0 <= args.dynamic_ratio <= 1.0:
+        raise ValueError("--dynamic-ratio must be within [0, 1].")
+    seed = resolve_seed(args.seed)
+    rng = np.random.default_rng(seed)
+    print(f"seed: {seed}")
     print(f"suggested start position: (0, 0)")
     print(f"suggested target position: ({L + 2 * B}, 0)")
     x_base = np.arange(Nx) * l + B
@@ -120,6 +144,7 @@ if __name__ == "__main__":
     create_forest(cylinders)
     print("World file generated at", os.path.abspath(os.path.join(world_file_directory, "cylinder_forest.world")))
     pcd = o3d.geometry.PointCloud()
+    point_counts = [len(point) for point in points]
     points = np.concatenate(points, axis=0)
     colors = np.concatenate(colors, axis=0)
     pcd.points = o3d.utility.Vector3dVector(points)
@@ -127,3 +152,19 @@ if __name__ == "__main__":
     assert pcd.has_colors()
     o3d.io.write_point_cloud(os.path.join(pcd_file_directory, "cylinder_forest.pcd"), pcd)
     print("Point cloud file generated at", os.path.abspath(os.path.join(pcd_file_directory, "cylinder_forest.pcd")))
+    if args.dynamic:
+        result = generate_dynamic_cylinder_world(
+            scene_name="forest",
+            source_world=os.path.join(world_file_directory, "cylinder_forest.world"),
+            source_pcd=os.path.join(pcd_file_directory, "cylinder_forest.pcd"),
+            output_world=os.path.join(world_file_directory, "forest_dynamic.world"),
+            output_pcd=os.path.join(pcd_file_directory, "forest_dynamic_static.pcd"),
+            seed=seed,
+            dynamic_ratio=args.dynamic_ratio,
+            linear_speed=(0.1, 2.0),
+            circular_angular_speed=(0.1, 1.0),
+            protected_points=((0.0, 0.0), (L + 2 * B, 0.0)),
+            cylinder_point_counts=point_counts,
+            seed_offset=1_000_003,
+        )
+        print(json.dumps([result], indent=2, sort_keys=True))

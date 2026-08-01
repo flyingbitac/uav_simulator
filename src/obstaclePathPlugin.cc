@@ -1,14 +1,56 @@
 #include <algorithm>
 #include <cmath>
 #include <functional>
+#include <map>
+#include <memory>
+#include <mutex>
 
 #include <uav_simulator/obstaclePathPlugin.hh>
+
+#include <ros/ros.h>
+#include <visualization_msgs/Marker.h>
+#include <visualization_msgs/MarkerArray.h>
 
 namespace gazebo
 {
 namespace
 {
 constexpr double kEpsilon = 1e-6;
+
+struct SharedMarkerPublisher
+{
+  std::mutex mutex;
+  std::unique_ptr<ros::NodeHandle> node;
+  ros::Publisher publisher;
+  std::string topic;
+  std::map<int, visualization_msgs::Marker> markers;
+  double lastPublishSimTime = -1.0;
+};
+
+SharedMarkerPublisher &MarkerPublisher()
+{
+  static SharedMarkerPublisher publisher;
+  return publisher;
+}
+}
+
+DynamicObstacle::~DynamicObstacle()
+{
+  if (!this->markerEnabled)
+  {
+    return;
+  }
+
+  SharedMarkerPublisher &shared = MarkerPublisher();
+  std::lock_guard<std::mutex> lock(shared.mutex);
+  shared.markers.erase(this->markerId);
+  if (shared.markers.empty())
+  {
+    shared.publisher.shutdown();
+    shared.node.reset();
+    shared.topic.clear();
+    shared.lastPublishSimTime = -1.0;
+  }
 }
 
 double DynamicObstacle::ReadDouble(
@@ -116,10 +158,24 @@ void DynamicObstacle::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
     }
     else
     {
-      this->rosNode.reset(new ros::NodeHandle(""));
-      this->markerPublisher =
-          this->rosNode->advertise<visualization_msgs::Marker>(
-              this->markerTopic, 100, false);
+      SharedMarkerPublisher &shared = MarkerPublisher();
+      std::lock_guard<std::mutex> lock(shared.mutex);
+      if (!shared.node)
+      {
+        shared.node.reset(new ros::NodeHandle(""));
+        shared.topic = this->markerTopic;
+        shared.publisher =
+            shared.node->advertise<visualization_msgs::MarkerArray>(
+                shared.topic, 10, false);
+        shared.lastPublishSimTime = this->model->GetWorld()->SimTime().Double();
+      }
+      else if (shared.topic != this->markerTopic)
+      {
+        gzerr << "DynamicObstacle MarkerArray publisher already uses topic '"
+              << shared.topic << "'; cannot also publish to '"
+              << this->markerTopic << "'." << std::endl;
+        this->markerEnabled = false;
+      }
     }
   }
 
@@ -310,27 +366,13 @@ void DynamicObstacle::OnUpdate(const common::UpdateInfo &_info)
 
   if (this->markerEnabled)
   {
-    this->PublishMarker(simTime);
+    this->UpdateMarkerArray(simTime);
   }
 }
 
-void DynamicObstacle::PublishMarker(double simTime)
+void DynamicObstacle::UpdateMarkerArray(double simTime)
 {
   const double markerPeriod = 1.0 / this->markerRate;
-  if (this->lastMarkerPublishSimTime >= 0.0 &&
-      simTime < this->lastMarkerPublishSimTime)
-  {
-    // Gazebo resets simulation time when the world is reset. Publish
-    // immediately after the jump instead of waiting for the old time again.
-    this->lastMarkerPublishSimTime = -1.0;
-  }
-  if (this->lastMarkerPublishSimTime >= 0.0 &&
-      simTime - this->lastMarkerPublishSimTime < markerPeriod)
-  {
-    return;
-  }
-  this->lastMarkerPublishSimTime = simTime;
-
   const ignition::math::Pose3d pose = this->model->WorldPose();
   visualization_msgs::Marker marker;
   marker.header.frame_id = this->markerFrame;
@@ -354,6 +396,29 @@ void DynamicObstacle::PublishMarker(double simTime)
   marker.color.b = 0.0;
   marker.color.a = 0.65;
   marker.lifetime = ros::Duration(2.5 * markerPeriod);
-  this->markerPublisher.publish(marker);
+
+  SharedMarkerPublisher &shared = MarkerPublisher();
+  std::lock_guard<std::mutex> lock(shared.mutex);
+  shared.markers[this->markerId] = marker;
+  if (shared.lastPublishSimTime >= 0.0 &&
+      simTime < shared.lastPublishSimTime)
+  {
+    // Gazebo resets simulation time when the world is reset.
+    shared.lastPublishSimTime = -1.0;
+  }
+  if (shared.lastPublishSimTime >= 0.0 &&
+      simTime - shared.lastPublishSimTime < markerPeriod)
+  {
+    return;
+  }
+  shared.lastPublishSimTime = simTime;
+
+  visualization_msgs::MarkerArray markerArray;
+  markerArray.markers.reserve(shared.markers.size());
+  for (const auto &entry : shared.markers)
+  {
+    markerArray.markers.push_back(entry.second);
+  }
+  shared.publisher.publish(markerArray);
 }
 }

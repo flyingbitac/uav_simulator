@@ -3,13 +3,19 @@
 from textwrap import dedent
 import os
 import argparse
+import json
 import sys
 
 import numpy as np
 import open3d as o3d
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-from xml_utils import get_cylinder_xml, get_cylinder_points
+from xml_utils import (
+    generate_dynamic_cylinder_world,
+    get_cylinder_points,
+    get_cylinder_xml,
+    resolve_seed,
+)
 
 file_path = os.path.dirname(__file__)
 world_file_directory = os.path.join(file_path, "../worlds/arena/")
@@ -84,29 +90,47 @@ def create_arena(cylinders):
 parser = argparse.ArgumentParser(description="Generate a box arena.")
 parser.add_argument("-s", type=float, default=4,   help="Safety range of obstacle generation")
 parser.add_argument("-d", type=float, default=10,  help="Distance from the waypoint to the arena border")
-parser.add_argument("-l", type=float, default=3.5, help="Length of the grid cells, each cell contains one cylinder")
+parser.add_argument("-l", "--cell-length", type=float, default=4, help="Length of the grid cells, each cell contains one cylinder")
 parser.add_argument("-L", type=float, default=60,  help="Total length of the arena")
-parser.add_argument("-r", type=float, default=0.4, help="Minimum radius of the cylinders")
-parser.add_argument("-R", type=float, default=0.4, help="Maximum radius of the cylinders")
+parser.add_argument("-r", "--min-radius", type=float, default=0.3, help="Minimum radius of the cylinders")
+parser.add_argument("-R", "--max-radius", type=float, default=0.3, help="Maximum radius of the cylinders")
 parser.add_argument("-H", type=float, default=15,  help="Height of the arena")
-parser.add_argument("-e", type=float, default=0.,  help="Range of euler angles of the cylinders")
+parser.add_argument("-e", "--euler-range", type=float, default=10., help="Range of euler angles of the cylinders")
 parser.add_argument("--seed", type=int, default=None, help="Optional deterministic random seed")
+dynamic_group = parser.add_mutually_exclusive_group()
+dynamic_group.add_argument(
+    "--dynamic", action="store_true", help="Also generate the dynamic arena"
+)
+dynamic_group.add_argument(
+    "--static", dest="dynamic", action="store_false", help="Generate only the static arena"
+)
+parser.set_defaults(dynamic=True)
+parser.add_argument(
+    "--dynamic-ratio",
+    type=float,
+    default=0.5,
+    help="Fraction of cylinders converted to dynamic obstacles",
+)
 args, unknown = parser.parse_known_args()
 
 S = args.s
 d = args.d
-l = args.l
+l = args.cell_length
 L = args.L
-R_min = args.r
-R_max = args.R
+R_min = args.min_radius
+R_max = args.max_radius
 assert R_max >= R_min
 H = args.H
-euler_range_deg = args.e
+euler_range_deg = args.euler_range
 ratio = 1.0
 Nx, Ny = int(L / l), int(L / l)
 
 if __name__ == "__main__":
-    rng = np.random.default_rng(args.seed)
+    if not 0.0 <= args.dynamic_ratio <= 1.0:
+        raise ValueError("--dynamic-ratio must be within [0, 1].")
+    seed = resolve_seed(args.seed)
+    rng = np.random.default_rng(seed)
+    print(f"seed: {seed}")
     W = ratio * L
     if L <= 2 * d or W <= 2 * d:
         raise ValueError("Arena size must be larger than 2*d in both dimensions.")
@@ -136,10 +160,10 @@ if __name__ == "__main__":
         np.zeros((Nx, Ny, 1)),
     ], axis=-1)
 
-    # Exclude obstacles within radius S of any waypoint.
+    # Keep each cylinder surface, not just its center, outside waypoint clearance.
     dx = xs[..., None] - waypoints[:, 0]
     dy = ys[..., None] - waypoints[:, 1]
-    inside_exclusion = (dx ** 2 + dy ** 2) <= (S ** 2)
+    inside_exclusion = (dx ** 2 + dy ** 2) <= (S + rs[..., None]) ** 2
     inside_exclusion = np.any(inside_exclusion, axis=-1)
 
     cylinders, points, colors = [], [], []
@@ -157,6 +181,7 @@ if __name__ == "__main__":
     create_arena(cylinders)
     print("World file generated at", os.path.abspath(os.path.join(world_file_directory, "cylinder_arena.world")))
     pcd = o3d.geometry.PointCloud()
+    point_counts = [len(point) for point in points]
     points = np.concatenate(points, axis=0)
     colors = np.concatenate(colors, axis=0)
     pcd.points = o3d.utility.Vector3dVector(points)
@@ -164,3 +189,18 @@ if __name__ == "__main__":
     assert pcd.has_colors()
     o3d.io.write_point_cloud(os.path.join(pcd_file_directory, "cylinder_arena.pcd"), pcd)
     print("Point cloud file generated at", os.path.abspath(os.path.join(pcd_file_directory, "cylinder_arena.pcd")))
+    if args.dynamic:
+        result = generate_dynamic_cylinder_world(
+            scene_name="arena",
+            source_world=os.path.join(world_file_directory, "cylinder_arena.world"),
+            source_pcd=os.path.join(pcd_file_directory, "cylinder_arena.pcd"),
+            output_world=os.path.join(world_file_directory, "arena_dynamic.world"),
+            output_pcd=os.path.join(pcd_file_directory, "arena_dynamic_static.pcd"),
+            seed=seed,
+            dynamic_ratio=args.dynamic_ratio,
+            linear_speed=(0.5, 2.0),
+            circular_angular_speed=(0.5, 1.0),
+            protected_points=tuple(tuple(point) for point in waypoints),
+            cylinder_point_counts=point_counts,
+        )
+        print(json.dumps([result], indent=2, sort_keys=True))
