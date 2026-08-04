@@ -6,6 +6,7 @@
 
 #include <ros/ros.h>
 #include <std_msgs/Bool.h>
+#include <std_msgs/String.h>
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/bind.hpp>
@@ -44,6 +45,8 @@ public:
     }
 
     collision_pub_ = node_handle_.advertise<std_msgs::Bool>(topic_name_, 10, false);
+    collision_partner_pub_ =
+        node_handle_.advertise<std_msgs::String>(topic_name_ + "_partner", 10, false);
     update_connection_ = contact_sensor_->ConnectUpdated(
         boost::bind(&CollisionSignalSensorPlugin::OnUpdate, this));
     contact_sensor_->SetActive(true);
@@ -58,12 +61,16 @@ private:
   {
     const gazebo::msgs::Contacts contacts = contact_sensor_->Contacts();
     bool external_contact = false;
+    std::string partner_name;
     for (int i = 0; i < contacts.contact_size(); ++i)
     {
       const gazebo::msgs::Contact &contact = contacts.contact(i);
       if (!IsSelfContact(contact.collision1(), contact.collision2()))
       {
         external_contact = true;
+        partner_name = HasSelfModelScope(contact.collision1())
+                           ? contact.collision2()
+                           : contact.collision1();
         break;
       }
     }
@@ -73,9 +80,14 @@ private:
       std_msgs::Bool msg;
       msg.data = true;
       collision_pub_.publish(msg);
+      std_msgs::String partner_msg;
+      partner_msg.data = "self=" + contact_sensor_->Name() +
+                         ";partner=" + partner_name;
+      collision_partner_pub_.publish(partner_msg);
       ROS_WARN_STREAM(
           "Gazebo collision detected by " << contact_sensor_->Name()
-                                          << " on " << topic_name_);
+                                          << " on " << topic_name_
+                                          << " with " << partner_name);
     }
     in_contact_ = external_contact;
   }
@@ -96,6 +108,7 @@ private:
   event::ConnectionPtr update_connection_;
   ros::NodeHandle node_handle_;
   ros::Publisher collision_pub_;
+  ros::Publisher collision_partner_pub_;
   std::string topic_name_ = "/drone_0/collision";
   std::string self_model_name_ = "iris";
   bool in_contact_ = false;
