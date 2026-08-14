@@ -77,6 +77,13 @@ parser = argparse.ArgumentParser(description="Generate a cluttered world with cy
 parser.add_argument("-b", type=float, default=5,   help="Start position offset")
 parser.add_argument("-l", "--cell-length", type=float, default=4, help="Length of the grid cells")
 parser.add_argument("-L", type=float, default=40,  help="Total length of the field")
+parser.add_argument(
+    "-W",
+    "--width-ratio",
+    type=float,
+    default=2.0,
+    help="Field width as a multiple of the field length (default 2x)",
+)
 parser.add_argument("-r", "--min-radius", type=float, default=0.3, help="Minimum radius of the cylinders")
 parser.add_argument("-R", "--max-radius", type=float, default=0.3, help="Maximum radius of the cylinders")
 parser.add_argument("-H", type=float, default=15,  help="Height of the cylinders")
@@ -106,7 +113,7 @@ R_max = args.max_radius
 assert R_max >= R_min
 H = args.H
 euler_range_deg = args.euler_range
-ratio = 0.6
+ratio = args.width_ratio
 Nx, Ny = int(L / l), int(ratio * L / l)
 
 if __name__ == "__main__":
