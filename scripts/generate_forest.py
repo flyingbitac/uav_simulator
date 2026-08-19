@@ -103,6 +103,30 @@ parser.add_argument(
     default=0.5,
     help="Fraction of cylinders converted to dynamic obstacles",
 )
+parser.add_argument(
+    "--linear-speed-min",
+    type=float,
+    default=0.1,
+    help="Minimum linear speed (m/s) of linear-motion dynamic obstacles",
+)
+parser.add_argument(
+    "--linear-speed-max",
+    type=float,
+    default=2.0,
+    help="Maximum linear speed (m/s) of linear-motion dynamic obstacles",
+)
+parser.add_argument(
+    "--circular-angular-speed-min",
+    type=float,
+    default=0.1,
+    help="Minimum angular speed (rad/s) of circular-motion dynamic obstacles",
+)
+parser.add_argument(
+    "--circular-angular-speed-max",
+    type=float,
+    default=1.0,
+    help="Maximum angular speed (rad/s) of circular-motion dynamic obstacles",
+)
 args, unknown = parser.parse_known_args()
 
 B = args.b
@@ -119,6 +143,16 @@ Nx, Ny = int(L / l), int(ratio * L / l)
 if __name__ == "__main__":
     if not 0.0 <= args.dynamic_ratio <= 1.0:
         raise ValueError("--dynamic-ratio must be within [0, 1].")
+    if not (0.0 < args.linear_speed_min <= args.linear_speed_max):
+        raise ValueError("linear speed bounds must satisfy 0 < min <= max.")
+    if not (
+        0.0
+        < args.circular_angular_speed_min
+        <= args.circular_angular_speed_max
+    ):
+        raise ValueError(
+            "circular angular speed bounds must satisfy 0 < min <= max."
+        )
     seed = resolve_seed(args.seed)
     rng = np.random.default_rng(seed)
     print(f"seed: {seed}")
@@ -168,8 +202,11 @@ if __name__ == "__main__":
             output_pcd=os.path.join(pcd_file_directory, "forest_dynamic_static.pcd"),
             seed=seed,
             dynamic_ratio=args.dynamic_ratio,
-            linear_speed=(0.1, 2.0),
-            circular_angular_speed=(0.1, 1.0),
+            linear_speed=(args.linear_speed_min, args.linear_speed_max),
+            circular_angular_speed=(
+                args.circular_angular_speed_min,
+                args.circular_angular_speed_max,
+            ),
             protected_points=((0.0, 0.0), (L + 2 * B, 0.0)),
             cylinder_point_counts=point_counts,
             seed_offset=1_000_003,
