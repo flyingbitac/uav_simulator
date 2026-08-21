@@ -10,9 +10,6 @@ import numpy as np
 import open3d as o3d
 
 
-LINE_SEGMENT_RANGE = (8.0, 16.0)
-CIRCLE_RADIUS_RANGE = (0.5, 1.5)
-MOTION_MODE_LINEAR_PROBABILITY = 0.5
 PROTECTED_POINT_RADIUS = 4.0
 MAX_MOTION_SAMPLE_ATTEMPTS = 1_000
 
@@ -287,32 +284,15 @@ def _indent_xml(element, level=0):
         element.tail = indentation
 
 
-def _point_to_segment_distance_2d(point, start, end):
-    segment = end[:2] - start[:2]
-    length_squared = float(np.dot(segment, segment))
-    if length_squared == 0.0:
-        return float(np.linalg.norm(point - start[:2]))
-    progress = float(np.dot(point - start[:2], segment) / length_squared)
-    closest = start[:2] + np.clip(progress, 0.0, 1.0) * segment
-    return float(np.linalg.norm(point - closest))
-
-
-def _motion_respects_protected_points(
-    mode,
-    protected_points,
-    required_clearance,
-    line_start=None,
-    line_end=None,
-    circle_center=None,
-    circle_radius=None,
+def _ray_respects_protected_points(
+    origin, direction, protected_points, required_clearance
 ):
     for point in protected_points:
-        point = np.asarray(point, dtype=np.float64)
-        if mode == "linear":
-            distance = _point_to_segment_distance_2d(point, line_start, line_end)
-        else:
-            center_distance = float(np.linalg.norm(point - circle_center[:2]))
-            distance = abs(center_distance - circle_radius)
+        offset = np.asarray(point, dtype=np.float64) - origin[:2]
+        progress = max(float(np.dot(offset, direction[:2])), 0.0)
+        distance = float(
+            np.linalg.norm(offset - progress * direction[:2])
+        )
         if distance < required_clearance:
             return False
     return True
@@ -352,41 +332,17 @@ def _configure_dynamic_model(model, marker_id, rng, config):
 
     center = pose[:3]
     for _ in range(MAX_MOTION_SAMPLE_ATTEMPTS):
-        if rng.random() < MOTION_MODE_LINEAR_PROBABILITY:
-            mode = "linear"
-            direction_angle = rng.uniform(-math.pi, math.pi)
-            direction = np.asarray(
-                [math.cos(direction_angle), math.sin(direction_angle), 0.0],
-                dtype=np.float64,
-            )
-            segment_length = rng.uniform(*LINE_SEGMENT_RANGE)
-            line_start = center - 0.5 * segment_length * direction
-            line_end = center + 0.5 * segment_length * direction
-            speed = rng.uniform(*config["linear_speed"])
-            phase = rng.choice((0.5, 1.5))
-            valid = _motion_respects_protected_points(
-                mode,
-                config["protected_points"],
-                required_clearance,
-                line_start=line_start,
-                line_end=line_end,
-            )
-        else:
-            mode = "circular"
-            trajectory_radius = rng.uniform(*CIRCLE_RADIUS_RANGE)
-            angular_speed = rng.uniform(*config["circular_angular_speed"])
-            phase = rng.uniform(-math.pi, math.pi)
-            circle_center = center.copy()
-            circle_center[0] -= trajectory_radius * math.cos(phase)
-            circle_center[1] -= trajectory_radius * math.sin(phase)
-            valid = _motion_respects_protected_points(
-                mode,
-                config["protected_points"],
-                required_clearance,
-                circle_center=circle_center,
-                circle_radius=trajectory_radius,
-            )
-        if valid:
+        direction_angle = rng.uniform(-math.pi, math.pi)
+        direction = np.asarray(
+            [math.cos(direction_angle), math.sin(direction_angle), 0.0],
+            dtype=np.float64,
+        )
+        if _ray_respects_protected_points(
+            center,
+            direction,
+            config["protected_points"],
+            required_clearance,
+        ):
             break
     else:
         raise RuntimeError(
@@ -402,17 +358,14 @@ def _configure_dynamic_model(model, marker_id, rng, config):
             "filename": "libobstaclePathPlugin.so",
         },
     )
-    _add_plugin_value(plugin, "motion_type", mode)
-    if mode == "linear":
-        _add_plugin_value(plugin, "line_start", _format_vector(line_start))
-        _add_plugin_value(plugin, "line_end", _format_vector(line_end))
-        _add_plugin_value(plugin, "velocity", f"{speed:.9f}")
-        _add_plugin_value(plugin, "phase", f"{phase:.1f}")
-    else:
-        _add_plugin_value(plugin, "circle_center", _format_vector(circle_center))
-        _add_plugin_value(plugin, "circle_radius", f"{trajectory_radius:.9f}")
-        _add_plugin_value(plugin, "angular_velocity", f"{angular_speed:.9f}")
-        _add_plugin_value(plugin, "phase", f"{phase:.9f}")
+    speed = rng.uniform(*config["linear_speed"])
+    _add_plugin_value(plugin, "motion_type", "proximity_linear")
+    _add_plugin_value(plugin, "direction", _format_vector(direction))
+    _add_plugin_value(plugin, "velocity", f"{speed:.9f}")
+    _add_plugin_value(
+        plugin, "activation_distance", f"{config['activation_distance']:.9f}"
+    )
+    _add_plugin_value(plugin, "activation_model", "iris")
 
     _add_plugin_value(plugin, "orientation", "false")
     _add_plugin_value(plugin, "marker_enabled", "true")
@@ -426,7 +379,7 @@ def _configure_dynamic_model(model, marker_id, rng, config):
     return {
         "id": marker_id,
         "name": model.get("name"),
-        "mode": mode,
+        "mode": "proximity_linear",
         "pose": pose,
         "radius": body_radius,
         "height": body_height,
@@ -552,13 +505,21 @@ def generate_dynamic_cylinder_world(
     seed,
     dynamic_ratio,
     linear_speed,
-    circular_angular_speed,
+    activation_distance,
     protected_points,
     cylinder_point_counts,
     seed_offset=0,
 ):
     if not 0.0 <= dynamic_ratio <= 1.0:
         raise ValueError("dynamic_ratio must be within [0, 1].")
+    if not (
+        math.isfinite(linear_speed[0])
+        and math.isfinite(linear_speed[1])
+        and 0.0 < linear_speed[0] <= linear_speed[1]
+    ):
+        raise ValueError("linear_speed must satisfy 0 < min <= max.")
+    if not math.isfinite(activation_distance) or activation_distance <= 0.0:
+        raise ValueError("activation_distance must be finite and positive.")
 
     source_world = Path(source_world).resolve()
     source_pcd = Path(source_pcd).resolve()
@@ -597,7 +558,7 @@ def generate_dynamic_cylinder_world(
     selected_indices = sorted(rng.sample(eligible_indices, dynamic_count))
     config = {
         "linear_speed": linear_speed,
-        "circular_angular_speed": circular_angular_speed,
+        "activation_distance": activation_distance,
         "protected_points": protected_points,
     }
     dynamic_models = [
@@ -615,17 +576,14 @@ def generate_dynamic_cylinder_world(
     source_points, static_points = _select_static_cylinder_points(
         source_pcd, output_pcd, cylinder_point_counts, selected_indices
     )
-    mode_counts = {
-        mode: sum(model["mode"] == mode for model in dynamic_models)
-        for mode in ("linear", "circular")
-    }
     return {
         "scene": scene_name,
         "seed": seed,
         "dynamic_ratio": dynamic_ratio,
         "total_cylinders": len(cylinders),
         "dynamic_cylinders": len(dynamic_models),
-        "mode_counts": mode_counts,
+        "mode_counts": {"proximity_linear": len(dynamic_models)},
+        "activation_distance": activation_distance,
         "source_pcd_points": source_points,
         "static_pcd_points": static_points,
         "world": str(output_world),

@@ -107,25 +107,19 @@ parser.add_argument(
     "--linear-speed-min",
     type=float,
     default=0.1,
-    help="Minimum linear speed (m/s) of linear-motion dynamic obstacles",
+    help="Minimum speed (m/s) of proximity-triggered dynamic obstacles",
 )
 parser.add_argument(
     "--linear-speed-max",
     type=float,
     default=2.0,
-    help="Maximum linear speed (m/s) of linear-motion dynamic obstacles",
+    help="Maximum speed (m/s) of proximity-triggered dynamic obstacles",
 )
 parser.add_argument(
-    "--circular-angular-speed-min",
+    "--activation-distance",
     type=float,
-    default=0.1,
-    help="Minimum angular speed (rad/s) of circular-motion dynamic obstacles",
-)
-parser.add_argument(
-    "--circular-angular-speed-max",
-    type=float,
-    default=1.0,
-    help="Maximum angular speed (rad/s) of circular-motion dynamic obstacles",
+    default=20.0,
+    help="Horizontal UAV distance (m) that activates dynamic obstacles",
 )
 args, unknown = parser.parse_known_args()
 
@@ -143,16 +137,17 @@ Nx, Ny = int(L / l), int(ratio * L / l)
 if __name__ == "__main__":
     if not 0.0 <= args.dynamic_ratio <= 1.0:
         raise ValueError("--dynamic-ratio must be within [0, 1].")
-    if not (0.0 < args.linear_speed_min <= args.linear_speed_max):
-        raise ValueError("linear speed bounds must satisfy 0 < min <= max.")
     if not (
-        0.0
-        < args.circular_angular_speed_min
-        <= args.circular_angular_speed_max
+        np.isfinite(args.linear_speed_min)
+        and np.isfinite(args.linear_speed_max)
+        and 0.0 < args.linear_speed_min <= args.linear_speed_max
     ):
-        raise ValueError(
-            "circular angular speed bounds must satisfy 0 < min <= max."
-        )
+        raise ValueError("linear speed bounds must satisfy 0 < min <= max.")
+    if (
+        not np.isfinite(args.activation_distance)
+        or args.activation_distance <= 0.0
+    ):
+        raise ValueError("--activation-distance must be finite and positive.")
     seed = resolve_seed(args.seed)
     rng = np.random.default_rng(seed)
     print(f"seed: {seed}")
@@ -203,10 +198,7 @@ if __name__ == "__main__":
             seed=seed,
             dynamic_ratio=args.dynamic_ratio,
             linear_speed=(args.linear_speed_min, args.linear_speed_max),
-            circular_angular_speed=(
-                args.circular_angular_speed_min,
-                args.circular_angular_speed_max,
-            ),
+            activation_distance=args.activation_distance,
             protected_points=((0.0, 0.0), (L + 2 * B, 0.0)),
             cylinder_point_counts=point_counts,
             seed_offset=1_000_003,

@@ -71,11 +71,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_0" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-4.740718753 -54.394365075 7.700000000</line_start>
-        <line_end>-10.327941247 -40.693954925 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.377619958 -0.925960673 0.000000000</direction>
         <velocity>1.842558451</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>0</marker_id>
@@ -260,11 +260,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_3" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>-8.693509639 -35.431658235 7.700000000</circle_center>
-        <circle_radius>0.950563107</circle_radius>
-        <angular_velocity>0.830122689</angular_velocity>
-        <phase>3.118079965</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.023510522 -0.999723589 0.000000000</direction>
+        <velocity>0.789084002</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>3</marker_id>
@@ -333,11 +333,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_4" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>-7.916836455 -33.460435488 7.700000000</circle_center>
-        <circle_radius>1.293325084</circle_radius>
-        <angular_velocity>0.541186494</angular_velocity>
-        <phase>0.708637148</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.650799631 0.759249524 0.000000000</direction>
+        <velocity>0.699930068</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>4</marker_id>
@@ -580,11 +580,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_8" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-12.898867254 -20.399829498 7.700000000</line_start>
-        <line_end>-2.804492746 -9.630450502 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.683871958 -0.729602046 0.000000000</direction>
         <velocity>0.864553433</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>8</marker_id>
@@ -711,11 +711,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_10" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-5.601423914 -0.677173441 7.700000000</line_start>
-        <line_end>-8.250776086 -14.787266559 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.184538150 -0.982825351 0.000000000</direction>
         <velocity>0.998804224</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>10</marker_id>
@@ -784,11 +784,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_11" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-5.574583421 0.371621780 7.700000000</line_start>
-        <line_end>-13.806796579 -10.430421780 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.606140332 -0.795357717 0.000000000</direction>
         <velocity>0.567851102</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>11</marker_id>
@@ -1031,11 +1031,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_15" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-2.858273983 -52.936899348 7.700000000</line_start>
-        <line_end>-7.347266017 -45.219080652 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.502778501 0.864415282 0.000000000</direction>
         <velocity>1.408256255</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>15</marker_id>
@@ -1104,11 +1104,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_16" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>-4.513038753 -35.399645020 7.700000000</circle_center>
-        <circle_radius>0.684971941</circle_radius>
-        <angular_velocity>0.561947582</angular_velocity>
-        <phase>-1.818501421</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.969477639 0.245179747 -0.000000000</direction>
+        <velocity>0.384918326</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>16</marker_id>
@@ -1235,11 +1235,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_18" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>-6.886585780 -27.002922871 7.700000000</circle_center>
-        <circle_radius>1.436969159</circle_radius>
-        <angular_velocity>0.511391288</angular_velocity>
-        <phase>-0.467350662</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.450522633 0.892765007 0.000000000</direction>
+        <velocity>0.734853509</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>18</marker_id>
@@ -1308,11 +1308,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_19" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-5.581612824 -18.598755304 7.700000000</line_start>
-        <line_end>-4.973267176 -28.346424696 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.062288158 0.998058207 0.000000000</direction>
         <velocity>1.470388580</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>19</marker_id>
@@ -1381,11 +1381,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_20" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>2.022269597 -16.397409840 7.700000000</line_start>
-        <line_end>-8.862029597 -20.789490160 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.927345403 -0.374206499 -0.000000000</direction>
         <velocity>1.394727384</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>20</marker_id>
@@ -1570,11 +1570,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_23" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-8.761923485 -3.025095949 7.700000000</line_start>
-        <line_end>-0.029076515 -13.778564051 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.630403638 -0.776267514 0.000000000</direction>
         <velocity>1.757489848</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>23</marker_id>
@@ -1701,11 +1701,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_25" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>-0.154693436 10.161419064 7.700000000</line_start>
-        <line_end>-6.583626564 -0.249319064 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.525420193 0.850842889 0.000000000</direction>
         <velocity>0.675819266</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>25</marker_id>
@@ -1774,11 +1774,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_26" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>-3.073063673 7.649422248 7.700000000</circle_center>
-        <circle_radius>0.513203759</circle_radius>
-        <angular_velocity>0.840640338</angular_velocity>
-        <phase>2.513890204</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.587286721 -0.809378964 0.000000000</direction>
+        <velocity>0.431419781</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>26</marker_id>
@@ -1905,11 +1905,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_28" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>0.700080635 -33.992635581 7.700000000</circle_center>
-        <circle_radius>1.299824557</circle_radius>
-        <angular_velocity>0.557889699</angular_velocity>
-        <phase>-1.530026175</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.999169012 0.040758858 0.000000000</direction>
+        <velocity>0.725158731</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>28</marker_id>
@@ -2094,11 +2094,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_31" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>0.939342490 -23.732422931 7.700000000</circle_center>
-        <circle_radius>1.317273219</circle_radius>
-        <angular_velocity>0.822470335</angular_velocity>
-        <phase>-2.418339303</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.661827066 -0.749656545 0.000000000</direction>
+        <velocity>1.083418146</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>31</marker_id>
@@ -2167,11 +2167,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_32" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>3.801047818 -22.345184726 7.700000000</line_start>
-        <line_end>-1.152527818 -15.637675274 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.594069250 -0.804413902 0.000000000</direction>
         <velocity>0.808603611</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>32</marker_id>
@@ -2298,11 +2298,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_34" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>0.737097210 -13.244366523 7.700000000</circle_center>
-        <circle_radius>1.446502554</circle_radius>
-        <angular_velocity>0.969219400</angular_velocity>
-        <phase>2.575170896</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.536616075 -0.843826516 0.000000000</direction>
+        <velocity>1.401978337</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>34</marker_id>
@@ -2429,11 +2429,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_36" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>-0.140104128 7.143043184 7.700000000</circle_center>
-        <circle_radius>0.872449263</circle_radius>
-        <angular_velocity>0.768964392</angular_velocity>
-        <phase>-1.835669635</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.965125675 0.261786997 -0.000000000</direction>
+        <velocity>0.670882417</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>36</marker_id>
@@ -2502,11 +2502,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_37" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>5.072273652 -46.728512242 7.700000000</circle_center>
-        <circle_radius>0.508897082</circle_radius>
-        <angular_velocity>0.575511587</angular_velocity>
-        <phase>-1.046725969</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.865789516 0.500408347 0.000000000</direction>
+        <velocity>0.292876167</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>37</marker_id>
@@ -2633,11 +2633,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_39" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>2.848851763 -34.046014310 7.700000000</circle_center>
-        <circle_radius>1.288288769</circle_radius>
-        <angular_velocity>0.857203184</angular_velocity>
-        <phase>-1.776548362</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.978907618 0.204303391 -0.000000000</direction>
+        <velocity>1.104325235</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>39</marker_id>
@@ -2822,11 +2822,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_42" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>4.605436327 -14.975027177 7.700000000</line_start>
-        <line_end>1.622283673 -30.687192823 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.186530361 0.982449197 -0.000000000</direction>
         <velocity>1.377841980</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>42</marker_id>
@@ -3417,11 +3417,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_52" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>7.673079058 -44.054001775 7.700000000</circle_center>
-        <circle_radius>0.951611793</circle_radius>
-        <angular_velocity>0.838460483</angular_velocity>
-        <phase>-2.394457288</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.679539945 -0.733638510 0.000000000</direction>
+        <velocity>0.797888884</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>52</marker_id>
@@ -3490,11 +3490,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_53" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>7.715259412 -35.071171397 7.700000000</line_start>
-        <line_end>5.501860588 -43.108788603 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.265497048 -0.964111673 0.000000000</direction>
         <velocity>1.921942027</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>53</marker_id>
@@ -3563,11 +3563,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_54" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>7.882938418 -35.297796002 7.700000000</circle_center>
-        <circle_radius>0.604629689</circle_radius>
-        <angular_velocity>0.729204023</angular_velocity>
-        <phase>-0.869328346</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.763895664 0.645339766 0.000000000</direction>
+        <velocity>0.440898402</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>54</marker_id>
@@ -3694,11 +3694,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_56" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>7.981780198 -28.323382835 7.700000000</circle_center>
-        <circle_radius>0.604746282</circle_radius>
-        <angular_velocity>0.798120238</angular_velocity>
-        <phase>-0.076017711</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.075944518 0.997112045 0.000000000</direction>
+        <velocity>0.482660247</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>56</marker_id>
@@ -3883,11 +3883,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_59" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>6.413117855 -16.394359094 7.700000000</circle_center>
-        <circle_radius>1.138363545</circle_radius>
-        <angular_velocity>0.711619440</angular_velocity>
-        <phase>0.133383510</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.132988354 -0.991117600 -0.000000000</direction>
+        <velocity>0.810081628</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>59</marker_id>
@@ -3956,11 +3956,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_60" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>8.046371449 -12.275132937 7.700000000</circle_center>
-        <circle_radius>1.387781883</circle_radius>
-        <angular_velocity>0.916766750</angular_velocity>
-        <phase>3.130176392</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.011416014 -0.999934835 0.000000000</direction>
+        <velocity>1.272272287</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>60</marker_id>
@@ -4203,11 +4203,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_64" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>10.794262700 4.050736271 7.700000000</circle_center>
-        <circle_radius>1.374699005</circle_radius>
-        <angular_velocity>0.771404537</angular_velocity>
-        <phase>2.710022046</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.418297916 -0.908309888 0.000000000</direction>
+        <velocity>1.060449049</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>64</marker_id>
@@ -4276,11 +4276,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_65" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>6.075064766 2.382951878 7.700000000</line_start>
-        <line_end>9.924235234 15.818768122 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.275406754 0.961327790 -0.000000000</direction>
         <velocity>0.977389159</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>65</marker_id>
@@ -4349,11 +4349,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_66" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>14.742466167 -42.614061170 7.700000000</line_start>
-        <line_end>8.749093833 -50.687698830 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.596055631 -0.802943139 -0.000000000</direction>
         <velocity>1.676249852</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>66</marker_id>
@@ -4480,11 +4480,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_68" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>14.797103936 -41.069952448 7.700000000</circle_center>
-        <circle_radius>1.218131652</circle_radius>
-        <angular_velocity>0.903527690</angular_velocity>
-        <phase>-2.724645936</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.404970638 -0.914329690 0.000000000</direction>
+        <velocity>1.100615678</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>68</marker_id>
@@ -4611,11 +4611,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_70" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>14.689161338 -34.815797699 7.700000000</line_start>
-        <line_end>9.039138662 -28.714822301 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.679470924 0.733702435 0.000000000</direction>
         <velocity>0.837635981</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>70</marker_id>
@@ -4684,11 +4684,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_71" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>13.200087290 -32.677051614 7.700000000</line_start>
-        <line_end>12.552472710 -21.106448386 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.055883220 0.998437312 0.000000000</direction>
         <velocity>1.792855078</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>71</marker_id>
@@ -4815,11 +4815,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_73" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>11.390157955 -18.287190118 7.700000000</circle_center>
-        <circle_radius>0.960735097</circle_radius>
-        <angular_velocity>0.685660934</angular_velocity>
-        <phase>-0.739954643</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.674254416 0.738499142 0.000000000</direction>
+        <velocity>0.658738524</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>73</marker_id>
@@ -5004,11 +5004,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_76" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>12.943360217 -9.631752240 7.700000000</circle_center>
-        <circle_radius>0.533618015</circle_radius>
-        <angular_velocity>0.545323445</angular_velocity>
-        <phase>1.848168535</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.961778324 -0.273829244 0.000000000</direction>
+        <velocity>0.290994414</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>76</marker_id>
@@ -5077,11 +5077,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_77" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>11.733403379 -3.877291527 7.700000000</circle_center>
-        <circle_radius>1.100142285</circle_radius>
-        <angular_velocity>0.538179054</angular_velocity>
-        <phase>-0.462651803</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.446322698 0.894872085 0.000000000</direction>
+        <velocity>0.592073534</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>77</marker_id>
@@ -5150,11 +5150,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_78" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>12.782237003 1.250146908 7.700000000</circle_center>
-        <circle_radius>0.789664138</circle_radius>
-        <angular_velocity>0.950569360</angular_velocity>
-        <phase>-0.516222415</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.493598340 0.869689990 0.000000000</direction>
+        <velocity>0.750630534</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>78</marker_id>
@@ -5281,11 +5281,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_80" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>11.728216772 7.459693529 7.700000000</circle_center>
-        <circle_radius>1.345491981</circle_radius>
-        <angular_velocity>0.986116902</angular_velocity>
-        <phase>0.675002039</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.624898909 0.780705677 0.000000000</direction>
+        <velocity>1.326812384</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>80</marker_id>
@@ -5354,11 +5354,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_81" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>20.148369090 -52.332662366 7.700000000</line_start>
-        <line_end>14.758110910 -46.201297634 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.660258990 0.751037993 0.000000000</direction>
         <velocity>1.827882569</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>81</marker_id>
@@ -5427,11 +5427,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_82" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>12.771358577 -45.508977657 7.700000000</line_start>
-        <line_end>22.410541423 -40.953382343 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.904112465 -0.427294572 0.000000000</direction>
         <velocity>1.240265033</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>82</marker_id>
@@ -5500,11 +5500,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_83" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>14.645708210 -41.494079382 7.700000000</circle_center>
-        <circle_radius>0.802804878</circle_radius>
-        <angular_velocity>0.704036584</angular_velocity>
-        <phase>1.948023277</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.929689645 -0.368343813 0.000000000</direction>
+        <velocity>0.565204004</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>83</marker_id>
@@ -5573,11 +5573,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_84" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>14.383609804 -40.544082363 7.700000000</line_start>
-        <line_end>20.089150196 -33.559717637 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.632643823 -0.774442892 0.000000000</direction>
         <velocity>0.930632510</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>84</marker_id>
@@ -5646,11 +5646,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_85" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>23.163582567 -29.496324298 7.700000000</line_start>
-        <line_end>12.108537433 -32.035615702 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.974620026 0.223865595 -0.000000000</direction>
         <velocity>1.237746439</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>85</marker_id>
@@ -5777,11 +5777,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_87" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>14.253340642 -23.707625445 7.700000000</circle_center>
-        <circle_radius>0.651373772</circle_radius>
-        <angular_velocity>0.993352962</angular_velocity>
-        <phase>-0.558322613</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.529764277 0.848144923 0.000000000</direction>
+        <velocity>0.647044066</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>87</marker_id>
@@ -5850,11 +5850,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_88" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>16.735047908 -18.482720948 7.700000000</circle_center>
-        <circle_radius>0.886683006</circle_radius>
-        <angular_velocity>0.523516458</angular_velocity>
-        <phase>-0.182908494</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.181890316 0.983318826 0.000000000</direction>
+        <velocity>0.464193147</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>88</marker_id>
@@ -5923,11 +5923,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_89" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>23.661246108 -16.096981776 7.700000000</line_start>
-        <line_end>10.990313892 -18.718138224 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.979266794 -0.202574793 0.000000000</direction>
         <velocity>1.444949437</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>89</marker_id>
@@ -5996,11 +5996,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_90" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>17.335549496 -12.456828328 7.700000000</circle_center>
-        <circle_radius>1.148992258</circle_radius>
-        <angular_velocity>0.597486810</angular_velocity>
-        <phase>1.780761341</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.978038207 -0.208425683 0.000000000</direction>
+        <velocity>0.686507719</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>90</marker_id>
@@ -6069,11 +6069,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_91" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>15.746138553 -9.166914663 7.700000000</circle_center>
-        <circle_radius>0.610996923</circle_radius>
-        <angular_velocity>0.530080414</angular_velocity>
-        <phase>1.261773091</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.952631086 -0.304128286 -0.000000000</direction>
+        <velocity>0.323877502</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>91</marker_id>
@@ -6200,11 +6200,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_93" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>18.434030852 0.321078436 7.700000000</circle_center>
-        <circle_radius>1.433915521</circle_radius>
-        <angular_velocity>0.825236090</angular_velocity>
-        <phase>2.949863906</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.190556249 -0.981676279 0.000000000</direction>
+        <velocity>1.183318838</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>93</marker_id>
@@ -6273,11 +6273,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_94" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>18.209425702 3.328126207 7.700000000</circle_center>
-        <circle_radius>0.796386389</circle_radius>
-        <angular_velocity>0.924565778</angular_velocity>
-        <phase>2.880646170</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.257995109 -0.966146223 0.000000000</direction>
+        <velocity>0.736311601</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>94</marker_id>
@@ -6346,11 +6346,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_95" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>13.307073697 14.141968237 7.700000000</line_start>
-        <line_end>17.102606303 0.701331763 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.271764175 -0.962363878 0.000000000</direction>
         <velocity>1.936320298</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>95</marker_id>
@@ -6651,11 +6651,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_100" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>21.046448014 -34.403958655 7.700000000</circle_center>
-        <circle_radius>1.285489149</circle_radius>
-        <angular_velocity>0.594563734</angular_velocity>
-        <phase>1.772575208</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.979711618 0.200412438 -0.000000000</direction>
+        <velocity>0.764305228</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>100</marker_id>
@@ -6782,11 +6782,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_102" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>18.638391388 -28.833411149 7.700000000</line_start>
-        <line_end>18.154488612 -17.199708851 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.041558972 0.999136053 0.000000000</direction>
         <velocity>1.684338092</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>102</marker_id>
@@ -7029,11 +7029,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_106" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>19.995943194 -8.257575263 7.700000000</circle_center>
-        <circle_radius>1.401927523</circle_radius>
-        <angular_velocity>0.519990338</angular_velocity>
-        <phase>-1.536953021</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.999427370 0.033836846 0.000000000</direction>
+        <velocity>0.728988767</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>106</marker_id>
@@ -7102,11 +7102,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_107" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>15.231732010 -4.065012253 7.700000000</line_start>
-        <line_end>27.686167990 -2.486627747 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.992064868 -0.125727076 -0.000000000</direction>
         <velocity>1.813815928</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>107</marker_id>
@@ -7233,11 +7233,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_109" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>24.351237123 -2.351692677 7.700000000</line_start>
-        <line_end>17.969722877 11.344792677 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.422332210 0.906441120 -0.000000000</direction>
         <velocity>1.669093566</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>109</marker_id>
@@ -7364,11 +7364,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_111" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>24.595005338 -50.357794666 7.700000000</circle_center>
-        <circle_radius>1.445485548</circle_radius>
-        <angular_velocity>0.572845211</angular_velocity>
-        <phase>2.462016580</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.628463334 -0.777839211 0.000000000</direction>
+        <velocity>0.828039474</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>111</marker_id>
@@ -7611,11 +7611,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_115" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>26.997419743 -28.100810666 7.700000000</line_start>
-        <line_end>19.362860257 -32.553429334 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.863821956 0.503797210 0.000000000</direction>
         <velocity>0.594384243</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>115</marker_id>
@@ -7742,11 +7742,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_117" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>24.153843367 -24.777637058 7.700000000</circle_center>
-        <circle_radius>1.234279342</circle_radius>
-        <angular_velocity>0.515350423</angular_velocity>
-        <phase>-0.334776915</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.328558478 0.944483630 0.000000000</direction>
+        <velocity>0.636086381</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>117</marker_id>
@@ -7815,11 +7815,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_118" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>23.583245669 -19.818721277 7.700000000</circle_center>
-        <circle_radius>0.530134235</circle_radius>
-        <angular_velocity>0.959641177</angular_velocity>
-        <phase>2.904355200</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.235018357 -0.971990932 0.000000000</direction>
+        <velocity>0.508738641</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>118</marker_id>
@@ -7888,11 +7888,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_119" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>22.356811071 -14.885373179 7.700000000</circle_center>
-        <circle_radius>0.578538540</circle_radius>
-        <angular_velocity>0.535164733</angular_velocity>
-        <phase>-0.884337504</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.583099005 0.812401102 0.000000000</direction>
+        <velocity>0.309613423</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>119</marker_id>
@@ -8135,11 +8135,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_123" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>22.722243226 4.663455429 7.700000000</line_start>
-        <line_end>27.383796774 -1.935915429 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.576945371 0.816782737 0.000000000</direction>
         <velocity>1.961485269</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>123</marker_id>
@@ -8208,11 +8208,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_124" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>27.994276126 0.463020218 7.700000000</line_start>
-        <line_end>20.416963874 6.460839782 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.784090439 0.620646585 0.000000000</direction>
         <velocity>0.807186197</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>124</marker_id>
@@ -8339,11 +8339,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_126" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>28.427422051 -47.231040130 7.700000000</circle_center>
-        <circle_radius>0.793262954</circle_radius>
-        <angular_velocity>0.844733238</angular_velocity>
-        <phase>2.719287415</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.409864256 -0.912146530 0.000000000</direction>
+        <velocity>0.670095584</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>126</marker_id>
@@ -8470,11 +8470,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_128" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>32.084095008 -35.554496775 7.700000000</line_start>
-        <line_end>24.776144992 -44.604703225 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.628241784 0.778018163 0.000000000</direction>
         <velocity>1.215040863</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>128</marker_id>
@@ -8543,11 +8543,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_129" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>34.889695084 -37.966928329 7.700000000</line_start>
-        <line_end>24.232024916 -35.691251671 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.977954617 0.208817543 -0.000000000</direction>
         <velocity>1.210055604</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>129</marker_id>
@@ -8616,11 +8616,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_130" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>32.042214256 -37.750950335 7.700000000</line_start>
-        <line_end>23.069725744 -29.154969665 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.722094901 0.691794011 0.000000000</direction>
         <velocity>0.990476208</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>130</marker_id>
@@ -8689,11 +8689,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_131" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>24.137375367 -31.889176422 7.700000000</line_start>
-        <line_end>32.220384633 -27.389163578 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.873723179 0.486423484 0.000000000</direction>
         <velocity>1.846512971</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>131</marker_id>
@@ -8820,11 +8820,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_133" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>29.209092287 -21.865741302 7.700000000</circle_center>
-        <circle_radius>0.815891419</circle_radius>
-        <angular_velocity>0.621419345</angular_velocity>
-        <phase>1.601322637</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.999534108 -0.030521569 0.000000000</direction>
+        <velocity>0.507010711</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>133</marker_id>
@@ -8893,11 +8893,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_134" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>23.129968779 -12.362096290 7.700000000</line_start>
-        <line_end>30.459251221 -16.404283710 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.875656233 -0.482934945 0.000000000</direction>
         <velocity>0.698350716</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>134</marker_id>
@@ -9082,11 +9082,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_137" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>25.106007765 -8.683294298 7.700000000</line_start>
-        <line_end>27.786852235 -0.033025702 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.296024343 -0.955180396 0.000000000</direction>
         <velocity>0.949079993</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>137</marker_id>
@@ -9271,11 +9271,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_140" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>28.702564040 8.001606025 7.700000000</circle_center>
-        <circle_radius>0.642283474</circle_radius>
-        <angular_velocity>0.711094373</angular_velocity>
-        <phase>0.860582994</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.758222801 0.651995540 0.000000000</direction>
+        <velocity>0.456724164</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>140</marker_id>
@@ -9460,11 +9460,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_143" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>28.985908624 -34.833639260 7.700000000</line_start>
-        <line_end>32.148771376 -46.167700740 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.268788628 -0.963199187 0.000000000</direction>
         <velocity>1.925402494</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>143</marker_id>
@@ -9533,11 +9533,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_144" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>26.212302511 -38.346545660 7.700000000</line_start>
-        <line_end>38.825477489 -33.518594340 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.933921685 -0.357477672 0.000000000</direction>
         <velocity>1.693485734</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>144</marker_id>
@@ -9606,11 +9606,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_145" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>31.543254254 -31.638985952 7.700000000</circle_center>
-        <circle_radius>0.685380688</circle_radius>
-        <angular_velocity>0.710852155</angular_velocity>
-        <phase>-2.043686433</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.890255677 0.455461117 -0.000000000</direction>
+        <velocity>0.487204339</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>145</marker_id>
@@ -9737,11 +9737,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_147" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>32.992308610 -24.377464242 7.700000000</circle_center>
-        <circle_radius>0.840387903</circle_radius>
-        <angular_velocity>0.761674323</angular_velocity>
-        <phase>-0.908753126</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.788737863 0.614729684 0.000000000</direction>
+        <velocity>0.640101887</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>147</marker_id>
@@ -9868,11 +9868,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_149" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>33.077583520 -16.583769842 7.700000000</circle_center>
-        <circle_radius>0.586499397</circle_radius>
-        <angular_velocity>0.877517537</angular_velocity>
-        <phase>-1.289759980</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.960768522 0.277351487 0.000000000</direction>
+        <velocity>0.514663506</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>149</marker_id>
@@ -10057,11 +10057,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_152" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>31.946480456 -3.438766494 7.700000000</circle_center>
-        <circle_radius>0.949088377</circle_radius>
-        <angular_velocity>0.731005423</angular_velocity>
-        <phase>-1.767245238</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.980765889 -0.195187782 0.000000000</direction>
+        <velocity>0.693788750</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>152</marker_id>
@@ -10130,11 +10130,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_153" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>32.023634149 -1.082423432 7.700000000</circle_center>
-        <circle_radius>0.971434922</circle_radius>
-        <angular_velocity>0.839089373</angular_velocity>
-        <phase>1.634192641</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.947588219 -0.319494237 0.000000000</direction>
+        <velocity>0.815120720</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>153</marker_id>
@@ -10261,11 +10261,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_155" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>33.322889892 3.508511813 7.700000000</line_start>
-        <line_end>32.551810108 13.720148187 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.075295561 0.997161260 0.000000000</direction>
         <velocity>1.976022706</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>155</marker_id>
@@ -10450,11 +10450,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_158" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>37.113152050 -34.092786368 7.700000000</circle_center>
-        <circle_radius>0.535450966</circle_radius>
-        <angular_velocity>0.896118236</angular_velocity>
-        <phase>-1.221426513</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.939588616 0.342305760 0.000000000</direction>
+        <velocity>0.479827375</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>158</marker_id>
@@ -10523,11 +10523,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_159" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>31.129802164 -31.844369818 7.700000000</line_start>
-        <line_end>40.942997836 -29.960550182 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.982068259 0.188525688 0.000000000</direction>
         <velocity>1.879967132</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>159</marker_id>
@@ -10596,11 +10596,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_160" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>38.764546675 -33.025278917 7.700000000</line_start>
-        <line_end>32.176673325 -25.157101083 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.641968835 0.766730732 0.000000000</direction>
         <velocity>0.701630789</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>160</marker_id>
@@ -10669,11 +10669,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_161" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>36.934553904 -22.636605370 7.700000000</circle_center>
-        <circle_radius>0.910804502</circle_radius>
-        <angular_velocity>0.817297006</angular_velocity>
-        <phase>-0.606874795</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.570303099 0.821434340 0.000000000</direction>
+        <velocity>0.744397793</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>161</marker_id>
@@ -10742,11 +10742,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_162" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>34.481802955 -20.476296284 7.700000000</circle_center>
-        <circle_radius>1.288177425</circle_radius>
-        <angular_velocity>0.646127084</angular_velocity>
-        <phase>-0.805477191</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.721161307 0.692767182 0.000000000</direction>
+        <velocity>0.832326323</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>162</marker_id>
@@ -10931,11 +10931,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_165" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>36.578940895 -8.567149578 7.700000000</circle_center>
-        <circle_radius>0.657069967</circle_radius>
-        <angular_velocity>0.848515965</angular_velocity>
-        <phase>-0.745011400</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.677980190 -0.735080173 -0.000000000</direction>
+        <velocity>0.557534357</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>165</marker_id>
@@ -11062,11 +11062,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_167" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>40.837403874 -45.823828238 7.700000000</circle_center>
-        <circle_radius>0.639533099</circle_radius>
-        <angular_velocity>0.834129193</angular_velocity>
-        <phase>-0.916981506</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.793769334 0.608218912 0.000000000</direction>
+        <velocity>0.533453228</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>167</marker_id>
@@ -11193,11 +11193,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_169" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>35.643388582 -28.702904776 7.700000000</line_start>
-        <line_end>45.816011418 -34.709715224 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.861085342 0.508460454 0.000000000</direction>
         <velocity>1.542043449</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>169</marker_id>
@@ -11498,11 +11498,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_174" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>45.846294264 -11.848451979 7.700000000</line_start>
-        <line_end>34.686385736 -8.864868021 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.966070771 -0.258277498 0.000000000</direction>
         <velocity>0.714217146</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>174</marker_id>
@@ -11803,11 +11803,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_179" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>42.689302849 -45.316320828 7.700000000</circle_center>
-        <circle_radius>0.533279242</circle_radius>
-        <angular_velocity>0.816587899</angular_velocity>
-        <phase>2.331120645</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.724612543 -0.689156486 0.000000000</direction>
+        <velocity>0.435469376</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>179</marker_id>
@@ -11992,11 +11992,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_182" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>44.046971556 -30.560681171 7.700000000</circle_center>
-        <circle_radius>1.204923711</circle_radius>
-        <angular_velocity>0.756059325</angular_velocity>
-        <phase>-1.354504017</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.976699868 0.214609806 0.000000000</direction>
+        <velocity>0.910993808</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>182</marker_id>
@@ -12123,11 +12123,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_184" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>42.360946661 -24.044244501 7.700000000</circle_center>
-        <circle_radius>0.853071082</circle_radius>
-        <angular_velocity>0.729147162</angular_velocity>
-        <phase>0.828622908</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.737001306 0.675891319 0.000000000</direction>
+        <velocity>0.622014358</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>184</marker_id>
@@ -12196,11 +12196,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_185" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>45.903504741 -19.736471866 7.700000000</circle_center>
-        <circle_radius>1.456468349</circle_radius>
-        <angular_velocity>0.977358839</angular_velocity>
-        <phase>2.700260779</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.427144103 0.904183563 -0.000000000</direction>
+        <velocity>1.423492215</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>185</marker_id>
@@ -12443,11 +12443,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_189" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>45.264906122 -4.648069701 7.700000000</circle_center>
-        <circle_radius>1.080960136</circle_radius>
-        <angular_velocity>0.745101032</angular_velocity>
-        <phase>1.282503788</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.958730731 -0.284315645 -0.000000000</direction>
+        <velocity>0.805424513</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>189</marker_id>
@@ -12632,11 +12632,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_192" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>46.486876932 -43.777426085 7.700000000</line_start>
-        <line_end>47.318263068 -52.086393915 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.099561741 -0.995031386 0.000000000</direction>
         <velocity>0.744286314</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>192</marker_id>
@@ -12705,11 +12705,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_193" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>51.869921694 -43.935702717 7.700000000</line_start>
-        <line_end>43.368938306 -44.316797283 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.998996671 0.044784490 -0.000000000</direction>
         <velocity>1.141616859</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>193</marker_id>
@@ -12952,11 +12952,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_197" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>46.784457767 -27.077459276 7.700000000</circle_center>
-        <circle_radius>0.896514487</circle_radius>
-        <angular_velocity>0.960695957</angular_velocity>
-        <phase>-0.290885264</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.286800412 0.957990357 0.000000000</direction>
+        <velocity>0.861277843</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>197</marker_id>
@@ -13025,11 +13025,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_198" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>55.297243045 -20.519497648 7.700000000</line_start>
-        <line_end>43.242716955 -29.551222352 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.800292120 0.599610309 0.000000000</direction>
         <velocity>1.692185238</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>198</marker_id>
@@ -13214,11 +13214,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_201" filename="libobstaclePathPlugin.so">
-        <motion_type>circular</motion_type>
-        <circle_center>47.523924699 -12.085793320 7.700000000</circle_center>
-        <circle_radius>1.393475378</circle_radius>
-        <angular_velocity>0.627749927</angular_velocity>
-        <phase>0.138169174</phase>
+        <motion_type>proximity_linear</motion_type>
+        <direction>-0.137729969 0.990469816 0.000000000</direction>
+        <velocity>0.874754067</velocity>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>201</marker_id>
@@ -13287,11 +13287,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_202" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>55.964064275 -3.231808913 7.700000000</line_start>
-        <line_end>42.860135725 -10.448191087 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.875955486 0.482391943 -0.000000000</direction>
         <velocity>1.018620817</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>202</marker_id>
@@ -13360,11 +13360,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_203" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>46.049183020 -9.205980937 7.700000000</line_start>
-        <line_end>47.417156980 1.114320937 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.131402398 0.991329113 -0.000000000</direction>
         <velocity>1.275350819</velocity>
-        <phase>1.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>203</marker_id>
@@ -13491,11 +13491,11 @@
       </link>
       <static>0</static>
       <plugin name="dynamic_obstacle_motion_205" filename="libobstaclePathPlugin.so">
-        <motion_type>linear</motion_type>
-        <line_start>42.726687421 8.869075394 7.700000000</line_start>
-        <line_end>50.351532579 -2.512815394 7.700000000</line_end>
+        <motion_type>proximity_linear</motion_type>
+        <direction>0.556564414 -0.830804461 0.000000000</direction>
         <velocity>0.566754352</velocity>
-        <phase>0.5</phase>
+        <activation_distance>20.000000000</activation_distance>
+        <activation_model>iris</activation_model>
         <orientation>false</orientation>
         <marker_enabled>true</marker_enabled>
         <marker_id>205</marker_id>

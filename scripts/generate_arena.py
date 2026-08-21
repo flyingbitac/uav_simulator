@@ -111,6 +111,24 @@ parser.add_argument(
     default=0.5,
     help="Fraction of cylinders converted to dynamic obstacles",
 )
+parser.add_argument(
+    "--linear-speed-min",
+    type=float,
+    default=0.5,
+    help="Minimum speed (m/s) of proximity-triggered dynamic obstacles",
+)
+parser.add_argument(
+    "--linear-speed-max",
+    type=float,
+    default=2.0,
+    help="Maximum speed (m/s) of proximity-triggered dynamic obstacles",
+)
+parser.add_argument(
+    "--activation-distance",
+    type=float,
+    default=20.0,
+    help="Horizontal UAV distance (m) that activates dynamic obstacles",
+)
 args, unknown = parser.parse_known_args()
 
 S = args.s
@@ -128,6 +146,17 @@ Nx, Ny = int(L / l), int(L / l)
 if __name__ == "__main__":
     if not 0.0 <= args.dynamic_ratio <= 1.0:
         raise ValueError("--dynamic-ratio must be within [0, 1].")
+    if not (
+        np.isfinite(args.linear_speed_min)
+        and np.isfinite(args.linear_speed_max)
+        and 0.0 < args.linear_speed_min <= args.linear_speed_max
+    ):
+        raise ValueError("linear speed bounds must satisfy 0 < min <= max.")
+    if (
+        not np.isfinite(args.activation_distance)
+        or args.activation_distance <= 0.0
+    ):
+        raise ValueError("--activation-distance must be finite and positive.")
     seed = resolve_seed(args.seed)
     rng = np.random.default_rng(seed)
     print(f"seed: {seed}")
@@ -198,8 +227,8 @@ if __name__ == "__main__":
             output_pcd=os.path.join(pcd_file_directory, "arena_dynamic_static.pcd"),
             seed=seed,
             dynamic_ratio=args.dynamic_ratio,
-            linear_speed=(0.5, 2.0),
-            circular_angular_speed=(0.5, 1.0),
+            linear_speed=(args.linear_speed_min, args.linear_speed_max),
+            activation_distance=args.activation_distance,
             protected_points=tuple(tuple(point) for point in waypoints),
             cylinder_point_counts=point_counts,
         )

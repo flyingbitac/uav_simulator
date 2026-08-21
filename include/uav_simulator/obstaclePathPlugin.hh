@@ -24,6 +24,7 @@ namespace gazebo
       LEGACY_PATH,
       LINEAR,
       CIRCULAR,
+      PROXIMITY_LINEAR,
     };
 
     void ConfigureLegacyPath();
@@ -65,6 +66,13 @@ namespace gazebo
     ignition::math::Vector3d circleCenter;
     double circleRadius = 1.0;
     double circlePhase = 0.0;
+
+    physics::ModelPtr activationModel;
+    std::string activationModelName = "iris";
+    ignition::math::Vector3d proximityDirection{1.0, 0.0, 0.0};
+    ignition::math::Vector3d proximityPosition;
+    double activationDistance = 20.0;
+    double lastUpdateSimTime = -1.0;
 
     std::vector<ignition::math::Vector3d> path;
     std::vector<std::vector<double>> pathWithAngle;

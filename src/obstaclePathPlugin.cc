@@ -129,6 +129,45 @@ void DynamicObstacle::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         kEpsilon, ReadDouble(this->sdf, "circle_radius", this->circleRadius));
     this->circlePhase = ReadDouble(this->sdf, "phase", this->circlePhase);
   }
+  else if (motionType == "proximity_linear")
+  {
+    this->motionType = MotionType::PROXIMITY_LINEAR;
+    this->proximityDirection = ReadVector(
+        this->sdf, "direction", this->proximityDirection);
+    this->proximityDirection.Z(0.0);
+    const double directionLength = this->proximityDirection.Length();
+    if (!std::isfinite(directionLength) || directionLength <= kEpsilon)
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' has a zero-length proximity direction." << std::endl;
+      return;
+    }
+    this->proximityDirection /= directionLength;
+    this->proximityPosition = this->initialPose.Pos();
+    this->activationDistance = ReadDouble(
+        this->sdf, "activation_distance", this->activationDistance);
+    if (!std::isfinite(this->activationDistance) ||
+        this->activationDistance <= 0.0)
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' requires a positive activation_distance." << std::endl;
+      return;
+    }
+    if (!std::isfinite(this->velocity))
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' requires a finite velocity." << std::endl;
+      return;
+    }
+    this->activationModelName = ReadString(
+        this->sdf, "activation_model", this->activationModelName);
+    if (this->activationModelName.empty())
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' requires a non-empty activation_model." << std::endl;
+      return;
+    }
+  }
   else
   {
     this->motionType = MotionType::LEGACY_PATH;
@@ -314,6 +353,71 @@ void DynamicObstacle::OnUpdate(const common::UpdateInfo &_info)
   }
 
   const double simTime = _info.simTime.Double();
+  if (this->motionType == MotionType::PROXIMITY_LINEAR)
+  {
+    double dt = 0.0;
+    bool timeReset = false;
+    if (this->lastUpdateSimTime >= 0.0 && simTime >= this->lastUpdateSimTime)
+    {
+      dt = simTime - this->lastUpdateSimTime;
+    }
+    else if (this->lastUpdateSimTime >= 0.0)
+    {
+      timeReset = true;
+      this->proximityPosition = this->model->WorldPose().Pos();
+    }
+    this->lastUpdateSimTime = simTime;
+
+    if (!this->activationModel)
+    {
+      this->activationModel =
+          this->model->GetWorld()->ModelByName(this->activationModelName);
+    }
+
+    bool active = false;
+    if (this->activationModel && !timeReset)
+    {
+      const ignition::math::Vector3d offset =
+          this->activationModel->WorldPose().Pos() - this->proximityPosition;
+      active = std::hypot(offset.X(), offset.Y()) <= this->activationDistance;
+    }
+
+    ignition::math::Vector3d linearVelocity =
+        ignition::math::Vector3d::Zero;
+    if (active)
+    {
+      linearVelocity = this->velocity * this->proximityDirection;
+      const double requestedTravel = dt * this->velocity;
+      const ignition::math::Vector3d relative =
+          this->proximityPosition - this->activationModel->WorldPose().Pos();
+      const double projection =
+          relative.X() * this->proximityDirection.X() +
+          relative.Y() * this->proximityDirection.Y();
+      const double radiusResidual =
+          relative.X() * relative.X() + relative.Y() * relative.Y() -
+          this->activationDistance * this->activationDistance;
+      const double exitTravel = -projection + std::sqrt(std::max(
+          0.0, projection * projection - radiusResidual));
+      const double actualTravel = std::min(requestedTravel, exitTravel);
+      this->proximityPosition += actualTravel * this->proximityDirection;
+      if (actualTravel + kEpsilon < requestedTravel)
+      {
+        linearVelocity = ignition::math::Vector3d::Zero;
+      }
+    }
+    this->model->SetWorldPose(
+        ignition::math::Pose3d(
+            this->proximityPosition, this->initialPose.Rot()));
+    this->model->SetLinearVel(linearVelocity);
+    this->model->SetAngularVel(ignition::math::Vector3d::Zero);
+
+    if (this->markerEnabled)
+    {
+      this->UpdateMarkerArray(simTime);
+    }
+    return;
+  }
+
   if (!this->motionStarted)
   {
     this->motionStarted = true;
