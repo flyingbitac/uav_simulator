@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import hashlib
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -17,6 +19,7 @@ from xml_utils import (  # noqa: E402
     _ray_respects_protected_points,
     _write_binary_pcd,
     generate_dynamic_cylinder_world,
+    resolve_private_output_root,
 )
 
 
@@ -36,6 +39,67 @@ def _cylinder_model(index, x, y):
 
 
 class DynamicGenerationTest(unittest.TestCase):
+    def test_private_output_root_rejects_unsafe_targets(self):
+        package_dir = Path(__file__).resolve().parents[1]
+        with self.assertRaisesRegex(ValueError, "outside"):
+            resolve_private_output_root(package_dir / "worlds" / "private", package_dir)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            nonempty = root / "nonempty"
+            nonempty.mkdir()
+            (nonempty / "keep.txt").write_text("keep", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "empty"):
+                resolve_private_output_root(nonempty, package_dir)
+            target = root / "target"
+            target.mkdir()
+            link = root / "link"
+            link.symlink_to(target, target_is_directory=True)
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                resolve_private_output_root(link, package_dir)
+            child = target / "child"
+            child.mkdir()
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                resolve_private_output_root(link / "child", package_dir)
+
+    def test_private_output_root_does_not_modify_package_assets(self):
+        package_dir = Path(__file__).resolve().parents[1]
+        shared_assets = (
+            package_dir / "worlds" / "forest" / "forest_dynamic.world",
+            package_dir / "pcd" / "forest_dynamic_static.pcd",
+            package_dir / "worlds" / "cylinder_positions.txt",
+        )
+        before = {
+            path: hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in shared_assets
+        }
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_root = Path(temp_dir)
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPTS_DIR / "generate_forest.py"),
+                    "--seed", "7",
+                    "--dynamic",
+                    "--output-root", str(output_root),
+                ],
+                check=True,
+                stdout=subprocess.DEVNULL,
+            )
+            self.assertTrue(
+                (output_root / "worlds" / "forest" / "forest_dynamic.world").is_file()
+            )
+            self.assertTrue(
+                (output_root / "pcd" / "forest_dynamic_static.pcd").is_file()
+            )
+            self.assertTrue(
+                (output_root / "worlds" / "cylinder_positions.txt").is_file()
+            )
+        after = {
+            path: hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in shared_assets
+        }
+        self.assertEqual(before, after)
+
     def _generate(
         self,
         root,

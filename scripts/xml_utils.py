@@ -13,6 +13,25 @@ import open3d as o3d
 PROTECTED_POINT_RADIUS = 4.0
 MAX_MOTION_SAMPLE_ATTEMPTS = 1_000
 
+
+def resolve_private_output_root(value, package_root):
+    candidate = Path(value).expanduser().absolute()
+    for component in (candidate, *candidate.parents):
+        if component.exists() and component.is_symlink():
+            raise ValueError("--output-root must not traverse a symlink.")
+    output_root = candidate.resolve()
+    package_root = Path(package_root).resolve()
+    if output_root == package_root or package_root in output_root.parents:
+        raise ValueError("--output-root must be outside the uav_simulator package.")
+    if output_root.exists():
+        if not output_root.is_dir():
+            raise ValueError("--output-root must be a directory.")
+        if any(output_root.iterdir()):
+            raise ValueError("--output-root must be empty.")
+    else:
+        output_root.mkdir(parents=True)
+    return output_root
+
 cylinder_idx = 0
 def get_cylinder_xml(x, y, z, r, h, euler):
     global cylinder_idx

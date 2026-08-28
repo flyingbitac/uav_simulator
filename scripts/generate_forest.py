@@ -14,17 +14,11 @@ from xml_utils import (
     generate_dynamic_cylinder_world,
     get_cylinder_points,
     get_cylinder_xml,
+    resolve_private_output_root,
     resolve_seed,
 )
 
 file_path = os.path.dirname(__file__)
-world_file_directory = os.path.join(file_path, "../worlds/forest/")
-pcd_file_directory = os.path.join(file_path, "../pcd/")
-position_file_path = os.path.join(file_path, "../worlds/cylinder_positions.txt")
-if not os.path.exists(world_file_directory):
-    os.makedirs(world_file_directory)
-if not os.path.exists(pcd_file_directory):
-    os.makedirs(pcd_file_directory)
 
 def create_forest(cylinders):
     head = dedent("""
@@ -89,6 +83,12 @@ parser.add_argument("-R", "--max-radius", type=float, default=0.3, help="Maximum
 parser.add_argument("-H", type=float, default=15,  help="Height of the cylinders")
 parser.add_argument("-e", "--euler-range", type=float, default=10., help="Range of euler angles of the cylinders")
 parser.add_argument("--seed", type=int, default=None, help="Optional deterministic random seed")
+parser.add_argument(
+    "--output-root",
+    type=str,
+    default=None,
+    help="Optional private output root; defaults to the uav_simulator package assets",
+)
 dynamic_group = parser.add_mutually_exclusive_group()
 dynamic_group.add_argument(
     "--dynamic", action="store_true", help="Also generate the dynamic forest"
@@ -122,6 +122,20 @@ parser.add_argument(
     help="Horizontal UAV distance (m) that activates dynamic obstacles",
 )
 args, unknown = parser.parse_known_args()
+
+if args.output_root:
+    output_root = resolve_private_output_root(
+        args.output_root, os.path.dirname(file_path)
+    )
+    world_file_directory = os.path.join(output_root, "worlds", "forest")
+    pcd_file_directory = os.path.join(output_root, "pcd")
+    position_file_path = os.path.join(output_root, "worlds", "cylinder_positions.txt")
+else:
+    world_file_directory = os.path.join(file_path, "../worlds/forest")
+    pcd_file_directory = os.path.join(file_path, "../pcd")
+    position_file_path = os.path.join(file_path, "../worlds/cylinder_positions.txt")
+os.makedirs(world_file_directory, exist_ok=True)
+os.makedirs(pcd_file_directory, exist_ok=True)
 
 B = args.b
 l = args.cell_length
