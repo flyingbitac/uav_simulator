@@ -239,6 +239,7 @@ target_link_libraries(collision_signal_sensor_plugin
 catkin_install_python(PROGRAMS
   scripts/generate_arena.py
   scripts/generate_box_world.py
+  scripts/generate_corridor.py
   scripts/generate_forest.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
