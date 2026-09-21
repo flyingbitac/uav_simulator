@@ -384,7 +384,7 @@ def _configure_dynamic_model(model, marker_id, rng, config):
     _add_plugin_value(
         plugin, "activation_distance", f"{config['activation_distance']:.9f}"
     )
-    _add_plugin_value(plugin, "activation_model", "iris")
+    _add_plugin_value(plugin, "activation_model", "quad0")
 
     _add_plugin_value(plugin, "orientation", "false")
     _add_plugin_value(plugin, "marker_enabled", "true")
