@@ -241,6 +241,7 @@ catkin_install_python(PROGRAMS
   scripts/generate_box_world.py
   scripts/generate_corridor.py
   scripts/generate_forest.py
+  scripts/generate_sudden_appear.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

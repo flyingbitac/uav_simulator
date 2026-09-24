@@ -25,6 +25,7 @@ namespace gazebo
       LINEAR,
       CIRCULAR,
       PROXIMITY_LINEAR,
+      SUDDEN_APPEAR,
     };
 
     void ConfigureLegacyPath();
@@ -74,6 +75,13 @@ namespace gazebo
     double activationDistance = 20.0;
     double lastUpdateSimTime = -1.0;
 
+    ignition::math::Vector3d suddenDirection{0.0, -1.0, 0.0};
+    ignition::math::Vector3d suddenPosition;
+    double triggerDistance = 0.0;
+    double travelDistance = 0.0;
+    double suddenTraveled = 0.0;
+    bool suddenTriggered = false;
+
     std::vector<ignition::math::Vector3d> path;
     std::vector<std::vector<double>> pathWithAngle;
     std::vector<double> timeKnot;
@@ -83,6 +91,8 @@ namespace gazebo
     double markerRadius = 0.4;
     double markerHeight = 1.0;
     double markerRate = 20.0;
+    std::string markerShape = "cylinder";
+    ignition::math::Vector3d markerSize{0.4, 0.4, 1.0};
     std::string markerTopic = "/uav_simulator/dynamic_obstacles";
     std::string markerFrame = "map";
   };

@@ -168,6 +168,59 @@ void DynamicObstacle::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
       return;
     }
   }
+  else if (motionType == "sudden_appear")
+  {
+    this->motionType = MotionType::SUDDEN_APPEAR;
+    this->suddenDirection = ReadVector(
+        this->sdf, "direction", this->suddenDirection);
+    this->suddenDirection.Z(0.0);
+    const double directionLength = this->suddenDirection.Length();
+    if (!std::isfinite(directionLength) || directionLength <= kEpsilon)
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' has a zero-length sudden appear direction." << std::endl;
+      return;
+    }
+    this->suddenDirection /= directionLength;
+    this->suddenPosition = this->initialPose.Pos();
+
+    const double rawVelocity = ReadDouble(this->sdf, "velocity", -1.0);
+    if (!std::isfinite(rawVelocity) || rawVelocity <= 0.0)
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' requires a positive velocity." << std::endl;
+      return;
+    }
+    this->velocity = rawVelocity;
+
+    this->triggerDistance = ReadDouble(
+        this->sdf, "trigger_distance", this->triggerDistance);
+    if (!std::isfinite(this->triggerDistance) ||
+        this->triggerDistance <= 0.0)
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' requires a positive trigger_distance." << std::endl;
+      return;
+    }
+    this->travelDistance = ReadDouble(
+        this->sdf, "travel_distance", this->travelDistance);
+    if (!std::isfinite(this->travelDistance) ||
+        this->travelDistance <= 0.0)
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' requires a positive travel_distance." << std::endl;
+      return;
+    }
+
+    this->activationModelName = ReadString(
+        this->sdf, "activation_model", this->activationModelName);
+    if (this->activationModelName.empty())
+    {
+      gzerr << "DynamicObstacle '" << this->model->GetName()
+            << "' requires a non-empty activation_model." << std::endl;
+      return;
+    }
+  }
   else
   {
     this->motionType = MotionType::LEGACY_PATH;
@@ -184,6 +237,23 @@ void DynamicObstacle::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         kEpsilon, ReadDouble(this->sdf, "marker_height", this->markerHeight));
     this->markerRate = std::max(
         kEpsilon, ReadDouble(this->sdf, "marker_rate", this->markerRate));
+    this->markerShape = ReadString(
+        this->sdf, "marker_shape", this->markerShape);
+    if (this->markerShape != "cylinder" && this->markerShape != "box")
+    {
+      gzwarn << "DynamicObstacle '" << this->model->GetName()
+             << "' has unknown marker_shape '" << this->markerShape
+             << "'; falling back to cylinder." << std::endl;
+      this->markerShape = "cylinder";
+    }
+    this->markerSize = ReadVector(
+        this->sdf, "marker_size", this->markerSize);
+    this->markerSize.X(std::max(
+        kEpsilon, this->markerSize.X()));
+    this->markerSize.Y(std::max(
+        kEpsilon, this->markerSize.Y()));
+    this->markerSize.Z(std::max(
+        kEpsilon, this->markerSize.Z()));
     this->markerTopic = ReadString(
         this->sdf, "marker_topic", this->markerTopic);
     this->markerFrame = ReadString(
@@ -418,6 +488,70 @@ void DynamicObstacle::OnUpdate(const common::UpdateInfo &_info)
     return;
   }
 
+  if (this->motionType == MotionType::SUDDEN_APPEAR)
+  {
+    double dt = 0.0;
+    bool timeReset = false;
+    if (this->lastUpdateSimTime >= 0.0 && simTime >= this->lastUpdateSimTime)
+    {
+      dt = simTime - this->lastUpdateSimTime;
+    }
+    else if (this->lastUpdateSimTime >= 0.0)
+    {
+      timeReset = true;
+    }
+    this->lastUpdateSimTime = simTime;
+
+    if (timeReset)
+    {
+      this->suddenTriggered = false;
+      this->suddenTraveled = 0.0;
+      this->suddenPosition = this->initialPose.Pos();
+    }
+
+    if (!this->activationModel)
+    {
+      this->activationModel =
+          this->model->GetWorld()->ModelByName(this->activationModelName);
+    }
+
+    if (!this->suddenTriggered && this->activationModel)
+    {
+      const double xDistance = std::abs(
+          this->activationModel->WorldPose().Pos().X() -
+          this->suddenPosition.X());
+      if (xDistance <= this->triggerDistance)
+      {
+        this->suddenTriggered = true;
+      }
+    }
+
+    ignition::math::Vector3d linearVelocity =
+        ignition::math::Vector3d::Zero;
+    if (this->suddenTriggered && this->suddenTraveled < this->travelDistance)
+    {
+      const double step = std::min(
+          dt * this->velocity, this->travelDistance - this->suddenTraveled);
+      this->suddenPosition += step * this->suddenDirection;
+      this->suddenTraveled += step;
+      if (this->suddenTraveled < this->travelDistance)
+      {
+        linearVelocity = this->velocity * this->suddenDirection;
+      }
+    }
+    this->model->SetWorldPose(
+        ignition::math::Pose3d(
+            this->suddenPosition, this->initialPose.Rot()));
+    this->model->SetLinearVel(linearVelocity);
+    this->model->SetAngularVel(ignition::math::Vector3d::Zero);
+
+    if (this->markerEnabled)
+    {
+      this->UpdateMarkerArray(simTime);
+    }
+    return;
+  }
+
   if (!this->motionStarted)
   {
     this->motionStarted = true;
@@ -483,7 +617,6 @@ void DynamicObstacle::UpdateMarkerArray(double simTime)
   marker.header.stamp = ros::Time::now();
   marker.ns = "dynamic_obstacles";
   marker.id = this->markerId;
-  marker.type = visualization_msgs::Marker::CYLINDER;
   marker.action = visualization_msgs::Marker::ADD;
   marker.pose.position.x = pose.Pos().X();
   marker.pose.position.y = pose.Pos().Y();
@@ -492,9 +625,20 @@ void DynamicObstacle::UpdateMarkerArray(double simTime)
   marker.pose.orientation.y = pose.Rot().Y();
   marker.pose.orientation.z = pose.Rot().Z();
   marker.pose.orientation.w = pose.Rot().W();
-  marker.scale.x = 2.0 * this->markerRadius;
-  marker.scale.y = 2.0 * this->markerRadius;
-  marker.scale.z = this->markerHeight;
+  if (this->markerShape == "box")
+  {
+    marker.type = visualization_msgs::Marker::CUBE;
+    marker.scale.x = this->markerSize.X();
+    marker.scale.y = this->markerSize.Y();
+    marker.scale.z = this->markerSize.Z();
+  }
+  else
+  {
+    marker.type = visualization_msgs::Marker::CYLINDER;
+    marker.scale.x = 2.0 * this->markerRadius;
+    marker.scale.y = 2.0 * this->markerRadius;
+    marker.scale.z = this->markerHeight;
+  }
   marker.color.r = 1.0;
   marker.color.g = 0.35;
   marker.color.b = 0.0;

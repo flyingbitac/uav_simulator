@@ -2,6 +2,7 @@
 __pycache__/
 pcd/*
 !pcd/corridor.pcd
+!pcd/sudden_appear_static.pcd
 worlds/arena/*
 !worlds/arena/arena_dynamic.world
 worlds/forest/*
