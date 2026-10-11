@@ -448,10 +448,15 @@
       <parent>base_link</parent>
     </joint>
     <!-- YOPO consumes the standard depth-camera topic. Keep the quad0
-         airframe and attach the deploy workspace's existing camera model. -->
+         airframe and attach the deploy workspace's existing camera model.
+         The -0.2618 rad pitch tilts the camera 15 degrees up, matching the
+         D455 mount in cfg/sensor/depth_camera.yaml (onboard_attitude
+         [0, -15, 0]). The policy optical-flow sensor (cfg/sensor/
+         optical_flow.yaml) is this same D455: its stream also feeds the
+         optical_flow plugin, publishing /quad0/optical_flow/flow{,_vis}. -->
     <include>
       <uri>model://depth_camera</uri>
-      <pose>0.1 0 0 0 0 0</pose>
+      <pose>0.1 0 0 0 -0.2618 0</pose>
     </include>
     <joint name='depth_camera_joint' type='fixed'>
       <child>depth_camera::link</child>

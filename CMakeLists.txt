@@ -22,6 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(gazebo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(Protobuf REQUIRED)
+find_package(OpenCV REQUIRED)
 
 set(CMAKE_AUTOUIC ON)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
@@ -140,6 +141,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${GAZEBO_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIR}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -153,6 +155,7 @@ add_library(quadcopterPlugin SHARED
 
 add_library(obstaclePathPlugin src/obstaclePathPlugin.cc)
 add_library(collision_signal_sensor_plugin SHARED src/collisionSignalSensorPlugin.cc)
+add_library(optical_flow_camera_plugin SHARED src/opticalFlowCameraPlugin.cc)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -196,6 +199,12 @@ set_target_properties(collision_signal_sensor_plugin
     ${PROJECT_SOURCE_DIR}/plugins
 )
 
+set_target_properties(optical_flow_camera_plugin
+    PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY
+    ${PROJECT_SOURCE_DIR}/plugins
+)
+
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -227,6 +236,12 @@ target_link_libraries(collision_signal_sensor_plugin
    ${GAZEBO_LIBRARIES}
 )
 
+target_link_libraries(optical_flow_camera_plugin
+   ${catkin_LIBRARIES}
+   ${GAZEBO_LIBRARIES}
+   ${OpenCV_LIBS}
+)
+
 #############
 ## Install ##
 #############
@@ -241,6 +256,7 @@ catkin_install_python(PROGRAMS
   scripts/generate_box_world.py
   scripts/generate_corridor.py
   scripts/generate_forest.py
+  scripts/generate_lcorridor.py
   scripts/generate_sudden_appear.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

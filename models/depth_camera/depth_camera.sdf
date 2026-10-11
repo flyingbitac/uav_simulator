@@ -1,4 +1,6 @@
-<!-- DO NOT EDIT: Generated from depth_camera.sdf.jinja -->
+<!-- Depth camera (Intel RealSense D455 payload) used by quad0. The flow
+     sensor of cfg/sensor/optical_flow.yaml is this same camera; the
+     optical_flow plugin below computes the dense flow field from its stream. -->
 <?xml version="1.0" ?>
 <sdf version="1.5">
   <model name="depth_camera">
@@ -34,7 +36,10 @@
           </image>
           <clip>
             <near>0.001</near> <!-- Intel RealSense D455 -->
-            <far>100.0</far> <!-- Intel RealSense D455 -->
+            <!-- no max visible distance for the flow sensor: keep rendering as
+                 far as the scene reaches so the flow carries the same content
+                 the unbounded training sensor measures -->
+            <far>1000.0</far>
           </clip>
         </camera>
         <plugin filename="libgazebo_ros_openni_kinect.so" name="camera_controller">
@@ -55,6 +60,17 @@
           <distortion_k3>0.0</distortion_k3>
           <distortion_t1>0.0</distortion_t1>
           <distortion_t2>0.0</distortion_t2>
+        </plugin>
+        <!-- Dense per-pixel optical flow from this same D455 stream (policy
+             optical-flow input, cfg/sensor/optical_flow.yaml: same camera and
+             mount as the depth camera). Publishes /<model>/optical_flow/flow
+             (32FC2 per-frame pixel displacement, right+/down+) and
+             /<model>/optical_flow/flow_vis (bgr8 color wheel) at outputRate,
+             computed on frames downscaled by flowScale. -->
+        <plugin name="optical_flow_plugin" filename="liboptical_flow_camera_plugin.so">
+          <frameName>camera_link</frameName>
+          <outputRate>30</outputRate>
+          <flowScale>0.5</flowScale>
         </plugin></sensor>
     </link>
   </model>
