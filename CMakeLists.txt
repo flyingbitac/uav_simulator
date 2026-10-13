@@ -255,6 +255,7 @@ catkin_install_python(PROGRAMS
   scripts/generate_arena.py
   scripts/generate_box_world.py
   scripts/generate_corridor.py
+  scripts/generate_deadend.py
   scripts/generate_forest.py
   scripts/generate_lcorridor.py
   scripts/generate_sudden_appear.py
