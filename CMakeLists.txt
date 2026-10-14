@@ -258,6 +258,7 @@ catkin_install_python(PROGRAMS
   scripts/generate_deadend.py
   scripts/generate_forest.py
   scripts/generate_lcorridor.py
+  scripts/generate_slit.py
   scripts/generate_sudden_appear.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
