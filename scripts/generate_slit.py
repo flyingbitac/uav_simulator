@@ -75,14 +75,29 @@ def _parse_args():
     parser.add_argument("-W", "--width", type=float, default=2.0)
     parser.add_argument("-H", "--height", type=float, default=2.0)
     parser.add_argument("--wall-thickness", type=float, default=0.15)
-    parser.add_argument("--target-offset", type=float, default=3.0)
+    parser.add_argument(
+        "--target-offset", type=float, default=0.0,
+        help="how far short of the tube's far end the goal sits (default: "
+             "0, i.e. the goal is at the end of the corridor).",
+    )
     parser.add_argument("--slit-width", type=float, default=1.0)
     parser.add_argument("--slit-height", type=float, default=1.0)
     parser.add_argument("--slit-center-y", type=float, default=0.0)
     parser.add_argument("--slit-center-z", type=float, default=None,
                         help="default: half the tube height")
+    parser.add_argument(
+        "--wall-x", type=float, default=None,
+        help="x of the slit wall along the tube (default: halfway down the "
+             "tube, --length/2). Pass --length to put it back at the far end, "
+             "or any smaller value to move it. The tube still runs to the far "
+             "end either way, so the drone threads the slit and keeps flying "
+             "to the goal, which stays --target-offset metres behind the wall.",
+    )
     parser.add_argument("--resolution", type=float, default=0.2)
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.wall_x is None:
+        args.wall_x = args.length / 2.0
+    return args
 
 
 def _span_spec(x0, x1, y0, y1, z0, z1):
@@ -110,16 +125,17 @@ def _slit_span(width, height, thickness, slit_width, slit_height, center_y,
     return y0, y1, z0, z1
 
 
-def _build_specs(length, width, height, thickness, slit_y0, slit_y1,
+def _build_specs(length, width, height, thickness, wall_x, slit_y0, slit_y1,
                  slit_z0, slit_z1):
     """Box specs (cx, cy, cz, l, w, h); the open mouth sits at x = 0."""
     half_width = width / 2.0
     outer_y = half_width + thickness
-    x0 = length
-    x1 = length + thickness
+    x0 = wall_x
+    x1 = wall_x + thickness
     # Walls span z in [0, height]; the ceiling sits above at z in [height,
-    # height+t]. Side walls run from t behind the mouth up to the far wall,
-    # which blocks the tube cross-section except for the slit.
+    # height+t]. The side walls and the ceiling run the whole tube, so the
+    # corridor continues past the slit wall; only the slit wall blocks a
+    # cross-section, and only over the frame around the slit.
     walls = [
         # Left wall.
         ((length - thickness) / 2.0, -half_width - thickness / 2.0,
@@ -150,7 +166,6 @@ def main():
         "width": args.width,
         "height": args.height,
         "wall thickness": args.wall_thickness,
-        "target offset": args.target_offset,
         "slit width": args.slit_width,
         "slit height": args.slit_height,
         "resolution": args.resolution,
@@ -158,6 +173,8 @@ def main():
     for name, value in positive.items():
         if not np.isfinite(value) or value <= 0.0:
             raise ValueError(f"{name} must be finite and positive.")
+    if not np.isfinite(args.target_offset) or args.target_offset < 0.0:
+        raise ValueError("target offset must be finite and non-negative.")
     center_z = args.height / 2.0 if args.slit_center_z is None else args.slit_center_z
     for name, value in (("slit center y", args.slit_center_y),
                         ("slit center z", center_z)):
@@ -184,9 +201,14 @@ def main():
         args.width, args.height, args.wall_thickness, args.slit_width,
         args.slit_height, args.slit_center_y, center_z,
     )
+    if not (args.wall_thickness < args.wall_x <= args.length):
+        raise ValueError(
+            "wall-x must sit behind the mouth and no further than the far "
+            f"end of the tube ({args.length:.3f} m)."
+        )
     wall_specs, ceiling_specs = _build_specs(
         args.length, args.width, args.height, args.wall_thickness,
-        slit_y0, slit_y1, slit_z0, slit_z1,
+        args.wall_x, slit_y0, slit_y1, slit_z0, slit_z1,
     )
 
     models = [get_cube_xml(*spec) for spec in wall_specs + ceiling_specs]
@@ -213,10 +235,10 @@ def main():
     with positions_path.open("w", encoding="utf-8"):
         pass
 
-    target_x = args.length + args.wall_thickness + args.target_offset
+    target_x = args.length - args.target_offset
     target_y = args.slit_center_y
     print(f"tube: {args.length} m along +x from the mouth at x=0, blocked at "
-          f"x={args.length:.3f} by a far wall with a "
+          f"x={args.wall_x:.3f} by a wall with a "
           f"{args.slit_width} x {args.slit_height} m slit")
     print(f"free section: {args.width} m wide x {args.height} m high, "
           f"wall thickness {args.wall_thickness} m")
@@ -224,8 +246,8 @@ def main():
           f"open y in [{slit_y0:.3f}, {slit_y1:.3f}], "
           f"z in [{slit_z0:.3f}, {slit_z1:.3f}]")
     print(f"home: (0.000, 0.000), target: ({target_x:.3f}, {target_y:.3f})")
-    print(f"target sits {args.target_offset} m behind the far wall "
-          f"(outer face x={target_x - args.target_offset:.3f})")
+    print(f"target sits {args.target_offset} m short of the tube's far end "
+          f"at x={args.length:.3f}")
     print("cylinder_positions.txt: empty (no obstacles)")
     print(f"static pcd: walls only ({len(points)} points, no ceiling or "
           "ground faces)")

@@ -70,15 +70,16 @@ class SlitGenerationTest(unittest.TestCase):
     def test_world_boxes_match_hand_computed_table(self):
         # Hand-computed from the design spec for length=8, W=2, H=2.5, t=0.2
         # and the default 1 x 1 m slit centred on the tube axis: two side
-        # walls, the four far-wall pieces framing the slit (pillars, sill,
-        # lintel), then one ceiling slab as (cx, cy, cz, l, w, h).
+        # walls, the four slit-wall pieces framing the opening (pillars, sill,
+        # lintel) at the mid-corridor default x = length / 2, then one ceiling
+        # slab as (cx, cy, cz, l, w, h).
         expected = (
             (3.9, -1.1, 1.25, 8.2, 0.2, 2.5),
             (3.9, 1.1, 1.25, 8.2, 0.2, 2.5),
-            (8.1, -0.85, 1.25, 0.2, 0.7, 2.5),
-            (8.1, 0.85, 1.25, 0.2, 0.7, 2.5),
-            (8.1, 0.0, 0.375, 0.2, 1.0, 0.75),
-            (8.1, 0.0, 2.125, 0.2, 1.0, 0.75),
+            (4.1, -0.85, 1.25, 0.2, 0.7, 2.5),
+            (4.1, 0.85, 1.25, 0.2, 0.7, 2.5),
+            (4.1, 0.0, 0.375, 0.2, 1.0, 0.75),
+            (4.1, 0.0, 2.125, 0.2, 1.0, 0.75),
             (4.0, 0.0, 2.6, 8.4, 2.4, 0.2),
         )
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -99,23 +100,26 @@ class SlitGenerationTest(unittest.TestCase):
 
     def test_slit_is_the_only_way_through_the_far_wall(self):
         # The whole point of the scene: the tube centre line from the mouth to
-        # the far wall is free, the far wall blocks everything except the slit,
-        # and only the slit lets a body pass through to the goal side.
+        # the slit wall is free, the slit wall blocks everything except the
+        # opening, and only the opening lets a body through to the goal side,
+        # which stays enclosed past the wall.
         length, width, height, t = 20.0, 2.0, 2.0, 0.15
         half = width / 2.0
+        wall_front = length / 2.0
         with tempfile.TemporaryDirectory() as temp_dir:
             root = self._generate_to(temp_dir)
             boxes = _load_boxes(
                 root / "worlds" / "slit" / "cylinder_slit.world"
             )
 
-        approach = [(x, 0.0, height / 2.0) for x in np.linspace(0.05, length - 0.05, 40)]
+        approach = [(x, 0.0, height / 2.0)
+                    for x in np.linspace(0.05, wall_front - 0.05, 40)]
         self.assertFalse(
             _inside_any_box(approach, boxes).any(),
-            "the straight approach to the far wall must be free",
+            "the straight approach to the slit wall must be free",
         )
 
-        wall_x = length + t / 2.0
+        wall_x = wall_front + t / 2.0
         blocked = [
             (wall_x, half - 0.05, height / 2.0),
             (wall_x, -half + 0.05, height / 2.0),
@@ -126,14 +130,14 @@ class SlitGenerationTest(unittest.TestCase):
         ]
         self.assertTrue(
             _inside_any_box(blocked, boxes).all(),
-            "the far wall must block the tube cross-section around the slit",
+            "the slit wall must block the tube cross-section around the slit",
         )
 
         # The approach, the slit opening itself and the exit behind the wall
         # are all free for a body smaller than the opening.
         slit = [
             (x, y, z)
-            for x in np.linspace(length - 0.1, length + t + 0.1, 5)
+            for x in np.linspace(wall_front - 0.1, wall_front + t + 0.1, 5)
             for y in np.linspace(-0.45, 0.45, 5)
             for z in np.linspace(0.55, 1.45, 5)
         ]
@@ -142,7 +146,7 @@ class SlitGenerationTest(unittest.TestCase):
             "a 1 x 1 m slit must stay open through the wall thickness",
         )
         exit_line = [(x, 0.0, height / 2.0)
-                     for x in np.linspace(length + t + 0.05, length + 3.0, 20)]
+                     for x in np.linspace(wall_front + t + 0.05, length, 20)]
         self.assertFalse(
             _inside_any_box(exit_line, boxes).any(),
             "the goal side of the wall must be free",
@@ -165,7 +169,12 @@ class SlitGenerationTest(unittest.TestCase):
 
         zs = np.linspace(0.2, height - 0.2, 5)
         free = []
-        for x in np.linspace(0.1, length - 0.1, 20):
+        # Skip the slit wall's own x band when probing the open tube.
+        free_x = np.concatenate([
+            np.linspace(0.1, length / 2.0 - t - 0.1, 10),
+            np.linspace(length / 2.0 + t + 0.1, length - 0.1, 10),
+        ])
+        for x in free_x:
             for y in (-half + 0.05, 0.0, half - 0.05):
                 for z in zs:
                     free.append((x, y, z))
@@ -181,13 +190,13 @@ class SlitGenerationTest(unittest.TestCase):
                 bands.append((x, y, height / 2.0))
             for y in np.linspace(half + 0.01, half + t - 0.01, 4):
                 bands.append((x, y, height / 2.0))
-        # Far wall: the pillars beside the slit...
+        # Mid-corridor slit wall: the pillars beside the opening...
         for y in (-0.9, -0.6, 0.6, 0.9):
-            for x in np.linspace(length + 0.01, length + t - 0.01, 4):
+            for x in np.linspace(length / 2.0 + 0.01, length / 2.0 + t - 0.01, 4):
                 bands.append((x, y, height / 2.0))
         # ...and the sill/lintel above and below its opening.
         for y in (-0.4, 0.0, 0.4):
-            for x in np.linspace(length + 0.01, length + t - 0.01, 4):
+            for x in np.linspace(length / 2.0 + 0.01, length / 2.0 + t - 0.01, 4):
                 for z in (0.05, 0.6, 1.9, 2.45):
                     bands.append((x, y, z))
         self.assertTrue(
@@ -214,7 +223,8 @@ class SlitGenerationTest(unittest.TestCase):
                 "-L", "8", "--wall-thickness", "0.2", "--target-offset", "2.5",
             )
         self.assertIn("home: (0.000, 0.000)", stdout)
-        self.assertIn("target: (10.700, 0.000)", stdout)
+        # The goal sits at the far end of the tube (8 m) less the 2.5 m offset.
+        self.assertIn("target: (5.500, 0.000)", stdout)
 
     def test_target_tracks_the_slit_center(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -223,7 +233,8 @@ class SlitGenerationTest(unittest.TestCase):
                 "--slit-center-y", "0.3",
             )
         self.assertIn("slit centred at (y=0.300", stdout)
-        self.assertIn("target: (23.150, 0.300)", stdout)
+        # Default geometry: the goal is the far end of the 20 m tube.
+        self.assertIn("target: (20.000, 0.300)", stdout)
 
     def test_launch_defaults_agree_with_generator_defaults(self):
         # yopo_oa_slit.launch and the official-MINCO wrapper both ship target
@@ -313,7 +324,7 @@ class SlitGenerationTest(unittest.TestCase):
             (("-W", "nan"), "width"),
             (("-H", "0"), "height"),
             (("--wall-thickness", "0"), "wall thickness"),
-            (("--target-offset", "0"), "target offset"),
+            (("--target-offset", "-1"), "target offset"),
             (("--slit-width", "0"), "slit width"),
             (("--slit-height", "nan"), "slit height"),
             (("--slit-center-y", "nan"), "slit center y"),
