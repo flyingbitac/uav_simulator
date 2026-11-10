@@ -318,6 +318,42 @@ class SlitGenerationTest(unittest.TestCase):
             self.assertTrue(positions.is_file())
             self.assertEqual(positions.read_text(), "")
 
+    def test_ceiling_transparency_and_flush_slit(self):
+        def _models(root):
+            world = ET.parse(
+                root / "worlds" / "slit" / "cylinder_slit.world"
+            ).getroot().find("world")
+            return world.findall("model")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            # A slit flush with the ceiling drops the lintel but keeps the sill,
+            # so the far wall is three boxes and the ceiling is the last model.
+            root = self._generate_to(
+                temp_dir, "-H", "3.0", "--slit-height", "1.0",
+                "--slit-center-z", "2.5",
+            )
+            models = _models(root)
+            self.assertEqual([m.get("name") for m in models], [
+                "unit_box_0", "unit_box_1", "unit_box_2", "unit_box_3",
+                "unit_box_4", "unit_box_5",
+            ])
+            slabs = [
+                (m.get("name"), m.findtext("./link/visual/transparency"))
+                for m in models
+                if m.find("./link/visual/transparency") is not None
+            ]
+            # Only the ceiling slab carries the default 10% opacity.
+            self.assertEqual(slabs, [("unit_box_5", "0.900")])
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            solid = self._generate_to(
+                Path(temp_dir) / "solid", "--ceiling-transparency", "0"
+            )
+            self.assertNotIn(
+                "<transparency>",
+                (solid / "worlds" / "slit" / "cylinder_slit.world").read_text(),
+            )
+
     def test_rejects_invalid_parameters(self):
         cases = (
             (("-L", "0"), "length"),
@@ -331,11 +367,13 @@ class SlitGenerationTest(unittest.TestCase):
             (("--slit-center-z", "inf"), "slit center z"),
             (("--resolution", "0"), "resolution"),
             (("-L", "1.0", "-W", "3.0"), "half the corridor width"),
-            (("--slit-width", "2.6"), "strictly inside the far wall"),
-            (("--slit-height", "2.0"), "strictly inside the far wall"),
-            (("--slit-center-y", "1.5"), "strictly inside the far wall"),
+            (("--slit-width", "2.6"), "far wall cross-section"),
+            (("--slit-height", "2.2"), "far wall cross-section"),
+            (("--slit-center-y", "1.5"), "far wall cross-section"),
             (("--slit-height", "1.0", "--slit-center-z", "0.3"),
-             "strictly inside the far wall"),
+             "far wall cross-section"),
+            (("--ceiling-transparency", "1.5"), "ceiling transparency"),
+            (("--ceiling-transparency", "-0.1"), "ceiling transparency"),
         )
         with tempfile.TemporaryDirectory() as temp_dir:
             for index, (extra_args, message) in enumerate(cases):

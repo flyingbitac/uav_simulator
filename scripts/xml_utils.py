@@ -143,9 +143,21 @@ def get_cylinder_points(x, y, z, r, h, euler, resolution=0.05):
     return points, colors
 
 cube_idx = 0
-def get_cube_xml(x, y, z, l, w, h):
+def get_cube_xml(x, y, z, l, w, h, transparency=0.0):
+    """Box model. ``transparency`` 0 is opaque, 1 fully see-through.
+
+    It only affects the visual: the collision geometry stays solid, so the
+    physics and the obstacle-avoidance problem are unchanged. A depth camera
+    renders the visual surfaces, so a translucent box may stop occluding it.
+    """
     global cube_idx
+    if not 0.0 <= transparency <= 1.0:
+        raise ValueError("transparency must be within [0, 1].")
     z = max(z, 0.5 * h)
+    transparency_element = (
+        f"\n              <transparency>{transparency:.3f}</transparency>"
+        if transparency > 0.0 else ""
+    )
     cube = dedent(f"""
         <model name='unit_box_{cube_idx}'>
           <pose>{x:.3f} {y:.3f} {z:.3f} 0 0 0</pose>
@@ -183,7 +195,7 @@ def get_cube_xml(x, y, z, l, w, h):
                 </friction>
               </surface>
             </collision>
-            <visual name='visual'>
+            <visual name='visual'>{transparency_element}
               <geometry>
                 <box>
                   <size>{l:.3f} {w:.3f} {h:.3f}</size>

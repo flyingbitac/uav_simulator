@@ -303,6 +303,54 @@ class LCorridorGenerationTest(unittest.TestCase):
             self.assertTrue(positions.is_file())
             self.assertEqual(positions.read_text(), "")
 
+    def test_ceiling_transparency_is_visual_only(self):
+        def _geometry(world_path):
+            world = ET.parse(world_path).getroot().find("world")
+            return [
+                (
+                    model.get("name"),
+                    model.findtext("pose"),
+                    model.findtext("./link/collision/geometry/box/size"),
+                )
+                for model in world.findall("model")
+            ]
+
+        def _transparent_bodies(root):
+            world = ET.parse(
+                root / "worlds" / "lcorridor" / "cylinder_lcorridor.world"
+            ).getroot().find("world")
+            return {
+                model.get("name"): model.findtext("./link/visual/transparency")
+                for model in world.findall("model")
+                if model.find("./link/visual/transparency") is not None
+            }
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            default = self._generate_to(Path(temp_dir) / "default")
+            forced = self._generate_to(
+                Path(temp_dir) / "forced", "--ceiling-transparency", "0.6"
+            )
+            solid = self._generate_to(
+                Path(temp_dir) / "solid", "--ceiling-transparency", "0"
+            )
+
+            # Default is 10% opacity, and only the two ceiling slabs carry it.
+            self.assertEqual(
+                _transparent_bodies(default),
+                {"unit_box_4": "0.900", "unit_box_5": "0.900"},
+            )
+            self.assertEqual(
+                _transparent_bodies(forced),
+                {"unit_box_4": "0.600", "unit_box_5": "0.600"},
+            )
+            # 0 restores the opaque world: no transparency element at all.
+            self.assertEqual(_transparent_bodies(solid), {})
+            world_path = "worlds/lcorridor/cylinder_lcorridor.world"
+            self.assertNotIn("<transparency>", (solid / world_path).read_text())
+            # Collision geometry is untouched, so the obstacle problem is too.
+            for root in (forced, solid):
+                self.assertEqual(_geometry(default / world_path), _geometry(root / world_path))
+
     def test_rejects_invalid_parameters(self):
         cases = (
             (("--leg1-length", "0"), "leg1 length"),
@@ -312,6 +360,8 @@ class LCorridorGenerationTest(unittest.TestCase):
             (("--wall-thickness", "0"), "wall thickness"),
             (("--resolution", "0"), "resolution"),
             (("--leg2-length", "1.0", "-W", "3.0"), "half the corridor width"),
+            (("--ceiling-transparency", "1.5"), "ceiling transparency"),
+            (("--ceiling-transparency", "-0.1"), "ceiling transparency"),
         )
         with tempfile.TemporaryDirectory() as temp_dir:
             for index, (extra_args, message) in enumerate(cases):

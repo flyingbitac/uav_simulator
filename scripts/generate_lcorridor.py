@@ -74,6 +74,14 @@ def _parse_args():
     parser.add_argument("-H", "--height", type=float, default=2.0)
     parser.add_argument("--wall-thickness", type=float, default=0.15)
     parser.add_argument("--turn-direction", choices=("left", "right"), default="left")
+    parser.add_argument(
+        "--ceiling-transparency",
+        type=float,
+        default=0.9,
+        help="ceiling visual transparency in [0, 1], where 0 is fully opaque. "
+        "The default 0.9 is 10%% opacity, so the ceiling reads as a faint "
+        "sheet from outside. Visual only, the collision stays solid.",
+    )
     parser.add_argument("--resolution", type=float, default=0.2)
     return parser.parse_args()
 
@@ -124,6 +132,11 @@ def main():
     for name, value in positive.items():
         if not np.isfinite(value) or value <= 0.0:
             raise ValueError(f"{name} must be finite and positive.")
+    if (
+        not np.isfinite(args.ceiling_transparency)
+        or not 0.0 <= args.ceiling_transparency <= 1.0
+    ):
+        raise ValueError("ceiling transparency must be within [0, 1].")
     half_width = args.width / 2.0
     if args.leg1_length <= half_width or args.leg2_length <= half_width:
         raise ValueError(
@@ -148,7 +161,12 @@ def main():
         args.wall_thickness, sign,
     )
 
-    models = [get_cube_xml(*spec) for spec in wall_specs + ceiling_specs]
+    models = [
+        get_cube_xml(*spec) for spec in wall_specs
+    ] + [
+        get_cube_xml(*spec, transparency=args.ceiling_transparency)
+        for spec in ceiling_specs
+    ]
     # The static pcd is display-only: wall boxes only (vertical faces plus
     # their top rims), with ceiling slabs and ground-level bottom faces dropped
     # so rviz shows the corridor outline alone.
@@ -178,6 +196,8 @@ def main():
           f"along {'+' if sign > 0 else '-'}y")
     print(f"free section: {args.width} m wide x {args.height} m high, "
           f"wall thickness {args.wall_thickness} m")
+    print(f"ceiling opacity: {1.0 - args.ceiling_transparency:g} "
+          f"(transparency {args.ceiling_transparency:g}, visual only)")
     print(f"home: (0.000, 0.000), target: ({args.leg1_length:.3f}, {goal_y:.3f})")
     print("cylinder_positions.txt: empty (no obstacles)")
     print(f"static pcd: walls only ({len(points)} points, no ceiling or "

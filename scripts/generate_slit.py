@@ -93,6 +93,14 @@ def _parse_args():
              "end either way, so the drone threads the slit and keeps flying "
              "to the goal, which stays --target-offset metres behind the wall.",
     )
+    parser.add_argument(
+        "--ceiling-transparency",
+        type=float,
+        default=0.9,
+        help="ceiling visual transparency in [0, 1], where 0 is fully opaque. "
+        "The default 0.9 is 10%% opacity, matching the lcorridor ceiling. "
+        "Visual only, the collision stays solid.",
+    )
     parser.add_argument("--resolution", type=float, default=0.2)
     args = parser.parse_args()
     if args.wall_x is None:
@@ -117,10 +125,11 @@ def _slit_span(width, height, thickness, slit_width, slit_height, center_y,
     y1 = center_y + slit_width / 2.0
     z0 = center_z - slit_height / 2.0
     z1 = center_z + slit_height / 2.0
-    if not (y0 > -outer_y and y1 < outer_y and z0 > 0.0 and z1 < height):
+    if not (y0 > -outer_y and y1 < outer_y and z0 >= 0.0 and z1 <= height):
         raise ValueError(
-            "the slit must lie strictly inside the far wall cross-section, "
-            "otherwise the wall has no frame around it."
+            "the slit must lie inside the far wall cross-section, with a "
+            "pillar left beside it; it may sit flush with the floor or the "
+            "ceiling."
         )
     return y0, y1, z0, z1
 
@@ -143,13 +152,15 @@ def _build_specs(length, width, height, thickness, wall_x, slit_y0, slit_y1,
         # Right wall.
         ((length - thickness) / 2.0, half_width + thickness / 2.0,
          height / 2.0, length + thickness, thickness, height),
-        # Far wall: two pillars beside the slit, a sill below and a lintel
-        # above it.
+        # Far wall: two pillars beside the slit, plus the sill below and the
+        # lintel above it when the slit leaves a gap there.
         _span_spec(x0, x1, -outer_y, slit_y0, 0.0, height),
         _span_spec(x0, x1, slit_y1, outer_y, 0.0, height),
-        _span_spec(x0, x1, slit_y0, slit_y1, 0.0, slit_z0),
-        _span_spec(x0, x1, slit_y0, slit_y1, slit_z1, height),
     ]
+    if slit_z0 > 1e-9:
+        walls.append(_span_spec(x0, x1, slit_y0, slit_y1, 0.0, slit_z0))
+    if slit_z1 < height - 1e-9:
+        walls.append(_span_spec(x0, x1, slit_y0, slit_y1, slit_z1, height))
     ceilings = [
         # One slab over mouth, tube and far wall so no seam opens.
         (length / 2.0, 0.0,
@@ -175,6 +186,11 @@ def main():
             raise ValueError(f"{name} must be finite and positive.")
     if not np.isfinite(args.target_offset) or args.target_offset < 0.0:
         raise ValueError("target offset must be finite and non-negative.")
+    if (
+        not np.isfinite(args.ceiling_transparency)
+        or not 0.0 <= args.ceiling_transparency <= 1.0
+    ):
+        raise ValueError("ceiling transparency must be within [0, 1].")
     center_z = args.height / 2.0 if args.slit_center_z is None else args.slit_center_z
     for name, value in (("slit center y", args.slit_center_y),
                         ("slit center z", center_z)):
@@ -211,7 +227,12 @@ def main():
         args.wall_x, slit_y0, slit_y1, slit_z0, slit_z1,
     )
 
-    models = [get_cube_xml(*spec) for spec in wall_specs + ceiling_specs]
+    models = [
+        get_cube_xml(*spec) for spec in wall_specs
+    ] + [
+        get_cube_xml(*spec, transparency=args.ceiling_transparency)
+        for spec in ceiling_specs
+    ]
     # The static pcd is display-only: wall boxes only (vertical faces plus
     # their top rims), with the ceiling slab and ground-level bottom faces
     # dropped so rviz shows the tube outline and the slit alone.
@@ -242,6 +263,8 @@ def main():
           f"{args.slit_width} x {args.slit_height} m slit")
     print(f"free section: {args.width} m wide x {args.height} m high, "
           f"wall thickness {args.wall_thickness} m")
+    print(f"ceiling opacity: {1.0 - args.ceiling_transparency:g} "
+          f"(transparency {args.ceiling_transparency:g}, visual only)")
     print(f"slit centred at (y={args.slit_center_y:.3f}, z={center_z:.3f}), "
           f"open y in [{slit_y0:.3f}, {slit_y1:.3f}], "
           f"z in [{slit_z0:.3f}, {slit_z1:.3f}]")

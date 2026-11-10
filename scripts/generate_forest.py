@@ -12,6 +12,7 @@ import open3d as o3d
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from xml_utils import (
     generate_dynamic_cylinder_world,
+    get_cube_xml,
     get_cylinder_points,
     get_cylinder_xml,
     resolve_private_output_root,
@@ -83,6 +84,23 @@ parser.add_argument("-R", "--max-radius", type=float, default=0.3, help="Maximum
 parser.add_argument("-H", type=float, default=15,  help="Height of the cylinders")
 parser.add_argument("-e", "--euler-range", type=float, default=10., help="Range of euler angles of the cylinders")
 parser.add_argument("--seed", type=int, default=None, help="Optional deterministic random seed")
+parser.add_argument(
+    "--ceiling-height",
+    type=float,
+    default=0.0,
+    help="Optional ceiling slab over the whole course at this free-space "
+    "height in m (0 disables). It spans x in [0, L+2B] and the full field "
+    "width, so the drone cannot climb above it; trees still poke through it.",
+)
+parser.add_argument("--ceiling-thickness", type=float, default=0.2,
+                    help="Thickness of the ceiling slab")
+parser.add_argument(
+    "--ceiling-transparency",
+    type=float,
+    default=0.0,
+    help="Ceiling visual transparency in [0, 1]; 0 (default) is opaque, which "
+    "also makes a depth camera see the slab.",
+)
 parser.add_argument(
     "--output-root",
     type=str,
@@ -181,6 +199,13 @@ if __name__ == "__main__":
         np.zeros((Nx, Ny, 1)),
     ], axis=-1)
 
+    if args.ceiling_height < 0.0 or not np.isfinite(args.ceiling_height):
+        raise ValueError("--ceiling-height must be finite and non-negative.")
+    if args.ceiling_thickness <= 0.0 or not np.isfinite(args.ceiling_thickness):
+        raise ValueError("--ceiling-thickness must be finite and positive.")
+    if not 0.0 <= args.ceiling_transparency <= 1.0:
+        raise ValueError("--ceiling-transparency must be within [0, 1].")
+
     cylinders, points, colors = [], [], []
     with open(position_file_path, "w") as f:
         for i in range(Nx):
@@ -191,6 +216,18 @@ if __name__ == "__main__":
                 colors.append(color)
                 cylinders.append(cylinder_xml)
                 f.write(f"{x:.5f},{y:.5f},{r:.5f}\n")
+    if args.ceiling_height > 0.0:
+        thickness = args.ceiling_thickness
+        # overshoot both ends so the goal never sits on the slab edge
+        x0, x1 = -2.0, L + 2.0 * B + 8.0
+        cylinders.append(get_cube_xml(
+            (x0 + x1) / 2.0, 0.0,
+            args.ceiling_height + thickness / 2.0,
+            x1 - x0, ratio * L + 4.0, thickness,
+            transparency=args.ceiling_transparency,
+        ))
+        print(f"ceiling slab: z={args.ceiling_height:g} m, "
+              f"x {x0:g}..{x1:g} m, y +/-{0.5 * (ratio * L + 4.0):g} m")
     create_forest(cylinders)
     print("World file generated at", os.path.abspath(os.path.join(world_file_directory, "cylinder_forest.world")))
     pcd = o3d.geometry.PointCloud()
