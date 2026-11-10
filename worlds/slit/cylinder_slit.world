@@ -1,0 +1,408 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://asphalt_plane</uri>
+      <pose>0 0 -0.000001 0 0 0</pose>
+    </include>
+    
+    <model name='unit_box_0'>    
+      <pose>9.925 -1.075 1.500 0 0 0</pose>    
+      <link name='link'>    
+        <gravity>1</gravity>    
+        <inertial>    
+          <mass>10000</mass>    
+          <inertia>    
+            <ixx>2000</ixx>    
+            <ixy>0</ixy>    
+            <ixz>0</ixz>    
+            <iyy>2000</iyy>    
+            <iyz>0</iyz>    
+            <izz>2000</izz>    
+          </inertia>    
+          <pose>0 0 0 0 0 0</pose>    
+        </inertial>    
+        <collision name='collision'>    
+          <geometry>    
+            <box>    
+              <size>20.150 0.150 3.000</size>    
+            </box>    
+          </geometry>    
+          <max_contacts>10</max_contacts>    
+          <surface>    
+            <contact>    
+              <ode/>    
+            </contact>    
+            <bounce/>    
+            <friction>    
+              <torsional>    
+                <ode/>    
+              </torsional>    
+              <ode/>    
+            </friction>    
+          </surface>    
+        </collision>    
+        <visual name='visual'>    
+          <geometry>    
+            <box>    
+              <size>20.150 0.150 3.000</size>    
+            </box>    
+          </geometry>    
+          <material>    
+            <script>    
+              <name>Gazebo/Grey</name>    
+              <uri>file://media/materials/scripts/gazebo.material</uri>    
+            </script>    
+          </material>    
+        </visual>    
+      </link>    
+      <static>1</static>    
+    </model>    
+        
+    <model name='unit_box_1'>    
+      <pose>9.925 1.075 1.500 0 0 0</pose>    
+      <link name='link'>    
+        <gravity>1</gravity>    
+        <inertial>    
+          <mass>10000</mass>    
+          <inertia>    
+            <ixx>2000</ixx>    
+            <ixy>0</ixy>    
+            <ixz>0</ixz>    
+            <iyy>2000</iyy>    
+            <iyz>0</iyz>    
+            <izz>2000</izz>    
+          </inertia>    
+          <pose>0 0 0 0 0 0</pose>    
+        </inertial>    
+        <collision name='collision'>    
+          <geometry>    
+            <box>    
+              <size>20.150 0.150 3.000</size>    
+            </box>    
+          </geometry>    
+          <max_contacts>10</max_contacts>    
+          <surface>    
+            <contact>    
+              <ode/>    
+            </contact>    
+            <bounce/>    
+            <friction>    
+              <torsional>    
+                <ode/>    
+              </torsional>    
+              <ode/>    
+            </friction>    
+          </surface>    
+        </collision>    
+        <visual name='visual'>    
+          <geometry>    
+            <box>    
+              <size>20.150 0.150 3.000</size>    
+            </box>    
+          </geometry>    
+          <material>    
+            <script>    
+              <name>Gazebo/Grey</name>    
+              <uri>file://media/materials/scripts/gazebo.material</uri>    
+            </script>    
+          </material>    
+        </visual>    
+      </link>    
+      <static>1</static>    
+    </model>    
+        
+    <model name='unit_box_2'>    
+      <pose>10.075 -0.750 1.500 0 0 0</pose>    
+      <link name='link'>    
+        <gravity>1</gravity>    
+        <inertial>    
+          <mass>10000</mass>    
+          <inertia>    
+            <ixx>2000</ixx>    
+            <ixy>0</ixy>    
+            <ixz>0</ixz>    
+            <iyy>2000</iyy>    
+            <iyz>0</iyz>    
+            <izz>2000</izz>    
+          </inertia>    
+          <pose>0 0 0 0 0 0</pose>    
+        </inertial>    
+        <collision name='collision'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.800 3.000</size>    
+            </box>    
+          </geometry>    
+          <max_contacts>10</max_contacts>    
+          <surface>    
+            <contact>    
+              <ode/>    
+            </contact>    
+            <bounce/>    
+            <friction>    
+              <torsional>    
+                <ode/>    
+              </torsional>    
+              <ode/>    
+            </friction>    
+          </surface>    
+        </collision>    
+        <visual name='visual'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.800 3.000</size>    
+            </box>    
+          </geometry>    
+          <material>    
+            <script>    
+              <name>Gazebo/Grey</name>    
+              <uri>file://media/materials/scripts/gazebo.material</uri>    
+            </script>    
+          </material>    
+        </visual>    
+      </link>    
+      <static>1</static>    
+    </model>    
+        
+    <model name='unit_box_3'>    
+      <pose>10.075 0.750 1.500 0 0 0</pose>    
+      <link name='link'>    
+        <gravity>1</gravity>    
+        <inertial>    
+          <mass>10000</mass>    
+          <inertia>    
+            <ixx>2000</ixx>    
+            <ixy>0</ixy>    
+            <ixz>0</ixz>    
+            <iyy>2000</iyy>    
+            <iyz>0</iyz>    
+            <izz>2000</izz>    
+          </inertia>    
+          <pose>0 0 0 0 0 0</pose>    
+        </inertial>    
+        <collision name='collision'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.800 3.000</size>    
+            </box>    
+          </geometry>    
+          <max_contacts>10</max_contacts>    
+          <surface>    
+            <contact>    
+              <ode/>    
+            </contact>    
+            <bounce/>    
+            <friction>    
+              <torsional>    
+                <ode/>    
+              </torsional>    
+              <ode/>    
+            </friction>    
+          </surface>    
+        </collision>    
+        <visual name='visual'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.800 3.000</size>    
+            </box>    
+          </geometry>    
+          <material>    
+            <script>    
+              <name>Gazebo/Grey</name>    
+              <uri>file://media/materials/scripts/gazebo.material</uri>    
+            </script>    
+          </material>    
+        </visual>    
+      </link>    
+      <static>1</static>    
+    </model>    
+        
+    <model name='unit_box_4'>    
+      <pose>10.075 0.000 0.625 0 0 0</pose>    
+      <link name='link'>    
+        <gravity>1</gravity>    
+        <inertial>    
+          <mass>10000</mass>    
+          <inertia>    
+            <ixx>2000</ixx>    
+            <ixy>0</ixy>    
+            <ixz>0</ixz>    
+            <iyy>2000</iyy>    
+            <iyz>0</iyz>    
+            <izz>2000</izz>    
+          </inertia>    
+          <pose>0 0 0 0 0 0</pose>    
+        </inertial>    
+        <collision name='collision'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.700 1.250</size>    
+            </box>    
+          </geometry>    
+          <max_contacts>10</max_contacts>    
+          <surface>    
+            <contact>    
+              <ode/>    
+            </contact>    
+            <bounce/>    
+            <friction>    
+              <torsional>    
+                <ode/>    
+              </torsional>    
+              <ode/>    
+            </friction>    
+          </surface>    
+        </collision>    
+        <visual name='visual'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.700 1.250</size>    
+            </box>    
+          </geometry>    
+          <material>    
+            <script>    
+              <name>Gazebo/Grey</name>    
+              <uri>file://media/materials/scripts/gazebo.material</uri>    
+            </script>    
+          </material>    
+        </visual>    
+      </link>    
+      <static>1</static>    
+    </model>    
+        
+    <model name='unit_box_5'>    
+      <pose>10.075 0.000 2.375 0 0 0</pose>    
+      <link name='link'>    
+        <gravity>1</gravity>    
+        <inertial>    
+          <mass>10000</mass>    
+          <inertia>    
+            <ixx>2000</ixx>    
+            <ixy>0</ixy>    
+            <ixz>0</ixz>    
+            <iyy>2000</iyy>    
+            <iyz>0</iyz>    
+            <izz>2000</izz>    
+          </inertia>    
+          <pose>0 0 0 0 0 0</pose>    
+        </inertial>    
+        <collision name='collision'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.700 1.250</size>    
+            </box>    
+          </geometry>    
+          <max_contacts>10</max_contacts>    
+          <surface>    
+            <contact>    
+              <ode/>    
+            </contact>    
+            <bounce/>    
+            <friction>    
+              <torsional>    
+                <ode/>    
+              </torsional>    
+              <ode/>    
+            </friction>    
+          </surface>    
+        </collision>    
+        <visual name='visual'>    
+          <geometry>    
+            <box>    
+              <size>0.150 0.700 1.250</size>    
+            </box>    
+          </geometry>    
+          <material>    
+            <script>    
+              <name>Gazebo/Grey</name>    
+              <uri>file://media/materials/scripts/gazebo.material</uri>    
+            </script>    
+          </material>    
+        </visual>    
+      </link>    
+      <static>1</static>    
+    </model>    
+        
+    <model name='unit_box_6'>    
+      <pose>10.000 0.000 3.075 0 0 0</pose>    
+      <link name='link'>    
+        <gravity>1</gravity>    
+        <inertial>    
+          <mass>10000</mass>    
+          <inertia>    
+            <ixx>2000</ixx>    
+            <ixy>0</ixy>    
+            <ixz>0</ixz>    
+            <iyy>2000</iyy>    
+            <iyz>0</iyz>    
+            <izz>2000</izz>    
+          </inertia>    
+          <pose>0 0 0 0 0 0</pose>    
+        </inertial>    
+        <collision name='collision'>    
+          <geometry>    
+            <box>    
+              <size>20.300 2.300 0.150</size>    
+            </box>    
+          </geometry>    
+          <max_contacts>10</max_contacts>    
+          <surface>    
+            <contact>    
+              <ode/>    
+            </contact>    
+            <bounce/>    
+            <friction>    
+              <torsional>    
+                <ode/>    
+              </torsional>    
+              <ode/>    
+            </friction>    
+          </surface>    
+        </collision>    
+        <visual name='visual'>    
+          <transparency>0.900</transparency>    
+          <geometry>    
+            <box>    
+              <size>20.300 2.300 0.150</size>    
+            </box>    
+          </geometry>    
+          <material>    
+            <script>    
+              <name>Gazebo/Grey</name>    
+              <uri>file://media/materials/scripts/gazebo.material</uri>    
+            </script>    
+          </material>    
+        </visual>    
+      </link>    
+      <static>1</static>    
+    </model>    
+        <physics name="default_physics" default="0" type="ode">
+      <gravity>0 0 -9.8066</gravity>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>10</iters>
+          <sor>1.3</sor>
+          <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+      <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
+    </physics>
+  </world>
+</sdf>
